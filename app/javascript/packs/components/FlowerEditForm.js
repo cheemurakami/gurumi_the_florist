@@ -3,7 +3,9 @@ import React from 'react'
 function FlowerEditForm() {
   return (
     <React.Fragment>
-      <form>
+      <p>hello this is flower edit form</p>
+      <h2 className='text-center'>Edit this flower</h2>
+      <form className='text-center'>
         <input 
           type='text' 
           name='title' 
