@@ -1,8 +1,15 @@
 import React from "react";
 import Media from "react-bootstrap/Media";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function FlowerList() {
+
+  const history = useHistory();
+
+  const handleClick = () => {
+    console.log('clicked')
+    history.push("/flower");
+  }
   return (
     <React.Fragment>
       <p>hello this is flower list</p>
@@ -10,7 +17,8 @@ function FlowerList() {
       <h2 className='text-center'>Welcome</h2>
 
       <ul className="list-unstyled">
-        <Media as="li">
+        
+        <Media as="li" onClick={handleClick}>
           <img
             width={64}
             height={64}
