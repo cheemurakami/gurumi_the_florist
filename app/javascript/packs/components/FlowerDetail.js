@@ -1,8 +1,11 @@
 import React from "react";
 import Media from "react-bootstrap/Media";
+import {useHistory} from "react-router-dom";
 
 
 function FlowerDetail() {
+  const history = useHistory();
+  
   return (
     <React.Fragment>
       <p>this is detail page</p>
@@ -27,6 +30,7 @@ function FlowerDetail() {
           </Media.Body>
         </Media>
       </ul>
+      <button onClick={() => history.goBack()}>Back to List</button>
     </React.Fragment>
   );
 }
