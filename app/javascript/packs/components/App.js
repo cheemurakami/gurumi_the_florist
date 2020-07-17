@@ -1,13 +1,22 @@
 import React from 'react'
 import NavBar from './NavBar'
 import FlowerList from './FlowerList'
+import FlowerCreateForm from './FlowerCreateForm'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 
 function App() {
   return (
-    <React.Fragment>
-      <NavBar />
-      <FlowerList />
-    </React.Fragment>
+    <Router>
+        <NavBar />
+      <Switch>
+        <Route path="/newflowers">
+          <FlowerCreateForm />
+        </Route>
+        <Route path="/">
+          <FlowerList />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 
