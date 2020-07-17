@@ -8,7 +8,7 @@ function NavBar() {
   <Nav className="justify-content-end" activeKey="/home">
     <Nav.Item>
 
-      <Nav.Link> <Link to="/">Home</Link></Nav.Link>
+      <Nav.Link as={Link} to="/">Home</Nav.Link>
       
     </Nav.Item>
     <Nav.Item>

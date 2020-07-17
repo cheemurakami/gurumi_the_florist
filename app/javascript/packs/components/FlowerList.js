@@ -7,13 +7,15 @@ function FlowerList() {
     <React.Fragment>
       <p>hello this is flower list</p>
 
+      <h2 className='text-center'>Welcome</h2>
+
       <ul className="list-unstyled">
         <Media as="li">
           <img
             width={64}
             height={64}
             className="mr-3"
-            src="holder.js/64x64"
+            src="https://i.pinimg.com/originals/14/8f/ab/148fabbf4815332640221127e8715bf7.png"
             alt="Generic placeholder"
           />
           <Media.Body>
@@ -32,7 +34,7 @@ function FlowerList() {
             width={64}
             height={64}
             className="mr-3"
-            src="holder.js/64x64"
+            src="https://i.pinimg.com/originals/14/8f/ab/148fabbf4815332640221127e8715bf7.png"
             alt="Generic placeholder"
           />
           <Media.Body>
@@ -51,7 +53,7 @@ function FlowerList() {
             width={64}
             height={64}
             className="mr-3"
-            src="holder.js/64x64"
+            src="https://i.pinimg.com/originals/14/8f/ab/148fabbf4815332640221127e8715bf7.png"
             alt="Generic placeholder"
           />
           <Media.Body>

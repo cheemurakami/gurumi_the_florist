@@ -12,6 +12,9 @@ function App() {
         <Route path="/newflowers">
           <FlowerCreateForm />
         </Route>
+        {/* <Route path="/editflowers">
+          <FlowerEditForm />
+        </Route> */}
         <Route path="/">
           <FlowerList />
         </Route>

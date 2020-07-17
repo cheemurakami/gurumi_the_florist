@@ -1,11 +1,9 @@
 import React from 'react'
 
-function FlowerCreateForm() {
+function FlowerEditForm() {
   return (
     <React.Fragment>
-      <p>hello this is flower create form</p>
-      <h2 className='text-center'>Add new flower</h2>
-      <form className='text-center'>
+      <form>
         <input 
           type='text' 
           name='title' 
@@ -27,4 +25,4 @@ function FlowerCreateForm() {
   )
 }
 
-export default FlowerCreateForm
+export default FlowerEditForm
