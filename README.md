@@ -1,24 +1,48 @@
-# README
+# _Flower Shop_
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### _A capstone application using Ruby and React. DATE 7/17/20_
 
-Things you may want to cover:
+#### By _**Chisato Murakami**_
 
-* Ruby version
+## Description
 
-* System dependencies
+_This is a flower shop website._ 
 
-* Configuration
+## Setup/Installation Requirements
 
-* Database creation
+* _Clone Repository from GitHub : https://github.com/cheemurakami/flower_shop
+* _Open folder in Virtual Studio Code (or your text editor of choice)_
+* _Open your terminal in Virtual Studio Code & type code . this will open all files associated with this app. 
+* _Before you initialize GIT, be sure to delete the already exisiting .git file by running this command in your terminal $rm -rf .git_
+* _Create your own repository and push new changes to GitHub_
 
-* Database initialization
+## Behavior Driven Development 
 
-* How to run the test suite
+![tree](./img/diagram.png)
 
-* Services (job queues, cache servers, search engines, etc.)
+|   Behavior Description        |
+|-------------------------------|
+| 1. []|
+| 2. []|
 
-* Deployment instructions
+| **Further Exploration**|
 
-* ...
+
+## Known Bugs
+
+_No known bugs at this time_
+
+## Support and contact details
+
+_If you have any questions or any issues please feel free to submit an issue here: kiwipom1031@gmail.com_
+
+## Technologies Used
+
+_JavaScript, React, Ruby on Rails_ 
+
+
+### Licenses
+*MIT LICENSE*
+
+Copyright (c) 2020 **Chisato Murakami**
+
