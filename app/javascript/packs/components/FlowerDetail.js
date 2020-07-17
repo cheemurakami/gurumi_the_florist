@@ -33,7 +33,9 @@ function FlowerDetail() {
       <Link to="/editflowers">
         <button>Edit this flower</button>
       </Link>  
-      <button onClick={() => history.goBack()}>Back to List</button>
+      <Link to="/">
+        <button>Back to List</button>
+      </Link>
     </React.Fragment>
   );
 }
