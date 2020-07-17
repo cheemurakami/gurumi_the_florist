@@ -22,8 +22,14 @@ _This is a flower shop website._
 
 |   Behavior Description        |
 |-------------------------------|
-| 1. []|
-| 2. []|
+| 1. User see the lists of flowers at home page. -react[]|
+| 2. User can click one of the lists and that navigates to FlowerDetail page.-react[]|
+| 3. User can create a flower. -rails[]|
+| 4. User can update a flower. -rails[]|
+| 5. User can delete a flower. -rails[]|
+| 6. User can delete a flower. -rails[]|
+| 7. User can delete a flower. -rails[]|
+
 
 | **Further Exploration**|
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
 
@@ -10,6 +10,25 @@ function FlowerList() {
     console.log('clicked')
     history.push("/flower");
   }
+  
+  const [flowers, setFlowers] = useState([]);
+
+  //This is what we want to happen when first loaded
+  useEffect(() => {
+    fetch('/flowers/')
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log(jsonifiedResponse)
+        setFlowers(jsonifiedResponse)
+      }
+    )
+    // get all flowers
+    // then set all flowers to my state
+    return () => {
+    }
+  }, [])
+
   return (
     <React.Fragment>
       <p>hello this is flower list</p>
@@ -17,6 +36,9 @@ function FlowerList() {
       <h2 className='text-center'>Welcome</h2>
 
       <ul className="list-unstyled">
+        { flowers.map((flower) => 
+          <p>{flower.title}</p>
+         )}
         
         <Media as="li" onClick={handleClick}>
           <img
