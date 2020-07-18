@@ -44,9 +44,7 @@ function FlowerDetail() {
       <Link to={`/editflowers/${id}`}>
         <button>Edit this flower</button>
       </Link>  
-      {/* <Link to={`/editflowers/${id}`}> */}
         <button onClick={deleteHandler}>Delete this flower</button>
-      {/* </Link>   */}
       <Link to="/">
         <button>Back to List</button>
       </Link>

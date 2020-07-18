@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 
 
 function FlowerEditForm() {
   const { id } = useParams();  
-  
+  const history = useHistory();
+
   function formSubmissionHandler(event) {
     event.preventDefault();
     const data = {
@@ -23,6 +24,7 @@ function FlowerEditForm() {
       .then((resposeData) => {
         console.log("Success:", resposeData);
       });
+      return history.push('/')
   }
 
   return (
@@ -38,7 +40,11 @@ function FlowerEditForm() {
         <button type="submit">Submit</button>
         <br />
       </form>
+      <Link to="/">
+        <button>Back to List</button>
+      </Link>
     </React.Fragment>
+    
   );
 }
 

@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link, useHistory } from "react-router-dom";
 
 function FlowerCreateForm() {
-
+  const history = useHistory();
   function formSubmissionHandler (event) {
     event.preventDefault();
 
@@ -22,6 +23,7 @@ function FlowerCreateForm() {
     .then(data => {
       console.log('Success:', data)
     })
+    return history.push('/')
   }
 
   return (
@@ -43,9 +45,14 @@ function FlowerCreateForm() {
           type='text' 
           name='price' 
           placeholder='Price' />
-        <button type='submit'>Submit</button>
         <br />
+        <button type='submit'>Submit</button>
       </form>
+      
+      <Link to="/">
+        <button>Back to List</button>
+      </Link>
+      
     </React.Fragment>
   )
 }
