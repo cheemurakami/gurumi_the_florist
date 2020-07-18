@@ -1,10 +1,11 @@
 import React from "react";
 import Media from "react-bootstrap/Media";
-import {useHistory, Link} from "react-router-dom";
+import {useHistory, Link, useParams} from "react-router-dom";
 
 
 function FlowerDetail() {
   const history = useHistory();
+  const { id } = useParams();
 
   return (
     <React.Fragment>
@@ -30,7 +31,7 @@ function FlowerDetail() {
           </Media.Body>
         </Media>
       </ul>
-      <Link to="/editflowers">
+      <Link to={`/editflowers/${id}`}>
         <button>Edit this flower</button>
       </Link>  
       <Link to="/">

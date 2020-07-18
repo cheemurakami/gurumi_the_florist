@@ -18,7 +18,7 @@ _This is a flower shop website._
 
 ## Behavior Driven Development 
 
-![tree](./img/diagram.png)
+![tree](./diagram.png)
 
 |   Behavior Description        |
 |-------------------------------|

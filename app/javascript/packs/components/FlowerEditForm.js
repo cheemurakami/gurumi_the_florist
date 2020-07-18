@@ -1,19 +1,19 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 function FlowerEditForm() {
+  
   function formSubmissionHandler(event) {
-    event.preventDedault();
+    event.preventDefault();
+    const { id } = useParams();  
     const data = {
       title: event.target.title.value,
       description: event.target.description.value,
       price: event.target.price.value,
     };
 
-    fetch("/flowers/data.id", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    fetch(`/flowers/${id}`, {
+      method: "PUT",
       body: JSON.stringify(data),
     })
       .then((response) => response.json())

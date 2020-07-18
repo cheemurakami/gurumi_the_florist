@@ -14,10 +14,10 @@ function App() {
         <Route path="/newflowers">
           <FlowerCreateForm />
         </Route>
-        <Route path="/flower">
+        <Route path="/flower/:id">
           <FlowerDetail />
         </Route>
-        <Route path="/editflowers">
+        <Route path="/editflowers/:id">
           <FlowerEditForm />
         </Route>
         <Route path="/">
