@@ -5,9 +5,9 @@ import { Link, useHistory } from "react-router-dom";
 function FlowerList() {
   const history = useHistory();
 
-  const handleClick = () => {
+  const handleClick = (id) => {
     console.log("clicked");
-    history.push("/flower");
+    history.push(`/flower/${id}`);
   };
 
   const [flowers, setFlowers] = useState([]);
@@ -32,7 +32,7 @@ function FlowerList() {
 
       <ul className="list-unstyled">
         {flowers.map((flower) => (
-          <Media as="li" onClick={handleClick}>
+          <Media as="li" onClick={() => handleClick(flower.id)}>
             <img
               width={64}
               height={64}
