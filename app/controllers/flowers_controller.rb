@@ -26,6 +26,7 @@ class FlowersController < ApplicationController
   def destroy
     @flower = Flower.find(params[:id])
     @flower.destroy
+    json_response({message: "destroyed!"})
   end
 
   private

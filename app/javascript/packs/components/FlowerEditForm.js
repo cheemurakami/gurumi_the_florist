@@ -20,8 +20,8 @@ function FlowerEditForm() {
         'Content-Type': 'application/json'
       }
     }).then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+      .then((resposeData) => {
+        console.log("Success:", resposeData);
       });
   }
 

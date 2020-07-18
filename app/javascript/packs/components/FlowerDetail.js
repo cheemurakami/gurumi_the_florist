@@ -7,6 +7,16 @@ function FlowerDetail() {
   const history = useHistory();
   const { id } = useParams();
 
+  function deleteHandler(event){
+    event.preventDefault();
+    fetch(`/flowers/${id}`, {
+      method: "DELETE",
+    }).then((response) => response.json())
+      .then((responseData) => {
+        console.log("Success:", responseData);
+      });
+  }
+
   return (
     <React.Fragment>
       <p>this is detail page</p>
@@ -34,6 +44,9 @@ function FlowerDetail() {
       <Link to={`/editflowers/${id}`}>
         <button>Edit this flower</button>
       </Link>  
+      {/* <Link to={`/editflowers/${id}`}> */}
+        <button onClick={deleteHandler}>Delete this flower</button>
+      {/* </Link>   */}
       <Link to="/">
         <button>Back to List</button>
       </Link>
