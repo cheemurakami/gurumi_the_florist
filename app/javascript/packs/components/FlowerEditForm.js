@@ -1,11 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+
 function FlowerEditForm() {
+  const { id } = useParams();  
   
   function formSubmissionHandler(event) {
     event.preventDefault();
-    const { id } = useParams();  
     const data = {
       title: event.target.title.value,
       description: event.target.description.value,
@@ -15,8 +16,10 @@ function FlowerEditForm() {
     fetch(`/flowers/${id}`, {
       method: "PUT",
       body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
       });
