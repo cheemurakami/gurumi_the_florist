@@ -11,6 +11,7 @@ function FlowerList() {
   };
 
   const [flowers, setFlowers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   //This is what we want to happen when first loaded
   useEffect(() => {
@@ -18,11 +19,18 @@ function FlowerList() {
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlowers(jsonifiedResponse);
+        setIsLoading(false);
       });
     // get all flowers
     // then set all flowers to my state
     return () => {};
   }, []);
+
+  const loadingMessage = () => {
+    if (isLoading) {
+      return <p>Loading</p>
+    }
+  }
 
   return (
     <React.Fragment>
@@ -31,6 +39,7 @@ function FlowerList() {
       <h2 className="text-center">Welcome</h2>
 
       <ul className="list-unstyled">
+        {loadingMessage()}
         {flowers.map((flower) => (
           <Media as="li" onClick={() => handleClick(flower.id)}>
             <img
