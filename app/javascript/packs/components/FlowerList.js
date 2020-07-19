@@ -5,7 +5,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 function FlowerList() {
   const history = useHistory();
   const location = useLocation();
-  // console.log(location)
+  console.log(location)
   const handleClick = (id) => {
     console.log("clicked");
     history.push(`/flower/${id}`);

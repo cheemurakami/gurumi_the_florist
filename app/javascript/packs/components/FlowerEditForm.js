@@ -24,8 +24,8 @@ function FlowerEditForm() {
     }).then((response) => response.json())
       .then((resposeData) => {
         console.log("Success:", resposeData);
+        setDirect(true);
       });
-    setDirect(true);
   }
   const directToHome = () => {
     if(direct){

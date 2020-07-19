@@ -23,9 +23,8 @@ function FlowerCreateForm() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        setDirect(true);
       });
-    setDirect(true);
-    // location.replace("/");
 
   }
   const directToHome = () => {
