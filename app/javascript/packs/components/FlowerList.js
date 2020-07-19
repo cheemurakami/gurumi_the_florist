@@ -5,7 +5,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 function FlowerList() {
   const history = useHistory();
   const location = useLocation();
-  console.log(location)
+  // console.log(location)
   const handleClick = (id) => {
     console.log("clicked");
     history.push(`/flower/${id}`);
@@ -16,7 +16,7 @@ function FlowerList() {
 
   //This is what we want to happen when first loaded
   useEffect(() => {
-    fetch("/flowers/")
+    fetch("/api/flowers/")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlowers(jsonifiedResponse);

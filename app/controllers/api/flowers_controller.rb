@@ -1,4 +1,5 @@
-class FlowersController < ApplicationController
+module Api
+  class FlowersController < ApplicationController
  
   skip_before_action :verify_authenticity_token
 
@@ -37,4 +38,5 @@ class FlowersController < ApplicationController
     def flower_params
       params.permit(:title, :description, :price)
     end
+  end
 end

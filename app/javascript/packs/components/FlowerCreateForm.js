@@ -13,7 +13,7 @@ function FlowerCreateForm() {
       price: event.target.price.value,
     };
 
-    fetch("/flowers", {
+    fetch("/api/flowers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

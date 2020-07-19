@@ -15,7 +15,7 @@ function FlowerEditForm() {
       price: event.target.price.value,
     };
 
-    fetch(`/flowers/${id}`, {
+    fetch(`/api/flowers/${id}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {

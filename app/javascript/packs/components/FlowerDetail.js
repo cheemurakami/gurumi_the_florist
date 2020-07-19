@@ -1,20 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Media from "react-bootstrap/Media";
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useLocation} from "react-router-dom";
 
 
 function FlowerDetail() {
   const { id } = useParams();
+  const [flower, setFlower] = useState({});
+  const location = useLocation();
 
   function deleteHandler(event){
     event.preventDefault();
-    fetch(`/flowers/${id}`, {
+    fetch(`/api/flowers/${id}`, {
       method: "DELETE",
     }).then((response) => response.json())
       .then((responseData) => {
         console.log("Success:", responseData);
       });
   }
+  
+  useEffect(() => {
+    fetch(`/api/flowers/${id}`)
+      .then((response) => 
+        response.json()
+      )
+      .then((jsonifiedResponse) => {
+        setFlower(jsonifiedResponse);
+      });
+      return () => {};
+  }, [location]);
 
   return (
     <React.Fragment>
@@ -30,13 +43,9 @@ function FlowerDetail() {
             alt="Generic placeholder"
           />
           <Media.Body>
-            <h5>flower 1</h5>
-            <p>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-              scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-              nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </p>
+            <h5>{flower.title}</h5>
+            <p>{flower.description}</p>
+            <p>Price: {flower.price}</p>
           </Media.Body>
         </Media>
       </ul>
