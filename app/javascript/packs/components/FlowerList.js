@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Media from "react-bootstrap/Media";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 function FlowerList() {
   const history = useHistory();
-
+  const location = useLocation();
+  console.log(location)
   const handleClick = (id) => {
     console.log("clicked");
     history.push(`/flower/${id}`);
@@ -24,7 +25,7 @@ function FlowerList() {
     // get all flowers
     // then set all flowers to my state
     return () => {};
-  }, []);
+  }, [location]);
 
   const loadingMessage = () => {
     if (isLoading) {
@@ -41,7 +42,7 @@ function FlowerList() {
       <ul className="list-unstyled">
         {loadingMessage()}
         {flowers.map((flower) => (
-          <Media as="li" onClick={() => handleClick(flower.id)}>
+          <Media as="li" key={flower.id} onClick={() => handleClick(flower.id)}>
             <img
               width={64}
               height={64}

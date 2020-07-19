@@ -1,10 +1,9 @@
 import React from "react";
 import Media from "react-bootstrap/Media";
-import {useHistory, Link, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 
 function FlowerDetail() {
-  const history = useHistory();
   const { id } = useParams();
 
   function deleteHandler(event){

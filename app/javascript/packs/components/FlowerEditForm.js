@@ -1,13 +1,14 @@
-import React from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, Link, Redirect } from "react-router-dom";
 
 
 function FlowerEditForm() {
   const { id } = useParams();  
-  const history = useHistory();
+  const [direct, setDirect] = useState(false);
 
   function formSubmissionHandler(event) {
     event.preventDefault();
+
     const data = {
       title: event.target.title.value,
       description: event.target.description.value,
@@ -24,11 +25,17 @@ function FlowerEditForm() {
       .then((resposeData) => {
         console.log("Success:", resposeData);
       });
-      return history.push('/')
+    setDirect(true);
+  }
+  const directToHome = () => {
+    if(direct){
+      return <Redirect to="/" />
+    }
   }
 
   return (
     <React.Fragment>
+      {directToHome()}
       <p>hello this is flower edit form</p>
       <h2 className="text-center">Edit this flower</h2>
       <form className="text-center" onSubmit={formSubmissionHandler}>
