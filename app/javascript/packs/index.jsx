@@ -6,11 +6,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import App from './components/App'
+import { createStore } from 'redux';
+import reducer from './reducers/flower-list-reducer';
+import { Provider } from 'react-redux';
 
+
+const store = createStore(reducer);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.body.appendChild(document.createElement('div')),
   )
 })

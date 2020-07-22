@@ -27,7 +27,7 @@ function FlowerDetail() {
         setFlower(jsonifiedResponse);
       });
       return () => {};
-  }, [location]);
+  }, []);
 
   return (
     <React.Fragment>

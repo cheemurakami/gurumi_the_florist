@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
+import {connect} from 'react-redux'
+import * as a from '../actions';
 
-function FlowerCreateForm() {
+
+function FlowerCreateForm(props) {
   const [direct, setDirect] = useState(false);
 
   function formSubmissionHandler(event) {
     event.preventDefault();
+   
+    const { dispatch } = props;
 
     const data = {
       title: event.target.title.value,
@@ -21,8 +26,18 @@ function FlowerCreateForm() {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+      .then((responseData) => {
+        console.log("Success:", responseData);
+        const { id, title, description, price } = responseData;
+        // const action = {
+        //   type: "ADD_FLOWER",
+        //   id,
+        //   title,
+        //   description,
+        //   price
+        // }
+        const action = a.addFlower(responseData);
+        dispatch(action);
         setDirect(true);
       });
 
@@ -54,5 +69,7 @@ function FlowerCreateForm() {
     </React.Fragment>
   );
 }
+
+FlowerCreateForm = connect()(FlowerCreateForm);
 
 export default FlowerCreateForm;
