@@ -6,6 +6,7 @@ import * as a from '../actions';
 
 function FlowerCreateForm(props) {
   const [direct, setDirect] = useState(false);
+  const [showMsg, setShowMsg] = useState(false);
 
   function formSubmissionHandler(event) {
     event.preventDefault();
@@ -38,6 +39,7 @@ function FlowerCreateForm(props) {
         // }
         const action = a.addFlower(responseData);
         dispatch(action);
+        setShowMsg(true);
         setDirect(true);
       });
 
@@ -48,20 +50,34 @@ function FlowerCreateForm(props) {
     }
   };
 
+  const msgOrForm = () => {
+    if(showMsg){
+      return (
+        <p>Successfully created!</p>
+      )
+    } else {
+      return (
+        <React.Fragment>
+          <h2 className="text-center">Add new flower</h2>
+            <form className="text-center" onSubmit={formSubmissionHandler}>
+            <input type="text" name="title" placeholder="Title" />
+            <br />
+            <textarea type="text" name="description" placeholder="Description" />
+            <br />
+            <input type="text" name="price" placeholder="Price" />
+            <br />
+          <button type="submit">Submit</button>
+          </form>
+        </React.Fragment>
+      )
+    }
+  }
+
   return (
     <React.Fragment>
-      {directToHome()}
-      <p>hello this is flower create form</p>
-      <h2 className="text-center">Add new flower</h2>
-      <form className="text-center" onSubmit={formSubmissionHandler}>
-        <input type="text" name="title" placeholder="Title" />
-        <br />
-        <textarea type="text" name="description" placeholder="Description" />
-        <br />
-        <input type="text" name="price" placeholder="Price" />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+      {/* {directToHome()} */}
+      {msgOrForm()}
+      
 
       <Link to="/">
         <button>Back to List</button>
