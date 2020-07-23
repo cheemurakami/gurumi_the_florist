@@ -6,7 +6,7 @@ import * as a from '../actions';
 
 function FlowerCreateForm(props) {
   const [direct, setDirect] = useState(false);
-  const [showMsg, setShowMsg] = useState(false);
+  // const [showMsg, setShowMsg] = useState(false);
 
   function formSubmissionHandler(event) {
     event.preventDefault();
@@ -39,7 +39,7 @@ function FlowerCreateForm(props) {
         // }
         const action = a.addFlower(responseData);
         dispatch(action);
-        setShowMsg(true);
+        // setShowMsg(true);
         setDirect(true);
       });
 
@@ -51,7 +51,7 @@ function FlowerCreateForm(props) {
   };
 
   const msgOrForm = () => {
-    if(showMsg){
+    if(props.showMsg){
       return (
         <p>Successfully created!</p>
       )
@@ -85,7 +85,12 @@ function FlowerCreateForm(props) {
     </React.Fragment>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    showMsg: state.showMsg
+  };
+}
 
-FlowerCreateForm = connect()(FlowerCreateForm);
+FlowerCreateForm = connect(mapStateToProps)(FlowerCreateForm);
 
 export default FlowerCreateForm;
