@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 import * as a from '../actions';
 
 
 function FlowerCreateForm(props) {
-  const [direct, setDirect] = useState(false);
+  // const [direct, setDirect] = useState(false);
   // const [showMsg, setShowMsg] = useState(false);
 
   function formSubmissionHandler(event) {
@@ -28,27 +28,19 @@ function FlowerCreateForm(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log("Success:", responseData);
-        const { id, title, description, price } = responseData;
-        // const action = {
-        //   type: "ADD_FLOWER",
-        //   id,
-        //   title,
-        //   description,
-        //   price
-        // }
-        const action = a.addFlower(responseData);
+        console.log("Success:", responseData);       
+        const action = a.addedFlower();
         dispatch(action);
         // setShowMsg(true);
-        setDirect(true);
+        // setDirect(true);
       });
 
   }
-  const directToHome = () => {
-    if (direct) {
-      return <Redirect to="/" />;
-    }
-  };
+  // const directToHome = () => {
+  //   if (direct) {
+  //     return <Redirect to="/" />;
+  //   }
+  // };
 
   const msgOrForm = () => {
     if(props.showMsg){

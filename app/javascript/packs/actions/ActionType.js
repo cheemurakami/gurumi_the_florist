@@ -1,1 +1,2 @@
-export const ADD_FLOWER = "ADD_FLOWER";
+export const ADDED_FLOWER = "ADDED_FLOWER";
+export const UPDATED_FLOWER = "UPDATED_FLOWER";

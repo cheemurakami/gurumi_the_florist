@@ -8,7 +8,12 @@ describe("flowerListReducer", () => {
     expect(flowerListReducer({}, { type: null })).toEqual({});
   });
   test("should add flower and return a new state", () => {
-    action = {type: c.ADD_FLOWER}
+    action = {type: c.ADDED_FLOWER}
     expect(flowerListReducer({}, action)).toEqual({ showMsg: true });
   });
+  test('should edit flower and return a new state', () => {
+    action = {type: c.UPDATED_FLOWER}
+    expect(flowerListReducer({}, action)).toEqual({ showMsg: true })
+  })
 });
+

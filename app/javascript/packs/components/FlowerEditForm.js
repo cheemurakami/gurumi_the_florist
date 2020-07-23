@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { useParams, Link, Redirect } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as a from "../actions"
 
-function FlowerEditForm() {
+function FlowerEditForm(props) {
   const { id } = useParams();
-  const [direct, setDirect] = useState(false);
-  const [showMsg, setShowMsg] = useState(false);
+  // const [direct, setDirect] = useState(false);
+  // const [showMsg, setShowMsg] = useState(false);
+
+  const { dispatch } = props;
 
   function formSubmissionHandler(event) {
     event.preventDefault();
@@ -25,18 +29,20 @@ function FlowerEditForm() {
       .then((response) => response.json())
       .then((resposeData) => {
         console.log("Success:", resposeData);
-        setShowMsg(true);
-        setDirect(true);
+        const action = a.updatedFlower();
+        dispatch(action);
+        //setShowMsg(true);
+        //setDirect(true);
       });
   }
-  const directToHome = () => {
-    if (direct) {
-      return <Redirect to="/" />;
-    }
-  };
+  // const directToHome = () => {
+  //   if (direct) {
+  //     return <Redirect to="/" />;
+  //   }
+  // };
 
   const msgOrForm = () => {
-    if (showMsg) {
+    if (props.showMsg) {
       return (
         <p>Successfully updated!</p>
       )
@@ -72,4 +78,11 @@ function FlowerEditForm() {
   );
 }
 
-export default FlowerEditForm;
+const mapStateToProps = (state) => {
+  return {
+    showMsg: state.showMsg
+  }
+}
+FlowerEditForm = connect(mapStateToProps)(FlowerEditForm);
+
+export default FlowerEditForm ;

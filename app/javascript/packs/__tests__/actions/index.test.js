@@ -1,18 +1,16 @@
 import * as actions from '../../actions';
+import * as c from '../../actions/ActionType';
+
 
 describe ('actions', () => {
-  it('addFlower should create ADD_FLOWER action', () => {
-    expect(actions.addFlower({
-      title: 'test',
-      description: 'test',
-      price:20,
-      id:1
-    })).toEqual({
-      type: "ADD_FLOWER",
-      title: 'test',
-      description: 'test',
-      price:20,
-      id:1
+  it('addedFlower should create ADDED_FLOWER action', () => {
+    expect(actions.addedFlower()).toEqual({
+      type: c.ADDED_FLOWER
+    })
+  })
+  it('addedFlower should create UPDATED_FLOWER action', () => {
+    expect(actions.updatedFlower()).toEqual({
+      type: c.UPDATED_FLOWER
     })
   })
 })
