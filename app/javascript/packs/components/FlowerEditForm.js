@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
 
-
 function FlowerEditForm() {
-  const { id } = useParams();  
+  const { id } = useParams();
   const [direct, setDirect] = useState(false);
+  const [showMsg, setShowMsg] = useState(false);
 
   function formSubmissionHandler(event) {
     event.preventDefault();
@@ -19,39 +19,56 @@ function FlowerEditForm() {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((response) => response.json())
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
       .then((resposeData) => {
         console.log("Success:", resposeData);
+        setShowMsg(true);
         setDirect(true);
       });
   }
   const directToHome = () => {
-    if(direct){
-      return <Redirect to="/" />
+    if (direct) {
+      return <Redirect to="/" />;
     }
-  }
+  };
 
+  const msgOrForm = () => {
+    if (showMsg) {
+      return (
+        <p>Successfully updated!</p>
+      )
+    } else {
+      return (
+        <React.Fragment>
+          <h2 className="text-center">Edit this flower</h2>
+          <form className="text-center" onSubmit={formSubmissionHandler}>
+            <input type="text" name="title" placeholder="Title" />
+            <br />
+            <textarea
+              type="text"
+              name="description"
+              placeholder="Description"
+            />
+            <br />
+            <input type="text" name="price" placeholder="Price" />
+            <button type="submit">Submit</button>
+            <br />
+          </form>
+        </React.Fragment>
+      );
+    }
+  };
   return (
     <React.Fragment>
-      {directToHome()}
-      <p>hello this is flower edit form</p>
-      <h2 className="text-center">Edit this flower</h2>
-      <form className="text-center" onSubmit={formSubmissionHandler}>
-        <input type="text" name="title" placeholder="Title" />
-        <br />
-        <textarea type="text" name="description" placeholder="Description" />
-        <br />
-        <input type="text" name="price" placeholder="Price" />
-        <button type="submit">Submit</button>
-        <br />
-      </form>
+      {/* {directToHome()} */}
+      {msgOrForm()}
       <Link to="/">
         <button>Back to List</button>
       </Link>
     </React.Fragment>
-    
   );
 }
 
