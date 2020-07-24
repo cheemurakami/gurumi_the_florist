@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Media from "react-bootstrap/Media";
+import { Media, Card, Container, Row, Col } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 function FlowerList() {
   const history = useHistory();
   const location = useLocation();
-  console.log(location)
+  console.log(location);
   const handleClick = (id) => {
     console.log("clicked");
     history.push(`/flower/${id}`);
@@ -29,33 +29,37 @@ function FlowerList() {
 
   const loadingMessage = () => {
     if (isLoading) {
-      return <p>Loading</p>
+      return <p>Loading</p>;
     }
-  }
+  };
 
   return (
     <React.Fragment>
 
-      <h2 className="text-center">Welcome</h2>
-
-      <ul className="list-unstyled">
         {loadingMessage()}
+
+      <Container>
+        <Row>
         {flowers.map((flower) => (
-          <Media as="li" key={flower.id} onClick={() => handleClick(flower.id)}>
-            <img
-              width={64}
-              height={64}
-              className="mr-3"
-              src="https://i.pinimg.com/originals/14/8f/ab/148fabbf4815332640221127e8715bf7.png"
-              alt="Generic placeholder"
-            />
-            <Media.Body>
-              <h5>{flower.title}</h5>
-              <p>{flower.description}</p>
-            </Media.Body>
-          </Media>
+            <Col lg={3} md={4} sm={6} key={flower.id} onClick={() => handleClick(flower.id)}>
+              <Card style={{ width: "100%", height: "380px", marginBottom: "30px"}}>
+                <Card.Img
+                  variant="top"
+                  src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"
+                />
+
+                <Card.Body>
+                  <Card.Title>
+                    {flower.title}
+                  </Card.Title>
+                    <Card.Text>${flower.price}</Card.Text>
+                </Card.Body>
+
+              </Card>
+            </Col>
         ))}
-      </ul>
+        </Row>
+      </Container>
 
       <Link to="/newflowers">
         <button>Add a new flower to the list</button>

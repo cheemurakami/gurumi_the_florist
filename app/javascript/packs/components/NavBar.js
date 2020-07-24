@@ -42,8 +42,8 @@ function NavBar() {
       </Navbar>
       
 
-      <div className="header1">
-        <img src={gurumiHeader} width="100%" alt='header' className="header2"/>
+      <div className="header">
+        <img src={gurumiHeader}  style={{marginBottom: "30px"}}width="100%" alt='header' className="header2"/>
       </div>
 
 
