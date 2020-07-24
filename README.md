@@ -1,4 +1,4 @@
-# _Flower Shop_
+# **Gurumi the Florist**
 
 #### _A capstone application using Ruby and React. DATE 7/17/20_
 
@@ -6,7 +6,7 @@
 
 ## Description
 
-_This is a flower shop website._ 
+_This is a flower shop website, that will allow the user to see the pictures of the flower bouquets and search by kinds, occasions, seasons, and so on. The admin user is able to use full CRUD functionalities to manage the website._ 
 
 ## Setup/Installation Requirements
 
@@ -44,7 +44,7 @@ _If you have any questions or any issues please feel free to submit an issue her
 
 ## Technologies Used
 
-_JavaScript, React, Ruby on Rails_ 
+_JavaScript, React, Redux, Ruby on Rails_ 
 
 
 ### Licenses

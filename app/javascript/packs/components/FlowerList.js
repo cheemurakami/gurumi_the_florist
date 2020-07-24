@@ -35,7 +35,6 @@ function FlowerList() {
 
   return (
     <React.Fragment>
-      <p>hello this is flower list</p>
 
       <h2 className="text-center">Welcome</h2>
 
