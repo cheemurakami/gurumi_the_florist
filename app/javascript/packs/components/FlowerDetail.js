@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useParams, useLocation } from "react-router-dom";
 
 function FlowerDetail() {
@@ -42,17 +42,18 @@ function FlowerDetail() {
             <h5>{flower.title}</h5>
             <p>{flower.description}</p>
             <p>Price: ${flower.price}</p>
+            <Link to={`/editflowers/${id}`}>
+        <Button className="btn" variant="outline-secondary">Edit this flower</Button>
+      </Link>
+      <Button variant="outline-secondary" onClick={deleteHandler}>Delete this flower</Button>
+      <Link to="/">
+        <Button variant="outline-secondary">Back to List</Button>
+      </Link>
           </Col>
         </Row>
       </Container>
 
-      <Link to={`/editflowers/${id}`}>
-        <button>Edit this flower</button>
-      </Link>
-      <button onClick={deleteHandler}>Delete this flower</button>
-      <Link to="/">
-        <button>Back to List</button>
-      </Link>
+      
     </React.Fragment>
   );
 }

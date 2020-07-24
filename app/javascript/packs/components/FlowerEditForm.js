@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as a from "../actions"
+import * as a from "../actions";
+import { Container, Row, Col, Button, Form} from "react-bootstrap";
 
 function FlowerEditForm(props) {
   const { id } = useParams();
@@ -43,26 +44,38 @@ function FlowerEditForm(props) {
 
   const msgOrForm = () => {
     if (props.showMsg) {
-      return (
-        <p>Successfully updated!</p>
-      )
+      return <p>Successfully updated!</p>;
     } else {
       return (
         <React.Fragment>
           <h2 className="text-center">Edit this flower</h2>
-          <form className="text-center" onSubmit={formSubmissionHandler}>
-            <input type="text" name="title" placeholder="Title"/>
-            <br />
-            <textarea
-              type="text"
-              name="description"
-              placeholder="Description"
-            />
-            <br />
-            <input type="text" name="price" placeholder="Price" />
-            <button type="submit">Submit</button>
-            <br />
-          </form>
+          <div className="form-container">
+            <Form className="text-center" onSubmit={formSubmissionHandler}>
+              <Form.Group controlId="title-input">
+                <div className="text-left">
+                  <Form.Label>Title</Form.Label>
+                </div>
+                <Form.Control type="text" name="title" placeholder="Title" />
+              </Form.Group>
+              <Form.Group controlId="formControlsTextarea">
+                <div className="text-left">
+                  <Form.Label>Description</Form.Label>
+                </div>
+                <Form.Control  style={{ height: 100, whiteSpace: "pre-line" }} type="textarea" name="description" placeholder="Description" />
+              </Form.Group>
+              <Form.Group controlId="price-input">
+                <div className="text-left">
+                  <Form.Label>Title</Form.Label>
+                </div>
+                <Form.Control type="number" name="price" placeholder="Price" />
+              </Form.Group>
+
+              <Button variant="outline-secondary" className="btn" type="submit">
+                Submit
+              </Button>
+              <br />
+            </Form>
+          </div>
         </React.Fragment>
       );
     }
@@ -72,7 +85,9 @@ function FlowerEditForm(props) {
       {/* {directToHome()} */}
       {msgOrForm()}
       <Link to="/">
-        <button>Back to List</button>
+        <Button variant="outline-secondary" className="btn">
+          Back to List
+        </Button>
       </Link>
     </React.Fragment>
   );
@@ -80,9 +95,9 @@ function FlowerEditForm(props) {
 
 const mapStateToProps = (state) => {
   return {
-    showMsg: state.showMsg
-  }
-}
+    showMsg: state.showMsg,
+  };
+};
 FlowerEditForm = connect(mapStateToProps)(FlowerEditForm);
 
-export default FlowerEditForm ;
+export default FlowerEditForm;
