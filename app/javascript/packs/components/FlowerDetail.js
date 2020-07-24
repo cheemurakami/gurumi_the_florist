@@ -38,22 +38,24 @@ function FlowerDetail() {
               alt="Generic placeholder"
             />
           </Col>
-          <Col md={5} style={{textAlign: "center", padding: "auto"}}>
+          <Col md={5} style={{ textAlign: "center", padding: "auto" }}>
             <h3>{flower.title}</h3>
             <p>{flower.description}</p>
             <p>Price: ${flower.price}</p>
             <Link to={`/editflowers/${id}`}>
-        <Button className="btn" variant="outline-secondary">Edit this flower</Button>
-      </Link>
-      <Button variant="outline-secondary" onClick={deleteHandler}>Delete this flower</Button>
-      <Link to="/">
-        <Button variant="outline-secondary">Back to List</Button>
-      </Link>
+              <Button className="btn" variant="outline-secondary">
+                Edit this flower
+              </Button>
+            </Link>
+            <Button variant="outline-secondary" onClick={deleteHandler}>
+              Delete this flower
+            </Button>
+            <Link to="/">
+              <Button variant="outline-secondary">Back to List</Button>
+            </Link>
           </Col>
         </Row>
       </Container>
-
-      
     </React.Fragment>
   );
 }

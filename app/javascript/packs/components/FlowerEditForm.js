@@ -13,10 +13,12 @@ function FlowerEditForm(props) {
   const [flower, setFlower] = useState({});
 
   useEffect(() => {
+    dispatch({type: "FORM_LOADED"});
     fetch(`/api/flowers/${id}`)
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
+       
         console.log(jsonifiedResponse)
       });
     // get all flowers

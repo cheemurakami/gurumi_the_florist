@@ -11,6 +11,6 @@ export default (state = {}, action) => {
         showMsg:  true        
       })
     default:
-      return state;
+      return {showMsg: false};
   }
 }
