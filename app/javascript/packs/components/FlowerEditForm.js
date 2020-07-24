@@ -51,7 +51,7 @@ function FlowerEditForm(props) {
         <React.Fragment>
           <h2 className="text-center">Edit this flower</h2>
           <form className="text-center" onSubmit={formSubmissionHandler}>
-            <input type="text" name="title" placeholder="Title" />
+            <input type="text" name="title" placeholder="Title"/>
             <br />
             <textarea
               type="text"

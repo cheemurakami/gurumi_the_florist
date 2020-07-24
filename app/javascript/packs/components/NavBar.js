@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
+import { Nav, Navbar, Form, FormControl, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiHeader from "./images/gurumi_header.png";
@@ -8,7 +8,7 @@ function NavBar() {
   return (
     <>
       <Navbar bg="light" variant="dark">
-        <Navbar.Brand href="/">
+        <Navbar.Brand as={Link} to="/">
           <img src={gurumiIcon} alt="gutumiIcon" />
         </Navbar.Brand>
 
@@ -40,13 +40,16 @@ function NavBar() {
           </Nav.Link>
         </Nav.Item>
       </Navbar>
-      
 
       <div className="header">
-        <img src={gurumiHeader}  style={{marginBottom: "30px"}}width="100%" alt='header' className="header2"/>
+        <img
+          src={gurumiHeader}
+          style={{ marginBottom: "30px" }}
+          width="100%"
+          alt="header"
+          className="header2"
+        />
       </div>
-
-
     </>
   );
 }

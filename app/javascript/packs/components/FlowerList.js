@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Media, Card, Container, Row, Col } from "react-bootstrap";
+import { Media, Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 function FlowerList() {
@@ -62,7 +62,7 @@ function FlowerList() {
       </Container>
 
       <Link to="/newflowers">
-        <button>Add a new flower to the list</button>
+        <Button variant="outline-secondary">Add a new flower to the list</Button>
       </Link>
     </React.Fragment>
   );
