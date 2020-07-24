@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 import * as a from '../actions';
-
+import Dropzone from 'react-dropzone'
 
 function FlowerCreateForm(props) {
   // const [direct, setDirect] = useState(false);
@@ -51,17 +51,35 @@ function FlowerCreateForm(props) {
       return (
         <React.Fragment>
           <h2 className="text-center">Add new flower</h2>
-            <form className="text-center" onSubmit={formSubmissionHandler}>
+          <form className="text-center" onSubmit={formSubmissionHandler}>
             <input type="text" name="title" placeholder="Title" />
             <br />
-            <textarea type="text" name="description" placeholder="Description" />
+            <textarea
+              type="text"
+              name="description"
+              placeholder="Description"
+            />
             <br />
             <input type="text" name="price" placeholder="Price" />
             <br />
-          <button type="submit">Submit</button>
+
+            <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
+              {({ getRootProps, getInputProps }) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <p>
+                      Drag 'n' drop some files here, or click to select files
+                    </p>
+                  </div>
+                </section>
+              )}
+            </Dropzone>
+
+            <button type="submit">Submit</button>
           </form>
         </React.Fragment>
-      )
+      );
     }
   }
 
