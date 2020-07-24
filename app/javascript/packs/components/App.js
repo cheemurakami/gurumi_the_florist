@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from './NavBar'
+import Users from './Users'
 import FlowerList from './FlowerList'
 import FlowerCreateForm from './FlowerCreateForm'
 import FlowerEditForm from './FlowerEditForm'
@@ -11,6 +12,9 @@ function App() {
     <Router>
         <NavBar />
       <Switch>
+        <Route path="/users/sign_in">
+          <Users />
+        </Route>
         <Route path="/newflowers">
           <FlowerCreateForm />
         </Route>

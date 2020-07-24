@@ -35,9 +35,10 @@ function NavBar() {
           </Form>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link className="link" eventKey="About us">
+          <Nav.Link className="link" as={Link} to="/users/sign_in" >
             Log In
           </Nav.Link>
+          
         </Nav.Item>
       </Navbar>
 
