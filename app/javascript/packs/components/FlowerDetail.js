@@ -38,8 +38,8 @@ function FlowerDetail() {
               alt="Generic placeholder"
             />
           </Col>
-          <Col md={5}>
-            <h5>{flower.title}</h5>
+          <Col md={5} style={{textAlign: "center", padding: "auto"}}>
+            <h3>{flower.title}</h3>
             <p>{flower.description}</p>
             <p>Price: ${flower.price}</p>
             <Link to={`/editflowers/${id}`}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
@@ -10,10 +10,22 @@ function FlowerEditForm(props) {
   // const [showMsg, setShowMsg] = useState(false);
 
   const { dispatch } = props;
+  const [flower, setFlower] = useState({});
+
+  useEffect(() => {
+    fetch(`/api/flowers/${id}`)
+      .then((response) => response.json())
+      .then((jsonifiedResponse) => {
+        setFlower(jsonifiedResponse);
+        console.log(jsonifiedResponse)
+      });
+    // get all flowers
+    // then set all flowers to my state
+    return () => {};
+  }, []);
 
   function formSubmissionHandler(event) {
     event.preventDefault();
-
     const data = {
       title: event.target.title.value,
       description: event.target.description.value,
@@ -48,6 +60,7 @@ function FlowerEditForm(props) {
     } else {
       return (
         <React.Fragment>
+         
           <h2 className="text-center">Edit this flower</h2>
           <div className="form-container">
             <Form className="text-center" onSubmit={formSubmissionHandler}>
@@ -55,23 +68,25 @@ function FlowerEditForm(props) {
                 <div className="text-left">
                   <Form.Label>Title</Form.Label>
                 </div>
-                <Form.Control type="text" name="title" placeholder="Title" />
+                <Form.Control type="text" name="title" placeholder="Title" defaultValue={flower.title} />
               </Form.Group>
+
               <Form.Group controlId="formControlsTextarea">
                 <div className="text-left">
                   <Form.Label>Description</Form.Label>
                 </div>
-                <Form.Control  style={{ height: 100, whiteSpace: "pre-line" }} type="textarea" name="description" placeholder="Description" />
+                <Form.Control  className="textarea" type="textarea" name="description" placeholder="Description" defaultValue={flower.description}/>
               </Form.Group>
+
               <Form.Group controlId="price-input">
                 <div className="text-left">
-                  <Form.Label>Title</Form.Label>
+                  <Form.Label>Price</Form.Label>
                 </div>
-                <Form.Control type="number" name="price" placeholder="Price" />
+                <Form.Control type="number" name="price" placeholder="Price" defaultValue={flower.price} />
               </Form.Group>
 
               <Button variant="outline-secondary" className="btn" type="submit">
-                Submit
+                Save
               </Button>
               <br />
             </Form>

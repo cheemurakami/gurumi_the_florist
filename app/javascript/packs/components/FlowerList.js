@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Media, Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 function FlowerList() {
