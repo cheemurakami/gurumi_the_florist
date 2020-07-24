@@ -31,7 +31,7 @@ function FlowerDetail() {
     <React.Fragment>
       <Container>
         <Row>
-          <Col md={7}>
+          <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
             <img
               className="mr-3"
               src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"

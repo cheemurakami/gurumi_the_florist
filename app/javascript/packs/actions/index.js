@@ -10,3 +10,8 @@ export const updatedFlower = () => {
     type: c.UPDATED_FLOWER
   }
 }
+export const loadedForm = () => {
+  return {
+    type: c.LOADED_FORM
+  }
+}

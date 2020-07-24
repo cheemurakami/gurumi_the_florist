@@ -13,4 +13,9 @@ describe ('actions', () => {
       type: c.UPDATED_FLOWER
     })
   })
+  it('loadedForm should create LOADED_FORM action', () => {
+    expect(actions.loadedForm()).toEqual({
+      type: c.LOADED_FORM
+    })
+  })
 })

@@ -10,7 +10,11 @@ export default (state = {}, action) => {
       return Object.assign({}, state, {
         showMsg:  true        
       })
+    case c.LOADED_FORM:
+      return Object.assign({}, state, {
+        showMsg:  false        
+      })
     default:
-      return {showMsg: false};
+      return state;
   }
 }

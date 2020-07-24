@@ -13,7 +13,8 @@ function FlowerEditForm(props) {
   const [flower, setFlower] = useState({});
 
   useEffect(() => {
-    dispatch({ type: "FORM_LOADED" });
+    const action = a.loadedForm();
+    dispatch(action);
     fetch(`/api/flowers/${id}`)
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
@@ -58,13 +59,22 @@ function FlowerEditForm(props) {
 
   const msgOrForm = () => {
     if (props.showMsg) {
-      return <p>Successfully updated!</p>;
+      return (
+        <React.Fragment>
+          <p>Successfully updated!</p>
+          <Link to="/">
+            <Button variant="outline-secondary" className="btn">
+              Back to List
+            </Button>
+          </Link>
+        </React.Fragment>
+      );
     } else {
       return (
         <React.Fragment>
           <Container>
             <Row>
-              <Col md={7}>
+              <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
                 <img
                   className="mr-3"
                   src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"
@@ -72,7 +82,7 @@ function FlowerEditForm(props) {
                 />
               </Col>
 
-              <Col md={5}>
+              <Col md={5} style={{ textAlign: "center", padding: "auto" }}>
                 <Form className="text-center" onSubmit={formSubmissionHandler}>
                   <Form.Group controlId="title-input">
                     <div className="text-left">
@@ -120,15 +130,11 @@ function FlowerEditForm(props) {
                   </Button>
                   <br />
                 </Form>
-                
-                
-                  <Link to="/">
-                    <Button variant="outline-secondary" className="btn">
-                      Back to List
-                    </Button>
-                  </Link>
-                
-
+                <Link to={`/flower/${id}`}>
+                  <Button variant="outline-secondary" className="btn">
+                    Back to this flower detail
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Container>
