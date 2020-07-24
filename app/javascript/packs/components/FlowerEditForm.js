@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
-import { Container, Row, Col, Button, Form} from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 
 function FlowerEditForm(props) {
   const { id } = useParams();
@@ -13,13 +13,13 @@ function FlowerEditForm(props) {
   const [flower, setFlower] = useState({});
 
   useEffect(() => {
-    dispatch({type: "FORM_LOADED"});
+    dispatch({ type: "FORM_LOADED" });
     fetch(`/api/flowers/${id}`)
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
-       
-        console.log(jsonifiedResponse)
+
+        console.log(jsonifiedResponse);
       });
     // get all flowers
     // then set all flowers to my state
@@ -62,37 +62,76 @@ function FlowerEditForm(props) {
     } else {
       return (
         <React.Fragment>
-         
-          <h2 className="text-center">Edit this flower</h2>
-          <div className="form-container">
-            <Form className="text-center" onSubmit={formSubmissionHandler}>
-              <Form.Group controlId="title-input">
-                <div className="text-left">
-                  <Form.Label>Title</Form.Label>
-                </div>
-                <Form.Control type="text" name="title" placeholder="Title" defaultValue={flower.title} />
-              </Form.Group>
+          <Container>
+            <Row>
+              <Col md={7}>
+                <img
+                  className="mr-3"
+                  src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"
+                  alt="Generic placeholder"
+                />
+              </Col>
 
-              <Form.Group controlId="formControlsTextarea">
-                <div className="text-left">
-                  <Form.Label>Description</Form.Label>
-                </div>
-                <Form.Control  className="textarea" type="textarea" name="description" placeholder="Description" defaultValue={flower.description}/>
-              </Form.Group>
+              <Col md={5}>
+                <Form className="text-center" onSubmit={formSubmissionHandler}>
+                  <Form.Group controlId="title-input">
+                    <div className="text-left">
+                      <Form.Label>Title</Form.Label>
+                    </div>
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      defaultValue={flower.title}
+                    />
+                  </Form.Group>
 
-              <Form.Group controlId="price-input">
-                <div className="text-left">
-                  <Form.Label>Price</Form.Label>
-                </div>
-                <Form.Control type="number" name="price" placeholder="Price" defaultValue={flower.price} />
-              </Form.Group>
+                  <Form.Group controlId="formControlsTextarea">
+                    <div className="text-left">
+                      <Form.Label>Description</Form.Label>
+                    </div>
+                    <Form.Control
+                      className="textarea"
+                      type="textarea"
+                      name="description"
+                      placeholder="Description"
+                      defaultValue={flower.description}
+                    />
+                  </Form.Group>
 
-              <Button variant="outline-secondary" className="btn" type="submit">
-                Save
-              </Button>
-              <br />
-            </Form>
-          </div>
+                  <Form.Group controlId="price-input">
+                    <div className="text-left">
+                      <Form.Label>Price</Form.Label>
+                    </div>
+                    <Form.Control
+                      type="number"
+                      name="price"
+                      placeholder="Price"
+                      defaultValue={flower.price}
+                    />
+                  </Form.Group>
+
+                  <Button
+                    variant="outline-secondary"
+                    className="btn"
+                    type="submit"
+                  >
+                    Save
+                  </Button>
+                  <br />
+                </Form>
+                
+                
+                  <Link to="/">
+                    <Button variant="outline-secondary" className="btn">
+                      Back to List
+                    </Button>
+                  </Link>
+                
+
+              </Col>
+            </Row>
+          </Container>
         </React.Fragment>
       );
     }
@@ -101,11 +140,6 @@ function FlowerEditForm(props) {
     <React.Fragment>
       {/* {directToHome()} */}
       {msgOrForm()}
-      <Link to="/">
-        <Button variant="outline-secondary" className="btn">
-          Back to List
-        </Button>
-      </Link>
     </React.Fragment>
   );
 }
