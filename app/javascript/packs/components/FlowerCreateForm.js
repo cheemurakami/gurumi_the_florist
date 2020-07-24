@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 import * as a from '../actions';
 import Dropzone from 'react-dropzone'
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
+
 
 function FlowerCreateForm(props) {
   // const [direct, setDirect] = useState(false);
@@ -45,13 +47,79 @@ function FlowerCreateForm(props) {
   const msgOrForm = () => {
     if(props.showMsg){
       return (
-        <p>Successfully created!</p>
+        <React.Fragment>
+          <p>Successfully Created!</p>
+          <Link to="/">
+            <Button variant="outline-secondary" className="btn">
+              Back to List
+            </Button>
+          </Link>
+        </React.Fragment>
       )
     } else {
       return (
         <React.Fragment>
-          <h2 className="text-center">Add new flower</h2>
-          <form className="text-center" onSubmit={formSubmissionHandler}>
+
+          <Container>
+          <div style={{ textAlign: "center", padding: "auto", width: "350px"}}>
+
+          <Form className="text-center" onSubmit={formSubmissionHandler}>
+                  <Form.Group controlId="title-input">
+                    <div className="text-left">
+                      <Form.Label>Title</Form.Label>
+                    </div>
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      
+                    />
+                  </Form.Group>
+
+                  <Form.Group controlId="formControlsTextarea">
+                    <div className="text-left">
+                      <Form.Label>Description</Form.Label>
+                    </div>
+                    <Form.Control
+                      className="textarea"
+                      type="textarea"
+                      name="description"
+                      placeholder="Description"
+                      
+                    />
+                  </Form.Group>
+
+                  <Form.Group controlId="price-input">
+                    <div className="text-left">
+                      <Form.Label>Price</Form.Label>
+                    </div>
+                    <Form.Control
+                      type="number"
+                      name="price"
+                      placeholder="Price"
+                      
+                    />
+                  </Form.Group>
+
+                  <Button
+                    variant="outline-secondary"
+                    className="btn"
+                    type="submit"
+                  >
+                    Save
+                  </Button>
+                 
+                </Form>
+          
+                <Link to="/">
+                  <Button variant="outline-secondary" className="btn">
+                    Back to flower list
+                  </Button>
+                </Link>
+                </div>
+          </Container>
+          
+          {/* <form className="text-center" onSubmit={formSubmissionHandler}>
             <input type="text" name="title" placeholder="Title" />
             <br />
             <textarea
@@ -77,7 +145,7 @@ function FlowerCreateForm(props) {
             </Dropzone>
 
             <button type="submit">Submit</button>
-          </form>
+          </form> */}
         </React.Fragment>
       );
     }
@@ -88,10 +156,6 @@ function FlowerCreateForm(props) {
       {/* {directToHome()} */}
       {msgOrForm()}
       
-
-      <Link to="/">
-        <button>Back to List</button>
-      </Link>
     </React.Fragment>
   );
 }

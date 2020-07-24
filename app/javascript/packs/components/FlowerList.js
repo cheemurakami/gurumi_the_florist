@@ -35,35 +35,42 @@ function FlowerList() {
 
   return (
     <React.Fragment>
-
-        {loadingMessage()}
+      {loadingMessage()}
+      <div className="text-center">
+        <Link to="/newflowers">
+          <Button variant="outline-secondary">
+            Add a new flower to the list
+          </Button>
+        </Link>
+      </div>
 
       <Container>
         <Row>
-        {flowers.map((flower) => (
-            <Col lg={3} md={4} sm={6} key={flower.id} onClick={() => handleClick(flower.id)}>
-              <Card style={{ width: "100%", height: "380px", marginBottom: "30px"}}>
+          {flowers.map((flower) => (
+            <Col
+              lg={3}
+              md={4}
+              sm={6}
+              key={flower.id}
+              onClick={() => handleClick(flower.id)}
+            >
+              <Card
+                style={{ width: "100%", height: "380px", marginBottom: "30px" }}
+              >
                 <Card.Img
                   variant="top"
                   src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"
                 />
 
                 <Card.Body>
-                  <Card.Title>
-                    {flower.title}
-                  </Card.Title>
-                    <Card.Text>${flower.price}</Card.Text>
+                  <Card.Title>{flower.title}</Card.Title>
+                  <Card.Text>${flower.price}</Card.Text>
                 </Card.Body>
-
               </Card>
             </Col>
-        ))}
+          ))}
         </Row>
       </Container>
-
-      <Link to="/newflowers">
-        <Button variant="outline-secondary">Add a new flower to the list</Button>
-      </Link>
     </React.Fragment>
   );
 }
