@@ -5,8 +5,15 @@ import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiHeader from "./images/gurumi_header.png";
 
 function NavBar() {
-
   
+  const signOut = () => {
+    fetch('/users/sign_out', {
+      method: "DELETE",
+    })
+    .then((response) => {
+      console.log("LOGGED OUT")
+    })
+  }
   return (
     <>
       <Navbar bg="light" variant="dark">
@@ -41,14 +48,14 @@ function NavBar() {
 
         {/* if not sinedin */}
         <Nav.Item>
-          <Nav.Link className="link" as={Link} to="/users/sign_in">
+          <Nav.Link className="link" as={Link} to="/users/log_in">
             Sign In
           </Nav.Link>
         </Nav.Item>
 
         {/* if sinedin */}
         <Nav.Item>
-          <Nav.Link className="link" as={Link} to="/users/sign_out">
+          <Nav.Link className="link" onClick={signOut} >
             Sign Out
           </Nav.Link>
         </Nav.Item>

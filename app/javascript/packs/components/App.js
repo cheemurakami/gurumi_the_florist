@@ -15,7 +15,7 @@ function App() {
     fetch("/signed_in")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log("SIGNED IN", jsonifiedResponse);
+        console.log(jsonifiedResponse);
       });
   }
 
@@ -33,7 +33,7 @@ function App() {
         <Route path="/users/sign_up">
           <Signup />
         </Route>
-        <Route path="/users/sign_in">
+        <Route path="/users/log_in">
           <Signin />
         </Route>
         <Route path="/newflowers">
