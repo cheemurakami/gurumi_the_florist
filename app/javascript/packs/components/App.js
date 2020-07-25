@@ -12,6 +12,7 @@ function App() {
     <Router>
         <NavBar />
       <Switch>
+        {/* kaeru */}
         <Route path="/users/sign_in">
           <Users />
         </Route>

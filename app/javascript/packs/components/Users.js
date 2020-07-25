@@ -3,10 +3,28 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 
 function Users() {
-  const signUp = (event) => {
-    event.preventDefault();
-    // signUp kaku
+  const signUp = (e) => {
+    e.preventDefault();
+    const data = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+      password_confirmation: e.target.password_confirmation.value
+    }
+   fetch("/users/", {
+     method: "POST",
+     headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+     },
+     body: JSON.stringify({user: data}),//devise dake tokubetsu
+   })
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log(responseData)
+    });
   };
+
+
   return (
     <React.Fragment>
       <Container>
@@ -24,7 +42,7 @@ function Users() {
                 <Form.Label>Password</Form.Label>
               </div>
               <Form.Control
-                type="text"
+                type="password"
                 name="password"
                 placeholder="Password"
               />
@@ -35,8 +53,8 @@ function Users() {
                 <Form.Label>Password confirmation</Form.Label>
               </div>
               <Form.Control
-                type="text"
-                name="password-confirmation"
+                type="password"
+                name="password_confirmation"
                 placeholder="Password Confirmation"
               />
             </Form.Group>
