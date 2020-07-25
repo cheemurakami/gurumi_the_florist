@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from './NavBar'
 import Signup from './Signup'
 import Signin from './Signin'
@@ -9,11 +9,27 @@ import FlowerDetail from './FlowerDetail'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 
 function App() {
+
+  //func to check if signed in or not
+  const checkLogin = () => {
+    fetch("/signed_in")
+      .then((response) => response.json())
+      .then((jsonifiedResponse) => {
+        console.log("SIGNED IN", jsonifiedResponse);
+      });
+  }
+
+  useEffect(() => {
+    console.log("Use effect")
+    checkLogin();
+    return () => {};
+  }, []);
+
+
   return (
     <Router>
         <NavBar />
       <Switch>
-        {/* kaeru */}
         <Route path="/users/sign_up">
           <Signup />
         </Route>

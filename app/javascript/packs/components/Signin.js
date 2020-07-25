@@ -47,17 +47,6 @@ function Signin() {
               />
             </Form.Group>
 
-            <Form.Group controlId="title-input">
-              <div className="text-left">
-                <Form.Label>Password confirmation</Form.Label>
-              </div>
-              <Form.Control
-                type="password"
-                name="password_confirmation"
-                placeholder="Password Confirmation"
-              />
-            </Form.Group>
-
             <Button variant="outline-secondary" className="btn" type="submit">
               Sign In
             </Button>

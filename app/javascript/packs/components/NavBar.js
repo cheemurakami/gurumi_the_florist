@@ -5,6 +5,8 @@ import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiHeader from "./images/gurumi_header.png";
 
 function NavBar() {
+
+  
   return (
     <>
       <Navbar bg="light" variant="dark">
@@ -34,16 +36,26 @@ function NavBar() {
             </Button>
           </Form>
         </Nav.Item>
+
+
+
+        {/* if not sinedin */}
         <Nav.Item>
           <Nav.Link className="link" as={Link} to="/users/sign_in">
             Sign In
           </Nav.Link>
         </Nav.Item>
+
+        {/* if sinedin */}
         <Nav.Item>
           <Nav.Link className="link" as={Link} to="/users/sign_out">
             Sign Out
           </Nav.Link>
         </Nav.Item>
+
+
+
+
       </Navbar>
 
       <div className="header">
