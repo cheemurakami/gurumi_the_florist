@@ -35,10 +35,14 @@ function NavBar() {
           </Form>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link className="link" as={Link} to="/users/sign_in" >
-            Log In
+          <Nav.Link className="link" as={Link} to="/users/sign_in">
+            Sign In
           </Nav.Link>
-          
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link className="link" as={Link} to="/users/sign_out">
+            Sign Out
+          </Nav.Link>
         </Nav.Item>
       </Navbar>
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from './NavBar'
-import Users from './Users'
+import Signup from './Signup'
+import Signin from './Signin'
 import FlowerList from './FlowerList'
 import FlowerCreateForm from './FlowerCreateForm'
 import FlowerEditForm from './FlowerEditForm'
@@ -13,8 +14,11 @@ function App() {
         <NavBar />
       <Switch>
         {/* kaeru */}
+        <Route path="/users/sign_up">
+          <Signup />
+        </Route>
         <Route path="/users/sign_in">
-          <Users />
+          <Signin />
         </Route>
         <Route path="/newflowers">
           <FlowerCreateForm />
