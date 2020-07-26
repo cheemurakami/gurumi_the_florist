@@ -7,7 +7,7 @@ import FlowerCreateForm from './FlowerCreateForm'
 import FlowerEditForm from './FlowerEditForm'
 import FlowerDetail from './FlowerDetail'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as a from '../actions'
 
 
@@ -31,10 +31,6 @@ function App(props) {
            currentUser = jsonifiedResponse.user;
           console.log("SIGNED IN AS", jsonifiedResponse)
         }
-
-
-
-
         const action = a.checkedLoginStatus(currentUser);
         dispatch(action);
         // console.log(jsonifiedResponse);
@@ -43,7 +39,6 @@ function App(props) {
   }
 
   useEffect(() => {
-    console.log("Use effect")
     checkLogin();
     return () => {};
   }, []);

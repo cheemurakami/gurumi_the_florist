@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import * as a from '../actions'
+import { connect } from 'react-redux'
 
-function Signin() {
+function Signin(props) {
+
   const signIn = (e) => {
     e.preventDefault();
+    const { dispatch } = props;
     const data = {
       email: e.target.email.value,
       password: e.target.password.value,
@@ -19,7 +23,10 @@ function Signin() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
+        console.log(responseData)
+        const action = a.checkedLoginStatus(responseData)
+        dispatch(action);
+        //console.log(responseData);
       });
   };
 
@@ -64,4 +71,5 @@ function Signin() {
   );
 }
 
+Signin = connect()(Signin);
 export default Signin;

@@ -3,20 +3,48 @@ import { Nav, Navbar, Form, FormControl, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiHeader from "./images/gurumi_header.png";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import * as a from '../actions'
+
 
 function NavBar(props) {
-  
   const signOut = () => {
-    fetch('/users/sign_out', {
+    const { dispatch } = props;
+    fetch("/users/sign_out", {
       method: "DELETE",
-    })
-    .then((response) => {
-      console.log("LOGGED OUT")
-    })
-  }
+    }).then((response) => {
+      const action = a.checkedLoginStatus(response);
+      dispatch(action);
+    });
+  };
 
-
+  const userLoginStatus = () => {
+    if (props.currentUser && props.currentUser.email) {
+      return (
+        <React.Fragment>
+          <Nav.Item>
+            <Nav.Link className="link">
+              Signed in as {props.currentUser.email}
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link className="link" onClick={signOut}>
+              Sign Out
+            </Nav.Link>
+          </Nav.Item>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <Nav.Item>
+          <Nav.Link className="link" as={Link} to="/users/log_in">
+            {props.currentUser && props.currentUser.email}
+            Sign In
+          </Nav.Link>
+        </Nav.Item>
+      );
+    }
+  };
   return (
     <>
       <Navbar bg="light" variant="dark">
@@ -47,26 +75,7 @@ function NavBar(props) {
           </Form>
         </Nav.Item>
 
-
-
-        {/* if not sinedin */}
-        <Nav.Item>
-          <Nav.Link className="link" as={Link} to="/users/log_in">
-            {props.currentUser && props.currentUser.email}
-            Sign In
-          </Nav.Link>
-        </Nav.Item>
-
-        {/* if sinedin */}
-        <Nav.Item>
-          <Nav.Link className="link" onClick={signOut} >
-            Sign Out
-          </Nav.Link>
-        </Nav.Item>
-
-
-
-
+        {userLoginStatus()}
       </Navbar>
 
       <div className="header">
@@ -83,11 +92,11 @@ function NavBar(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
-    currentUser: state.loginStatusReducer.currentUser
-  }
-}
+    currentUser: state.loginStatusReducer.currentUser,
+  };
+};
 
 NavBar = connect(mapStateToProps)(NavBar);
 export default NavBar;
