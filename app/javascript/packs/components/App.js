@@ -7,16 +7,39 @@ import FlowerCreateForm from './FlowerCreateForm'
 import FlowerEditForm from './FlowerEditForm'
 import FlowerDetail from './FlowerDetail'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
+import {connect} from 'react-redux'
+import * as a from '../actions'
 
-function App() {
+
+function App(props) {
+
+  
 
   //func to check if signed in or not
   const checkLogin = () => {
+    const { dispatch } = props;
+
     fetch("/signed_in")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse);
+        let currentUser;
+
+        if(jsonifiedResponse.user == null){
+          currentUser = null;
+          console.log("MUST SIGN IN")
+        } else {
+           currentUser = jsonifiedResponse.user;
+          console.log("SIGNED IN AS", jsonifiedResponse)
+        }
+
+
+
+
+        const action = a.checkedLoginStatus(currentUser);
+        dispatch(action);
+        // console.log(jsonifiedResponse);
       });
+      
   }
 
   useEffect(() => {
@@ -53,4 +76,6 @@ function App() {
   )
 }
 
-export default App
+App = connect()(App);
+
+export default App;

@@ -3,8 +3,9 @@ import { Nav, Navbar, Form, FormControl, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiHeader from "./images/gurumi_header.png";
+import { connect } from 'react-redux';
 
-function NavBar() {
+function NavBar(props) {
   
   const signOut = () => {
     fetch('/users/sign_out', {
@@ -14,6 +15,8 @@ function NavBar() {
       console.log("LOGGED OUT")
     })
   }
+
+
   return (
     <>
       <Navbar bg="light" variant="dark">
@@ -49,6 +52,7 @@ function NavBar() {
         {/* if not sinedin */}
         <Nav.Item>
           <Nav.Link className="link" as={Link} to="/users/log_in">
+            {props.currentUser && props.currentUser.email}
             Sign In
           </Nav.Link>
         </Nav.Item>
@@ -78,4 +82,12 @@ function NavBar() {
   );
 }
 
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    currentUser: state.loginStatusReducer.currentUser
+  }
+}
+
+NavBar = connect(mapStateToProps)(NavBar);
 export default NavBar;

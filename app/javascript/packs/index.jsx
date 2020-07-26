@@ -7,11 +7,10 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import App from './components/App'
 import { createStore } from 'redux';
-import reducer from './reducers/flower-list-reducer';
 import { Provider } from 'react-redux';
+import rootReducer from './reducers/index'
 
-
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
