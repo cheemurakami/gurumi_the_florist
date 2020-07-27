@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import * as a from '../actions'
 import { connect } from 'react-redux'
@@ -26,13 +26,21 @@ function Signin(props) {
         console.log(responseData)
         const action = a.checkedLoginStatus(responseData)
         dispatch(action);
-        //console.log(responseData);
       });
   };
+
+  const directToHome = () => {
+    if (props.currentUser){
+      return (
+        <Redirect to="/" />
+      )
+    }
+  }
 
   return (
     <React.Fragment>
       <Container>
+      {directToHome()}
         <div style={{ textAlign: "center", padding: "auto", width: "350px" }}>
           <h4>Sign In</h4>
           <Form className="text-center" onSubmit={signIn}>
@@ -71,5 +79,12 @@ function Signin(props) {
   );
 }
 
-Signin = connect()(Signin);
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.loginStatusReducer.currentUser
+  };
+};
+
+Signin = connect(mapStateToProps)(Signin);
+
 export default Signin;

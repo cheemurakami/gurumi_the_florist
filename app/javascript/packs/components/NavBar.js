@@ -12,8 +12,8 @@ function NavBar(props) {
     const { dispatch } = props;
     fetch("/users/sign_out", {
       method: "DELETE",
-    }).then((response) => {
-      const action = a.checkedLoginStatus(response);
+    }).then(() => {
+      const action = a.checkedLoginStatus();
       dispatch(action);
     });
   };
