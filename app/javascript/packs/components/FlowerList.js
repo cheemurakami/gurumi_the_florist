@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
+import { connect } from "react-redux";
 
-function FlowerList() {
+function FlowerList(props) {
   const history = useHistory();
   const location = useLocation();
   //console.log(location);
+
   const handleClick = (id) => {
-  //console.log("clicked");
+    //console.log("clicked");
     history.push(`/flower/${id}`);
   };
 
@@ -33,16 +35,27 @@ function FlowerList() {
     }
   };
 
+  const addButton = () => {
+    if (props.currentUser && props.currentUser.admin) {
+      return (
+        <React.Fragment>
+          <div className="text-center">
+            <Link to="/newflowers">
+              <Button variant="outline-secondary">
+                Add a new flower to the list
+              </Button>
+            </Link>
+          </div>
+        </React.Fragment>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       {loadingMessage()}
-      <div className="text-center">
-        <Link to="/newflowers">
-          <Button variant="outline-secondary">
-            Add a new flower to the list
-          </Button>
-        </Link>
-      </div>
+
+      {addButton()}
 
       <Container>
         <Row>
@@ -75,4 +88,11 @@ function FlowerList() {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.loginStatusReducer.currentUser,
+  };
+};
+
+FlowerList = connect(mapStateToProps)(FlowerList);
 export default FlowerList;
