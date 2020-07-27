@@ -32,14 +32,18 @@ function FlowerDetail(props) {
     if (props.currentUser && props.currentUser.admin) {
       return (
         <React.Fragment>
-          <Link to={`/editflowers/${id}`}>
-            <Button className="btn" variant="outline-secondary">
-              Edit this flower
+          <div className='btn-container'>
+            <Link to={`/editflowers/${id}`}>
+              <Button className="btn" variant="outline-secondary">
+                Edit this flower
+              </Button>
+            </Link>
+          </div>
+          <div className='btn-container'>
+            <Button variant="outline-secondary" onClick={deleteHandler}>
+              Delete this flower
             </Button>
-          </Link>
-          <Button variant="outline-secondary" onClick={deleteHandler}>
-            Delete this flower
-          </Button>
+          </div>
         </React.Fragment>
       );
     }
@@ -56,13 +60,16 @@ function FlowerDetail(props) {
               alt="Generic placeholder"
             />
           </Col>
-          <Col md={5} style={{ textAlign: "center", padding: "auto" }}>
+          <Col
+            md={5}
+            style={{ textAlign: "center", padding: "auto", margin: "auto" }}
+          >
             <h3>{flower.title}</h3>
             <p>{flower.description}</p>
             <p>Price: ${flower.price}</p>
 
             {editBtnAndDeleteBtn()}
-            
+
             <Link to="/">
               <Button variant="outline-secondary">Back to List</Button>
             </Link>

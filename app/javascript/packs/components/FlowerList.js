@@ -39,7 +39,7 @@ function FlowerList(props) {
     if (props.currentUser && props.currentUser.admin) {
       return (
         <React.Fragment>
-          <div className="text-center">
+          <div className="text-center btn-container">
             <Link to="/newflowers">
               <Button variant="outline-secondary">
                 Add a new flower to the list

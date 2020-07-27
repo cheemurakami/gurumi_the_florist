@@ -81,7 +81,7 @@ function NavBar(props) {
       <div className="header">
         <img
           src={gurumiHeader}
-          style={{ marginBottom: "30px" }}
+          // style={{ marginBottom: "30px" }}
           width="100%"
           alt="header"
           className="header2"
