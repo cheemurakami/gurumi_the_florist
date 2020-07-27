@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { connect } from "react-redux";
 
-function FlowerDetail() {
+function FlowerDetail(props) {
   const { id } = useParams();
   const [flower, setFlower] = useState({});
   const location = useLocation();
@@ -27,6 +28,23 @@ function FlowerDetail() {
     return () => {};
   }, []);
 
+  const editBtnAndDeleteBtn = () => {
+    if (props.currentUser && props.currentUser.admin) {
+      return (
+        <React.Fragment>
+          <Link to={`/editflowers/${id}`}>
+            <Button className="btn" variant="outline-secondary">
+              Edit this flower
+            </Button>
+          </Link>
+          <Button variant="outline-secondary" onClick={deleteHandler}>
+            Delete this flower
+          </Button>
+        </React.Fragment>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       <Container>
@@ -42,14 +60,9 @@ function FlowerDetail() {
             <h3>{flower.title}</h3>
             <p>{flower.description}</p>
             <p>Price: ${flower.price}</p>
-            <Link to={`/editflowers/${id}`}>
-              <Button className="btn" variant="outline-secondary">
-                Edit this flower
-              </Button>
-            </Link>
-            <Button variant="outline-secondary" onClick={deleteHandler}>
-              Delete this flower
-            </Button>
+
+            {editBtnAndDeleteBtn()}
+            
             <Link to="/">
               <Button variant="outline-secondary">Back to List</Button>
             </Link>
@@ -60,4 +73,10 @@ function FlowerDetail() {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.loginStatusReducer.currentUser,
+  };
+};
+FlowerDetail = connect(mapStateToProps)(FlowerDetail);
 export default FlowerDetail;
