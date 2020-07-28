@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Carousel } from "react-bootstrap";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
-import * as a  from "../actions";
+import * as a from "../actions";
 
 function FlowerDetail(props) {
   const { id } = useParams();
@@ -19,7 +19,7 @@ function FlowerDetail(props) {
       .then((responseData) => {
         // console.log("Success:", responseData);
         const action = a.deletedFlower();
-        dispatch(action)
+        dispatch(action);
       });
   }
 
@@ -30,14 +30,13 @@ function FlowerDetail(props) {
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
-        console.log(jsonifiedResponse)
+        console.log(jsonifiedResponse);
       });
     return () => {};
   }, []);
 
-
   const showDeletedMsgOrDetail = () => {
-    if (props.showMsg){
+    if (props.showMsg) {
       return (
         <React.Fragment>
           <div style={{ textAlign: "center", margin: "auto" }}>
@@ -53,55 +52,65 @@ function FlowerDetail(props) {
     } else {
       return (
         <Container>
-        <Row>
-          <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
-         
-           {flower.flower_photos && flower.flower_photos.map((image) => {
-             return (    
-               <img 
-                 className="mr-3"
-                 src={image.url}
-                 alt="Generic placeholder"
-                 key={image.id}
-                 width="300px"
-               />
-             )
-           })} 
-           
-          </Col>
-          <Col
-            md={5}
-            style={{ textAlign: "center", padding: "auto", margin: "auto" }}
-          >
-            <h3>{flower.title}</h3>
-            <p>{flower.description}</p>
-            <p>Price: ${flower.price}</p>
+          <Row>
+            <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
+              <Carousel fade={true}>
+                {flower.flower_photos &&
+                  flower.flower_photos.map((image) => {
+                    return (
+                      <Carousel.Item key={image.id}>
+                        <img
+                          className="mr-3 d-block w-100"
+                          src={image.url}
+                          alt="Generic placeholder"
+                          width="300px"
+                        />
+                      </Carousel.Item>
+                    );
+                  })}
+              </Carousel>
+            </Col>
+            <Col
+              md={5}
+              style={{ textAlign: "center", padding: "auto", margin: "auto" }}
+            >
+              <h3>{flower.title}</h3>
+              <p>{flower.description}</p>
+              <p>Price: ${flower.price}</p>
 
-            {editBtnAndDeleteBtn()}
+              {editBtnAndDeleteBtn()}
 
-            <Link to="/">
-              <Button variant="outline-secondary">Back to List</Button>
-            </Link>
-          </Col>
-        </Row>
-      </Container>
-      )
+              <Link to="/">
+                <Button variant="outline-secondary">Back to List</Button>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
+      );
     }
-  }
+  };
 
   const editBtnAndDeleteBtn = () => {
     if (props.currentUser && props.currentUser.admin) {
       return (
         <React.Fragment>
-          <div className='btn-container'>
+          <div className="btn-container">
             <Link to={`/editflowers/${id}`}>
-              <Button className="btn" variant="outline-secondary" className="mb-3">
+              <Button
+                className="btn"
+                variant="outline-secondary"
+                className="mb-3"
+              >
                 Edit this flower
               </Button>
             </Link>
           </div>
-          <div className='btn-container'>
-            <Button variant="outline-secondary" className="mb-3" onClick={deleteHandler}>
+          <div className="btn-container">
+            <Button
+              variant="outline-secondary"
+              className="mb-3"
+              onClick={deleteHandler}
+            >
               Delete this flower
             </Button>
           </div>
@@ -110,11 +119,7 @@ function FlowerDetail(props) {
     }
   };
 
-  return (
-    <React.Fragment>
-      {showDeletedMsgOrDetail()}  
-    </React.Fragment>
-  );
+  return <React.Fragment>{showDeletedMsgOrDetail()}</React.Fragment>;
 }
 
 const mapStateToProps = (state) => {
