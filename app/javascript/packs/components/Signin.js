@@ -39,7 +39,7 @@ function Signin(props) {
       <Container>
         {directToHome()}
 
-         <div style={{ textAlign: "center", padding: "auto", width: "350px" }}>
+         <div style={{ textAlign: "center", margin: "auto", width: "350px" }}>
           <h4>Sign In</h4>
           <Form className="text-center" onSubmit={signIn}>
             <Form.Group controlId="title-input">
@@ -65,9 +65,10 @@ function Signin(props) {
             </Button>
           </Form>
 
-          <p>Don't have an account?</p>
+          <p className="mt-3">Don't have an account?</p>
+
           <Link to="/users/sign_up">
-            <Button variant="outline-secondary" className="btn">
+            <Button  variant="outline-secondary" className="btn mb-3">
               Create Account
             </Button>
           </Link>

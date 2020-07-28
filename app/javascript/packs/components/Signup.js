@@ -27,7 +27,7 @@ function Signup() {
   return (
     <React.Fragment>
       <Container>
-        <div style={{ textAlign: "center", padding: "auto", width: "350px" }}>
+        <div style={{ textAlign: "center", margin: "auto", width: "350px" }}>
           <h4>Sign Up</h4>
           <Form className="text-center" onSubmit={signUp}>
             <Form.Group controlId="title-input">
@@ -59,13 +59,13 @@ function Signup() {
               />
             </Form.Group>
 
-            <Button variant="outline-secondary" className="btn" type="submit">
+            <Button variant="outline-secondary" className="btn mb-3" type="submit">
               Sign Up
             </Button>
           </Form>
 
           <Link to="/">
-            <Button variant="outline-secondary" className="btn">
+            <Button variant="outline-secondary" className="btn mb-3">
               Back to flower list
             </Button>
           </Link>

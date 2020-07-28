@@ -32,6 +32,7 @@ function FlowerEditForm(props) {
 
     const submittedImages = event.target.flower_photos.files;
     const fileListAsArray = Array.from(submittedImages);
+
     let formData = new FormData();
     formData.append("title", event.target.title.value);
     formData.append("description", event.target.description.value);
@@ -85,12 +86,14 @@ function FlowerEditForm(props) {
     if (props.showMsg) {
       return (
         <React.Fragment>
-          <p>Successfully updated!</p>
-          <Link to="/">
-            <Button variant="outline-secondary" className="btn">
-              Back to List
-            </Button>
-          </Link>
+          <div style={{ textAlign: "center", margin: "auto" }}>
+            <p>Successfully updated!</p>
+            <Link to="/">
+              <Button variant="outline-secondary" className="btn">
+                Back to List
+              </Button>
+            </Link>
+          </div>
         </React.Fragment>
       );
     } else {
@@ -108,6 +111,7 @@ function FlowerEditForm(props) {
                           src={image.url}
                           alt="Generic placeholder"
                           width="300px"
+                          accept="image/*"
                         />
 
                         {/* when onClick, onSubmit needs argument, need this: () =>  */}

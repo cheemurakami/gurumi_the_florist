@@ -8,7 +8,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 function FlowerCreateForm(props) {
   // const [direct, setDirect] = useState(false);
   // const [showMsg, setShowMsg] = useState(false);
-  
+
   const { dispatch } = props;
   useEffect(() => {
     const action = a.loadedForm();
@@ -19,20 +19,19 @@ function FlowerCreateForm(props) {
   function formSubmissionHandler(event) {
     event.preventDefault();
 
-
     console.log(event.target.flower_photos.files);
-    
-    const submittedImages = event.target.flower_photos.files
-    const fileListAsArray = Array.from(submittedImages)
+
+    const submittedImages = event.target.flower_photos.files;
+    const fileListAsArray = Array.from(submittedImages);
+
     let formData = new FormData();
-    formData.append("title", event.target.title.value)
-    formData.append("description", event.target.description.value)
-    formData.append("price", event.target.price.value)
+    formData.append("title", event.target.title.value);
+    formData.append("description", event.target.description.value);
+    formData.append("price", event.target.price.value);
     fileListAsArray.map((image) => {
-      formData.append("flower_photos[]", image) // atode each?
-    })
-    
-    
+      formData.append("flower_photos[]", image); // atode each?
+    });
+
     // const data = {
     //   title: event.target.title.value,
     //   description: event.target.description.value,
@@ -61,12 +60,14 @@ function FlowerCreateForm(props) {
     if (props.showMsg) {
       return (
         <React.Fragment>
-          <p>Successfully Created!</p>
-          <Link to="/">
-            <Button variant="outline-secondary" className="btn">
-              Back to List
-            </Button>
-          </Link>
+          <div style={{ textAlign: "center", margin: "auto" }}>
+            <p>Successfully Created!</p>
+            <Link to="/">
+              <Button variant="outline-secondary" className="btn">
+                Back to List
+              </Button>
+            </Link>
+          </div>
         </React.Fragment>
       );
     } else {
@@ -116,9 +117,9 @@ function FlowerCreateForm(props) {
                       label="Custom file input"
                       type="file"
                       accept="image/png, image/jpeg"
-                      name="flower_photos" //added
+                      name="flower_photos" 
+                      multiple="multiple"
                     />
-
                   </div>
                 </Form.Group>
 
@@ -138,34 +139,6 @@ function FlowerCreateForm(props) {
               </Link>
             </div>
           </Container>
-
-          {/* <form className="text-center" onSubmit={formSubmissionHandler}>
-            <input type="text" name="title" placeholder="Title" />
-            <br />
-            <textarea
-              type="text"
-              name="description"
-              placeholder="Description"
-            />
-            <br />
-            <input type="text" name="price" placeholder="Price" />
-            <br />
-
-            <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <p>
-                      Drag 'n' drop some files here, or click to select files
-                    </p>
-                  </div>
-                </section>
-              )}
-            </Dropzone>
-
-            <button type="submit">Submit</button>
-          </form> */}
         </React.Fragment>
       );
     }
