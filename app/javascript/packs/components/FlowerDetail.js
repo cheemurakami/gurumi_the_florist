@@ -24,6 +24,7 @@ function FlowerDetail(props) {
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
+        console.log(jsonifiedResponse)
       });
     return () => {};
   }, []);
@@ -54,11 +55,16 @@ function FlowerDetail(props) {
       <Container>
         <Row>
           <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
-            <img
-              className="mr-3"
-              src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"
-              alt="Generic placeholder"
-            />
+           {flower.flower_photos && flower.flower_photos.map((image) => {
+             return (
+               <img
+                 className="mr-3"
+                 src={image}
+                 alt="Generic placeholder"
+                 key={image}
+               />
+             )
+           })} 
           </Col>
           <Col
             md={5}

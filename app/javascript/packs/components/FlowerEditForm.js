@@ -29,18 +29,32 @@ function FlowerEditForm(props) {
 
   function formSubmissionHandler(event) {
     event.preventDefault();
-    const data = {
-      title: event.target.title.value,
-      description: event.target.description.value,
-      price: event.target.price.value,
-    };
+
+    console.log(event.target.flower_photos.files);
+    
+    const submittedImages = event.target.flower_photos.files
+    const fileListAsArray = Array.from(submittedImages)
+    let formData = new FormData();
+    formData.append("title", event.target.title.value)
+    formData.append("description", event.target.description.value)
+    formData.append("price", event.target.price.value)
+    fileListAsArray.map((image) => {
+      formData.append("flower_photos[]", image) // atode each?
+    })
+
+    // const data = {
+    //   title: event.target.title.value,
+    //   description: event.target.description.value,
+    //   price: event.target.price.value,
+    // };
 
     fetch(`/api/flowers/${id}`, {
       method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: formData,
+      // body: JSON.stringify(data),
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
     })
       .then((response) => response.json())
       .then((resposeData) => {
@@ -75,11 +89,16 @@ function FlowerEditForm(props) {
           <Container>
             <Row>
               <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
-                <img
-                  className="mr-3"
-                  src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"
-                  alt="Generic placeholder"
-                />
+              {flower.flower_photos && flower.flower_photos.map((image) => {
+             return (
+               <img
+                 className="mr-3"
+                 src={image}
+                 alt="Generic placeholder"
+                 key={image}
+               />
+             )
+           })} 
               </Col>
 
               <Col md={5} style={{ textAlign: "center", padding: "auto" }}>
@@ -120,6 +139,22 @@ function FlowerEditForm(props) {
                       defaultValue={flower.price}
                     />
                   </Form.Group>
+
+                  <Form.Group controlId="files-input">
+                  <div className="text-left">
+                    <Form.Label>Image</Form.Label>
+
+                    <input
+                      id="custom-file"
+                      label="Custom file input"
+                      type="file"
+                      accept="image/png, image/jpeg"
+                      name="flower_photos"
+                      multiple="multiple"
+                    />
+
+                  </div>
+                </Form.Group>
 
                   <Button
                     variant="outline-secondary"

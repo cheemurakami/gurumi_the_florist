@@ -16,7 +16,6 @@ function FlowerCreateForm(props) {
 
     console.log(event.target.flower_photos.files);
     
-    
     const submittedImages = event.target.flower_photos.files
     const fileListAsArray = Array.from(submittedImages)
     let formData = new FormData();
@@ -116,10 +115,6 @@ function FlowerCreateForm(props) {
 
                   </div>
                 </Form.Group>
-
-
-
-
 
                 <Button
                   variant="outline-secondary"
