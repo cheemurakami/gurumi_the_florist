@@ -75,7 +75,7 @@ function FlowerCreateForm(props) {
         <React.Fragment>
           <Container>
             <div
-              style={{ textAlign: "center", padding: "auto", width: "350px" }}
+              style={{ textAlign: "center", margin: "auto", width: "350px" }}
             >
               <Form className="text-center" onSubmit={formSubmissionHandler}>
                 <Form.Group controlId="title-input">
