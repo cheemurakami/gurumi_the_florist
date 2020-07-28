@@ -1,11 +1,10 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import * as a from '../actions'
-import { connect } from 'react-redux'
+import * as a from "../actions";
+import { connect } from "react-redux";
 
 function Signin(props) {
-
   const signIn = (e) => {
     e.preventDefault();
     const { dispatch } = props;
@@ -23,25 +22,24 @@ function Signin(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData)
-        const action = a.checkedLoginStatus(responseData)
+        console.log(responseData);
+        const action = a.checkedLoginStatus(responseData);
         dispatch(action);
       });
   };
 
   const directToHome = () => {
-    if (props.currentUser){
-      return (
-        <Redirect to="/" />
-      )
+    if (props.currentUser) {
+      return <Redirect to="/" />;
     }
-  }
+  };
 
   return (
     <React.Fragment>
       <Container>
-      {directToHome()}
-        <div style={{ textAlign: "center", padding: "auto", width: "350px" }}>
+        {directToHome()}
+
+         <div style={{ textAlign: "center", padding: "auto", width: "350px" }}>
           <h4>Sign In</h4>
           <Form className="text-center" onSubmit={signIn}>
             <Form.Group controlId="title-input">
@@ -73,7 +71,9 @@ function Signin(props) {
               Create Account
             </Button>
           </Link>
-        </div>
+        </div> 
+
+        
       </Container>
     </React.Fragment>
   );
@@ -81,7 +81,7 @@ function Signin(props) {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.loginStatusReducer.currentUser
+    currentUser: state.loginStatusReducer.currentUser,
   };
 };
 

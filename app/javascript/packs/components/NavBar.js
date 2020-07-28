@@ -3,9 +3,10 @@ import { Nav, Navbar, Form, FormControl, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiHeader from "./images/gurumi_header.png";
+import gurumiSignInIcon from "./images/gurumi_signin_icon.png";
+import gurumiSignOutIcon from "./images/gurumi_signout_icon.png";
 import { connect } from "react-redux";
-import * as a from '../actions'
-
+import * as a from "../actions";
 
 function NavBar(props) {
   const signOut = () => {
@@ -23,12 +24,13 @@ function NavBar(props) {
       return (
         <React.Fragment>
           <Nav.Item>
-            <Nav.Link className="link">
+            <Nav.Link className="link" onClick={signOut}>
               Signed in as {props.currentUser.email}
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="link" onClick={signOut}>
+              <img src={gurumiSignOutIcon} alt="gutumiSignoutIcon" />
               Sign Out
             </Nav.Link>
           </Nav.Item>
@@ -38,6 +40,7 @@ function NavBar(props) {
       return (
         <Nav.Item>
           <Nav.Link className="link" as={Link} to="/users/log_in">
+            <img src={gurumiSignInIcon} alt="gutumiAccIcon" />
             {props.currentUser && props.currentUser.email}
             Sign In
           </Nav.Link>
