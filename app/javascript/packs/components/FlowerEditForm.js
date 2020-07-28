@@ -183,7 +183,7 @@ function FlowerEditForm(props) {
 
                   <Button
                     variant="outline-secondary"
-                    className="btn"
+                    className="btn mb-3"
                     type="submit"
                   >
                     Save
@@ -191,7 +191,7 @@ function FlowerEditForm(props) {
                   <br />
                 </Form>
                 <Link to={`/flower/${id}`}>
-                  <Button variant="outline-secondary" className="btn">
+                  <Button variant="outline-secondary" className="btn mb-3">
                     Back to this flower detail
                   </Button>
                 </Link>

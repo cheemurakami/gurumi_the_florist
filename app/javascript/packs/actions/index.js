@@ -15,6 +15,11 @@ export const loadedForm = () => {
     type: c.LOADED_FORM
   }
 }
+export const deletedFlower = () => {
+  return {
+    type: c.DELETED_FLOWER
+  }
+}
 export const checkedLoginStatus = (currentUser) => {
   return {
     type: c.CHECK_LOGIN_STATUS,

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
+import * as a  from "../actions";
 
 function FlowerDetail(props) {
   const { id } = useParams();
   const [flower, setFlower] = useState({});
   const location = useLocation();
+  const { dispatch } = props;
 
   function deleteHandler(event) {
     event.preventDefault();
@@ -15,11 +17,15 @@ function FlowerDetail(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log("Success:", responseData);
+        // console.log("Success:", responseData);
+        const action = a.deletedFlower();
+        dispatch(action)
       });
   }
 
   useEffect(() => {
+    const action = a.loadedForm();
+    dispatch(action);
     fetch(`/api/flowers/${id}`)
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
@@ -29,30 +35,24 @@ function FlowerDetail(props) {
     return () => {};
   }, []);
 
-  const editBtnAndDeleteBtn = () => {
-    if (props.currentUser && props.currentUser.admin) {
+
+  const showDeletedMsgOrDetail = () => {
+    if (props.showMsg){
       return (
         <React.Fragment>
-          <div className='btn-container'>
-            <Link to={`/editflowers/${id}`}>
-              <Button className="btn" variant="outline-secondary">
-                Edit this flower
+          <div style={{ textAlign: "center", margin: "auto" }}>
+            <p>Successfully Deleted!</p>
+            <Link to="/">
+              <Button variant="outline-secondary" className="btn">
+                Back to List
               </Button>
             </Link>
           </div>
-          <div className='btn-container'>
-            <Button variant="outline-secondary" onClick={deleteHandler}>
-              Delete this flower
-            </Button>
-          </div>
         </React.Fragment>
       );
-    }
-  };
-
-  return (
-    <React.Fragment>
-      <Container>
+    } else {
+      return (
+        <Container>
         <Row>
           <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
          
@@ -85,6 +85,34 @@ function FlowerDetail(props) {
           </Col>
         </Row>
       </Container>
+      )
+    }
+  }
+
+  const editBtnAndDeleteBtn = () => {
+    if (props.currentUser && props.currentUser.admin) {
+      return (
+        <React.Fragment>
+          <div className='btn-container'>
+            <Link to={`/editflowers/${id}`}>
+              <Button className="btn" variant="outline-secondary" className="mb-3">
+                Edit this flower
+              </Button>
+            </Link>
+          </div>
+          <div className='btn-container'>
+            <Button variant="outline-secondary" className="mb-3" onClick={deleteHandler}>
+              Delete this flower
+            </Button>
+          </div>
+        </React.Fragment>
+      );
+    }
+  };
+
+  return (
+    <React.Fragment>
+      {showDeletedMsgOrDetail()}  
     </React.Fragment>
   );
 }
@@ -92,6 +120,7 @@ function FlowerDetail(props) {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.loginStatusReducer.currentUser,
+    showMsg: state.flowerListReducer.showMsg,
   };
 };
 FlowerDetail = connect(mapStateToProps)(FlowerDetail);

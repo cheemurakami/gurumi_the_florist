@@ -125,7 +125,7 @@ function FlowerCreateForm(props) {
 
                 <Button
                   variant="outline-secondary"
-                  className="btn"
+                  className="btn mb-3"
                   type="submit"
                 >
                   Save
@@ -133,7 +133,7 @@ function FlowerCreateForm(props) {
               </Form>
 
               <Link to="/">
-                <Button variant="outline-secondary" className="btn">
+                <Button variant="outline-secondary" className="btn mb-3">
                   Back to flower list
                 </Button>
               </Link>

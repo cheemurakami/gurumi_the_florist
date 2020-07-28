@@ -14,6 +14,10 @@ export default (state = {}, action) => {
       return Object.assign({}, state, {
         showMsg:  false        
       })
+    case c.DELETED_FLOWER:
+      return Object.assign({}, state, {
+        showMsg:  true        
+      })
     default:
       return state;
   }
