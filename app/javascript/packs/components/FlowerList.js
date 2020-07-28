@@ -71,7 +71,7 @@ function FlowerList(props) {
               >
                 <Card.Img
                   variant="top"
-                  src={flower.flower_photos[0]}
+                  src={flower.flower_photos[0] && flower.flower_photos[0].url}
                 />
 
                 <Card.Body>
