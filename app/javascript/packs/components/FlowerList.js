@@ -72,7 +72,7 @@ function FlowerList(props) {
               >
                 <Card.Img
                   variant="top"
-                  src="https://s7img.ftdi.com/is/image/ProvideCommerce/C12-4400D_LOL?$proflowers-tile-wide-sv-new$&qlt=80,0&resMode=trilin"
+                  src={flower.flower_photos[0]}
                 />
 
                 <Card.Body>
