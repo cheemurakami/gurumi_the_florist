@@ -29,8 +29,6 @@ function FlowerEditForm(props) {
 
   function formSubmissionHandler(event) {
     event.preventDefault();
-
-    console.log(event.target.flower_photos.files);
     
     const submittedImages = event.target.flower_photos.files
     const fileListAsArray = Array.from(submittedImages)
@@ -65,6 +63,10 @@ function FlowerEditForm(props) {
         //setDirect(true);
       });
   }
+
+  const deleteImgHandler = (id) => {
+    console.log("deleteImgHandler CLICKED =>", id)
+  }
   // const directToHome = () => {
   //   if (direct) {
   //     return <Redirect to="/" />;
@@ -91,15 +93,18 @@ function FlowerEditForm(props) {
               <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
               {flower.flower_photos && flower.flower_photos.map((image) => {
              return (
-               <>
+               <div key={image.id}>
                <img
                  className="mr-3"
                  src={image.url}
                  alt="Generic placeholder"
-                 key={image.id}
+                 
                />
-               <button>delete</button>
-               </>
+
+               {/* when onClick, onSubmit needs argument, need this: () =>  */}
+               <Button variant="outline-secondary"
+                    className="btn" onClick={() => deleteImgHandler(image.id)}>delete</Button>
+               </div>
              )
            })} 
               </Col>

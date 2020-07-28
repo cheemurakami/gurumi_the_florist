@@ -31,6 +31,11 @@ module Api
     end
   end
 
+  def delete_image
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.destroy
+  end
+
   def show
     @flower = Flower.find(params[:id])
     @flower = {
