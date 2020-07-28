@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   namespace :api do
     resources :flowers
-    delete '/delete_image' => 'flowers#delete_image'
+    delete '/delete_image/:id' => 'flowers#delete_image'
   end
   
   #at btm

@@ -66,7 +66,15 @@ function FlowerEditForm(props) {
 
   const deleteImgHandler = (id) => {
     console.log("deleteImgHandler CLICKED =>", id)
-  }
+    fetch(`/api/delete_image/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        console.log("DELETE IMAGE:", response);
+      });
+    }
+
+  
   // const directToHome = () => {
   //   if (direct) {
   //     return <Redirect to="/" />;
