@@ -202,8 +202,9 @@ function FlowerEditForm(props) {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    showMsg: state.showMsg,
+    showMsg: state.flowerListReducer.showMsg,
   };
 };
 FlowerEditForm = connect(mapStateToProps)(FlowerEditForm);

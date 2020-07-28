@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
@@ -8,11 +8,17 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 function FlowerCreateForm(props) {
   // const [direct, setDirect] = useState(false);
   // const [showMsg, setShowMsg] = useState(false);
+  
+  const { dispatch } = props;
+  useEffect(() => {
+    const action = a.loadedForm();
+    dispatch(action);
+    return () => {};
+  }, []);
 
   function formSubmissionHandler(event) {
     event.preventDefault();
 
-    const { dispatch } = props;
 
     console.log(event.target.flower_photos.files);
     
@@ -174,7 +180,7 @@ function FlowerCreateForm(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    showMsg: state.showMsg,
+    showMsg: state.flowerListReducer.showMsg,
   };
 };
 
