@@ -13,7 +13,7 @@ module Api
         price: flower.price,
         created_at: flower.created_at,
         updated_at: flower.updated_at,
-        flower_photos: image_urls(flower),
+        flower_photos: images(flower),
         id: flower.id
       }
     end
@@ -22,9 +22,12 @@ module Api
 
  # this is a method to get image urls from flower 
  # flower_photos ha active storage 
-  def image_urls(flower)
+  def images(flower)
     flower.flower_photos.map do |flower_photo|
-      url_for(flower_photo)
+      {
+       url: url_for(flower_photo),
+       id: flower_photo.id,
+      }
     end
   end
 
@@ -36,7 +39,7 @@ module Api
       price: @flower.price,
       created_at: @flower.created_at,
       updated_at: @flower.updated_at,
-      flower_photos: image_urls(@flower),
+      flower_photos: images(@flower),
       id: @flower.id
     }
     json_response(@flower)
