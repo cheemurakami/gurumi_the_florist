@@ -9,7 +9,6 @@ function FlowerList(props) {
   //console.log(location);
 
   const handleClick = (id) => {
-    //console.log("clicked");
     history.push(`/flower/${id}`);
   };
 

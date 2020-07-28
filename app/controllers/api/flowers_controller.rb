@@ -4,19 +4,20 @@ module Api
 
   def index
     #changed to add active storage -> json
-    flowers = Flower.all
+    @flowers = Flower.all
     
-    flowers = flowers.map do |flower|
+    @flowers = @flowers.map do |flower|
       {
         title: flower.title,
         description: flower.description,
         price: flower.price,
         created_at: flower.created_at,
         updated_at: flower.updated_at,
-        flower_photos: image_urls(flower)
+        flower_photos: image_urls(flower),
+        id: flower.id
       }
     end
-    json_response(flowers)
+    json_response(@flowers)
   end
 
  # this is a method to get image urls from flower 
@@ -28,16 +29,17 @@ module Api
   end
 
   def show
-    flower = Flower.find(params[:id])
-    flower = {
-      title: flower.title,
-      description: flower.description,
-      price: flower.price,
-      created_at: flower.created_at,
-      updated_at: flower.updated_at,
-      flower_photos: image_urls(flower)
+    @flower = Flower.find(params[:id])
+    @flower = {
+      title: @flower.title,
+      description: @flower.description,
+      price: @flower.price,
+      created_at: @flower.created_at,
+      updated_at: @flower.updated_at,
+      flower_photos: image_urls(@flower),
+      id: @flower.id
     }
-    json_response(flower)
+    json_response(@flower)
   end
 
   def create

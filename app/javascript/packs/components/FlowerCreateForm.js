@@ -38,7 +38,7 @@ function FlowerCreateForm(props) {
     fetch("/api/flowers", {
       method: "POST",
       // headers: {
-      //   "Content-Type": "multipart/form-data",
+      //   "Content-Type": "multipart/form-data", //fetch does this by itself
       // },
       body: formData,
     })
