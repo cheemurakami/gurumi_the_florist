@@ -29,16 +29,16 @@ function FlowerEditForm(props) {
 
   function formSubmissionHandler(event) {
     event.preventDefault();
-    
-    const submittedImages = event.target.flower_photos.files
-    const fileListAsArray = Array.from(submittedImages)
+
+    const submittedImages = event.target.flower_photos.files;
+    const fileListAsArray = Array.from(submittedImages);
     let formData = new FormData();
-    formData.append("title", event.target.title.value)
-    formData.append("description", event.target.description.value)
-    formData.append("price", event.target.price.value)
+    formData.append("title", event.target.title.value);
+    formData.append("description", event.target.description.value);
+    formData.append("price", event.target.price.value);
     fileListAsArray.map((image) => {
-      formData.append("flower_photos[]", image) // atode each?
-    })
+      formData.append("flower_photos[]", image); // atode each?
+    });
 
     // const data = {
     //   title: event.target.title.value,
@@ -65,16 +65,16 @@ function FlowerEditForm(props) {
   }
 
   const deleteImgHandler = (id) => {
-    console.log("deleteImgHandler CLICKED =>", id)
+    console.log("deleteImgHandler CLICKED =>", id);
     fetch(`/api/delete_image/${id}`, {
       method: "DELETE",
-    })
-      .then((response) => {
-        console.log("DELETE IMAGE:", response);
-      });
-    }
+    }).then((response) => {
+      console.log("DELETE IMAGE:", response);
+    });
+    const action = a.updatedFlower();
+    dispatch(action);
+  };
 
-  
   // const directToHome = () => {
   //   if (direct) {
   //     return <Redirect to="/" />;
@@ -99,22 +99,28 @@ function FlowerEditForm(props) {
           <Container>
             <Row>
               <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
-              {flower.flower_photos && flower.flower_photos.map((image) => {
-             return (
-               <div key={image.id}>
-               <img
-                 className="mr-3"
-                 src={image.url}
-                 alt="Generic placeholder"
-                 
-               />
+                {flower.flower_photos &&
+                  flower.flower_photos.map((image) => {
+                    return (
+                      <div key={image.id}>
+                        <img
+                          className="mr-3"
+                          src={image.url}
+                          alt="Generic placeholder"
+                          width="300px"
+                        />
 
-               {/* when onClick, onSubmit needs argument, need this: () =>  */}
-               <Button variant="outline-secondary"
-                    className="btn" onClick={() => deleteImgHandler(image.id)}>delete</Button>
-               </div>
-             )
-           })} 
+                        {/* when onClick, onSubmit needs argument, need this: () =>  */}
+                        <Button
+                          variant="outline-secondary"
+                          className="btn"
+                          onClick={() => deleteImgHandler(image.id)}
+                        >
+                          delete
+                        </Button>
+                      </div>
+                    );
+                  })}
               </Col>
 
               <Col md={5} style={{ textAlign: "center", padding: "auto" }}>
@@ -157,20 +163,19 @@ function FlowerEditForm(props) {
                   </Form.Group>
 
                   <Form.Group controlId="files-input">
-                  <div className="text-left">
-                    <Form.Label>Image</Form.Label>
+                    <div className="text-left">
+                      <Form.Label>Image</Form.Label>
 
-                    <input
-                      id="custom-file"
-                      label="Custom file input"
-                      type="file"
-                      accept="image/png, image/jpeg"
-                      name="flower_photos"
-                      multiple="multiple"
-                    />
-
-                  </div>
-                </Form.Group>
+                      <input
+                        id="custom-file"
+                        label="Custom file input"
+                        type="file"
+                        accept="image/png, image/jpeg"
+                        name="flower_photos"
+                        multiple="multiple"
+                      />
+                    </div>
+                  </Form.Group>
 
                   <Button
                     variant="outline-secondary"
@@ -202,7 +207,7 @@ function FlowerEditForm(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
     showMsg: state.flowerListReducer.showMsg,
   };

@@ -66,7 +66,7 @@ function FlowerList(props) {
               key={flower.id}
               onClick={() => handleClick(flower.id)}
             >
-              <Card
+              <Card border="light"
                 style={{ width: "100%", height: "380px", marginBottom: "30px" }}
               >
                 <Card.Img

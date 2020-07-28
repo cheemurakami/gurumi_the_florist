@@ -55,17 +55,23 @@ function FlowerDetail(props) {
       <Container>
         <Row>
           <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
+         
            {flower.flower_photos && flower.flower_photos.map((image) => {
              return (
+              
+
                <img 
                  className="mr-3"
                  src={image.url}
                  alt="Generic placeholder"
                  key={image.id}
+                 width="300px"
                />
-              
+
+
              )
            })} 
+           
           </Col>
           <Col
             md={5}
