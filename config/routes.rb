@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #deviseのdefault controllerをsessionsとregistrationに行ってもらうように書く  
   #sessions controllerを千里が作る -> sign in
   #registration controllerを千里が作る ->　sign up
-  get "/users/sign_up", to: 'home#index'
+  get "/users/sign_up", to: 'home#index' 
 
   devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'} 
   devise_scope :user do
