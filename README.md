@@ -10,7 +10,7 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 
 ## Setup/Installation Requirements
 
-* _Clone Repository from GitHub : https://github.com/cheemurakami/flower_shop
+* _Clone Repository from GitHub : https://github.com/cheemurakami/gurumi_the_florist
 * _Open folder in Virtual Studio Code (or your text editor of choice)_
 * _Open your terminal in Virtual Studio Code & type code . this will open all files associated with this app. 
 * _Before you initialize GIT, be sure to delete the already exisiting .git file by running this command in your terminal $rm -rf .git_
@@ -20,19 +20,23 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 
 ![tree](./diagram.png)
 
-|   Behavior Description        |
+|   **Behavior Description**        |
 |-------------------------------|
-| 1. User see the lists of flowers at home page. -react[]|
-| 2. User can click one of the lists and that navigates to FlowerDetail page.-react[]|
-| 3. User can create a flower. -rails[]|
-| 4. User can update a flower. -rails[]|
-| 5. User can delete a flower. -rails[]|
-| 6. User can delete a flower. -rails[]|
-| 7. User can delete a flower. -rails[]|
+| 1. All users see the lists of flowers at home page. []|
+| 2. All users can click one of the lists and that navigates to FlowerDetail page. []|
+| 3. Admin users can create a flower with title, description, price, images, and tags. []|
+| 4. Admin users can update a flower with title, description, price, images, and tags. []|
+| 5. Admin users can delete a flower. []|
+| 6. Admin users can delete a image. []|
+| 7. All users can search a flower by typing categories(tags) in nav bar. []|
+| 8. All users can search a flower by selecting categories(tags) in sub nav bar. []|
 
-
-| **Further Exploration**|
-
+|   **Stretch Goals for e-commerce functionality**        |
+|-------------------------------|
+| 1. All users can select flowers and save these in favorite/cart. []|
+| 2. All users can see flowers and save these in favorite/cart. []|
+| 3. All users can edit flowers in favorite/cart. []|
+| 4. All users can delete flowers in favorite/cart. []|
 
 ## Known Bugs
 
