@@ -22,8 +22,8 @@ function FlowerEditForm(props) {
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
-
-        console.log(jsonifiedResponse);
+        setTags(jsonifiedResponse.tags)
+        console.log(jsonifiedResponse.tags);
       });
     // get all flowers
     // then set all flowers to my state
@@ -199,6 +199,7 @@ function FlowerEditForm(props) {
                       value={tags}
                       placeholder="Tags"
                       onChange={handleChange}
+                      // defaultValue={tags}
                     />
                   </Form.Group>
 

@@ -17,7 +17,8 @@ module Api
         created_at: flower.created_at,
         updated_at: flower.updated_at,
         flower_photos: images(flower),
-        id: flower.id
+        id: flower.id,
+        tags: flower.tag_list
       }
     end
     json_response(@flowers)
@@ -48,7 +49,8 @@ module Api
       created_at: @flower.created_at,
       updated_at: @flower.updated_at,
       flower_photos: images(@flower),
-      id: @flower.id
+      id: @flower.id,
+      tags: @flower.tag_list
     }
     json_response(@flower)
   end

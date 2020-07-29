@@ -137,7 +137,6 @@ function FlowerCreateForm(props) {
                   <div className="text-left">
                     <Form.Label>Tags</Form.Label>
                   </div>
-                  {/* <Form.Control type="text" name="tags" placeholder="Tags" /> */}
                   <TagsInput name="tags" value={tags} placeholder="Tags" onChange={handleChange}/>
                 </Form.Group>
 
