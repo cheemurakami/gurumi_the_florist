@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 
 function FlowerEditForm(props) {
   const { id } = useParams();
@@ -11,6 +13,7 @@ function FlowerEditForm(props) {
 
   const { dispatch } = props;
   const [flower, setFlower] = useState({});
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     const action = a.loadedForm();
@@ -37,6 +40,8 @@ function FlowerEditForm(props) {
     formData.append("title", event.target.title.value);
     formData.append("description", event.target.description.value);
     formData.append("price", event.target.price.value);
+    formData.append("tag_list", tags.join(", "));
+
     fileListAsArray.map((image) => {
       formData.append("flower_photos[]", image); // atode each?
     });
@@ -64,6 +69,10 @@ function FlowerEditForm(props) {
         //setDirect(true);
       });
   }
+
+  const handleChange = (tags) => {
+    setTags(tags);
+  };
 
   const deleteImgHandler = (id) => {
     console.log("deleteImgHandler CLICKED =>", id);
@@ -179,6 +188,18 @@ function FlowerEditForm(props) {
                         multiple="multiple"
                       />
                     </div>
+                  </Form.Group>
+
+                  <Form.Group controlId="tags-input">
+                    <div className="text-left">
+                      <Form.Label>Tags</Form.Label>
+                    </div>
+                    <TagsInput
+                      name="tags"
+                      value={tags}
+                      placeholder="Tags"
+                      onChange={handleChange}
+                    />
                   </Form.Group>
 
                   <Button

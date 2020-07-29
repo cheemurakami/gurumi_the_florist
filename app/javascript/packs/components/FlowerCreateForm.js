@@ -5,11 +5,11 @@ import * as a from "../actions";
 import Dropzone from "react-dropzone";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import TagsInput from 'react-tagsinput'
-import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
+import 'react-tagsinput/react-tagsinput.css' 
 
 function FlowerCreateForm(props) {
   // const [direct, setDirect] = useState(false);
-   const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState([]);
 
   const { dispatch } = props;
   useEffect(() => {

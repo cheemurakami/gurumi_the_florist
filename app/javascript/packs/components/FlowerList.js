@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Nav, Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -52,37 +52,60 @@ function FlowerList(props) {
 
   return (
     <React.Fragment>
-      {loadingMessage()}
-
-      {addButton()}
-
       <Container>
         <Row>
-          {flowers.map((flower) => (
-            <Col
-              lg={3}
-              md={4}
-              sm={6}
-              key={flower.id}
-              onClick={() => handleClick(flower.id)}
-            >
-              <Card border="light"
-                style={{ width: "100%", height: "380px", marginBottom: "30px" }}
-              >
-                <Card.Img
-                  variant="top"
-                  src={flower.flower_photos[0] && flower.flower_photos[0].url}
-                />
+          <Col md={2} style={{ textAlign: "left" }}>
+            <Nav defaultActiveKey="/home" className="flex-column">
+              <Nav.Link href="/home">Active</Nav.Link>
+              <Nav.Link eventKey="link-1">Link</Nav.Link>
+              <Nav.Link eventKey="link-2">Link</Nav.Link>
+              <Nav.Link eventKey="disabled" disabled>
+                Disabled
+              </Nav.Link>
+            </Nav>
+          </Col>
 
-                <Card.Body>
-                  <Card.Title>{flower.title}</Card.Title>
-                  <Card.Text>${flower.price}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
+          <Col md={10} style={{ textAlign: "center", margin: "auto" }}>
+            {addButton()}
+            <Row>
+              {flowers.map((flower) => (
+                <Col
+                  lg={3}
+                  md={4}
+                  sm={6}
+                  key={flower.id}
+                  onClick={() => handleClick(flower.id)}
+                >
+                  <Card
+                    border="light"
+                    style={{
+                      width: "100%",
+                      height: "380px",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <Card.Img
+                      variant="top"
+                      src={
+                        flower.flower_photos[0] && flower.flower_photos[0].url
+                      }
+                    />
+
+                    <Card.Body>
+                      <Card.Title>{flower.title}</Card.Title>
+                      <Card.Text>${flower.price}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Col>
         </Row>
       </Container>
+
+      {loadingMessage()}
+
+      
     </React.Fragment>
   );
 }
