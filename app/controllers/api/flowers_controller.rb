@@ -4,8 +4,12 @@ module Api
 
   def index
     #changed to add active storage -> json
-    @flowers = Flower.all
-    
+    category = params[:category]
+    if category
+      @flowers = Flower.tagged_with(category)
+    else
+      @flowers = Flower.all
+    end
     @flowers = @flowers.map do |flower|
       {
         title: flower.title,
