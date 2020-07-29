@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import * as a from "../actions";
 import Dropzone from "react-dropzone";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 
 function FlowerCreateForm(props) {
   // const [direct, setDirect] = useState(false);
-  // const [showMsg, setShowMsg] = useState(false);
+   const [tags, setTags] = useState([]);
 
   const { dispatch } = props;
   useEffect(() => {
@@ -28,6 +30,7 @@ function FlowerCreateForm(props) {
     formData.append("title", event.target.title.value);
     formData.append("description", event.target.description.value);
     formData.append("price", event.target.price.value);
+    formData.append("tag_list", tags.join(", "));
     fileListAsArray.map((image) => {
       formData.append("flower_photos[]", image); // atode each?
     });
@@ -54,6 +57,10 @@ function FlowerCreateForm(props) {
         // setShowMsg(true);
         // setDirect(true);
       });
+  }
+
+  const handleChange = (tags) => {
+    setTags(tags);
   }
 
   const msgOrForm = () => {
@@ -121,6 +128,14 @@ function FlowerCreateForm(props) {
                       multiple="multiple"
                     />
                   </div>
+                </Form.Group>
+
+                <Form.Group controlId="tags-input">
+                  <div className="text-left">
+                    <Form.Label>Tags</Form.Label>
+                  </div>
+                  {/* <Form.Control type="text" name="tags" placeholder="Tags" /> */}
+                  <TagsInput name="tags" value={tags} placeholder="Tags" onChange={handleChange}/>
                 </Form.Group>
 
                 <Button
