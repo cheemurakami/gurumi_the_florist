@@ -73,7 +73,7 @@ module Api
     end
 
     def flower_params
-      params.permit(:title, :description, :price, flower_photos: []) #images:???
+      params.permit(:title, :description, :price, :tag_list, flower_photos: []) ##array needs to be the last
     end
   end
 end
