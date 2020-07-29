@@ -89,7 +89,10 @@ function FlowerCreateForm(props) {
                   <div className="text-left">
                     <Form.Label>Title</Form.Label>
                   </div>
-                  <Form.Control type="text" name="title" placeholder="Title" />
+                  <Form.Control 
+                    type="text" 
+                    name="title" 
+                    placeholder="Title" />
                 </Form.Group>
 
                 <Form.Group controlId="formControlsTextarea">

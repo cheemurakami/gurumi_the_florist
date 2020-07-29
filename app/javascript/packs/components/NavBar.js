@@ -9,8 +9,10 @@ import { connect } from "react-redux";
 import * as a from "../actions";
 
 function NavBar(props) {
+
+  const { dispatch } = props;
+  
   const signOut = () => {
-    const { dispatch } = props;
     fetch("/users/sign_out", {
       method: "DELETE",
     }).then(() => {
@@ -18,6 +20,17 @@ function NavBar(props) {
       dispatch(action);
     });
   };
+
+  const searchHandler = (event) => {
+    event.preventDefault();
+ 
+    fetch(`/api/flowers?search=${event.target.search.value}`)
+    .then((response) => response.json())
+    .then((jsonifiedResponse) => {
+      const action = a.loadedFlowers(jsonifiedResponse);
+      dispatch(action);
+    })
+  }
 
   const userLoginStatus = () => {
     if (props.currentUser && props.currentUser.email) {
@@ -66,9 +79,10 @@ function NavBar(props) {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Form inline className="justify-content-between">
+          <Form inline className="justify-content-between" onSubmit={searchHandler}>
             <FormControl
               type="text"
+              name="search"
               placeholder="Search Flowers"
               className=" mr-sm-2"
             />
@@ -81,10 +95,10 @@ function NavBar(props) {
         {userLoginStatus()}
       </Navbar>
 
+
       <div className="header">
         <img
           src={gurumiHeader}
-          // style={{ marginBottom: "30px" }}
           width="100%"
           alt="header"
           className="header2"

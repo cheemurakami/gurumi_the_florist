@@ -1,12 +1,11 @@
 module Api
   class FlowersController < ApplicationController
  
-
   def index
     #changed to add active storage -> json
-    category = params[:category]
-    if category
-      @flowers = Flower.tagged_with(category)
+    search = params[:search]
+    if search
+      @flowers = Flower.tagged_with(search)
     else
       @flowers = Flower.all
     end

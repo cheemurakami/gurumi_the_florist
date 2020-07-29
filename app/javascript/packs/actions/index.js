@@ -26,3 +26,9 @@ export const checkedLoginStatus = (currentUser) => {
     currentUser
   }
 }
+export const loadedFlowers = (flowers) => {
+  return {
+    type: c.LOADED_FLOWERS,
+    flowers
+  }
+}

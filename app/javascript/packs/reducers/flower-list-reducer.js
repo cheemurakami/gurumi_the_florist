@@ -18,6 +18,10 @@ export default (state = {}, action) => {
       return Object.assign({}, state, {
         showMsg:  true        
       })
+      case c.LOADED_FLOWERS:
+        return Object.assign({}, state, {
+          flowers: action.flowers       
+        })
     default:
       return state;
   }

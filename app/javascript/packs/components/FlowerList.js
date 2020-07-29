@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Nav, Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
+import * as a from "../actions";
 
 function FlowerList(props) {
   const history = useHistory();
   const location = useLocation();
+  const { dispatch } = props; 
   //console.log(location);
 
   const handleClick = (id) => {
     history.push(`/flower/${id}`);
   };
 
-  const [flowers, setFlowers] = useState([]);
+  //const [flowers, setFlowers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   //This is what we want to happen when first loaded
@@ -20,7 +22,9 @@ function FlowerList(props) {
     fetch("/api/flowers/")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        setFlowers(jsonifiedResponse);
+        // setFlowers(jsonifiedResponse);
+        const action = a.loadedFlowers(jsonifiedResponse);
+        dispatch(action);
         setIsLoading(false);
       });
     // get all flowers
@@ -68,7 +72,7 @@ function FlowerList(props) {
           <Col md={10} style={{ textAlign: "center", margin: "auto" }}>
             {addButton()}
             <Row>
-              {flowers.map((flower) => (
+              {props.flowers && props.flowers.map((flower) => (
                 <Col
                   lg={3}
                   md={4}
@@ -113,6 +117,7 @@ function FlowerList(props) {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.loginStatusReducer.currentUser,
+    flowers: state.flowerListReducer.flowers
   };
 };
 
