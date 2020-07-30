@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Carousel } from "react-bootstrap";
+import { Container, Row, Col, Button, Carousel, Badge } from "react-bootstrap";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
@@ -34,6 +34,7 @@ function FlowerDetail(props) {
       });
     return () => {};
   }, []);
+
 
   const showDeletedMsgOrDetail = () => {
     if (props.showMsg) {
@@ -80,9 +81,19 @@ function FlowerDetail(props) {
                 <h3>{flower.title}</h3>
                 <p>{flower.description}</p>
                 <p>Price: ${flower.price}</p>
+                
+<h5>  
+                {flower.tags && flower.tags.map((tag) => {
+                  return(
+                  <Badge pill variant="light" key={tag}>
+                    {tag}
+                  </Badge>
+                  )
+                })}
+
+</h5>
 
                 {editBtnAndDeleteBtn()}
-
                 <Link to="/">
                   <Button variant="outline-secondary">Back to List</Button>
                 </Link>
