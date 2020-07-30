@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from "react";
 import gurumiHeader from "./images/gurumi_header.png";
-import {
-  Nav,
-  Accordion,
-  Form,
-  FormControl,
-  Card,
-  Container,
-  Row,
-  Col,
-  Button,
-  Spinner,
-} from "react-bootstrap";
+import { Card, Container, Row, Col, Button, Spinner,} from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
-import AccordionCustom from "./AccordionCustom";
+import CheckBoxNav from "./CheckBoxNav";
 
 
 function FlowerList(props) {
@@ -72,29 +61,8 @@ function FlowerList(props) {
     }
   };
 
-  const changeHandler = (event) => {
-    let checked = event.target.checked
-    if (checked){
-      fetch(`/api/flowers?search=${event.target.id}`)
-      .then((response) => response.json())
-      .then((jsonifiedResponse) => {
-        const action = a.loadedFlowers(jsonifiedResponse);
-        dispatch(action);
-      })
-    } else {
-      fetch(`/api/flowers`)
-      .then((response) => response.json())
-      .then((jsonifiedResponse) => {
-        const action = a.loadedFlowers(jsonifiedResponse);
-        dispatch(action);
-      })
-    }
-  }
+  
 
-
-  const occasionNames = ["Anniversary", "Birthday", "Romance", "Thank You", "Congratulations"]
-  const flowerTypes = ["Daisy", "Lily", "Rose", "Tulip", "Sunflower"]
-  const colors = ["Red", "Pink", "Yellow", "Puple", "Orange"]
 
   return (
     <React.Fragment>
@@ -110,59 +78,20 @@ function FlowerList(props) {
         </div>
         <Row>
           <Col md={3} style={{ textAlign: "left" }}>
-            <Nav defaultActiveKey="/home" className="flex-column">
-              <Accordion defaultActiveKey="0">
-                <AccordionCustom eventKey="0">
-                  Occasion
-                </AccordionCustom>
-                
-                  <Accordion.Collapse eventKey="0">
-                    <Form>
-                      {occasionNames.map((name) => {
-                        return (
-                          <Form.Group controlId={name} key={name}>
-                            <Form.Check type="checkbox" label={name} onChange={changeHandler}/>
-                          </Form.Group>
-                        )
-                      })}
-                    </Form>
-                  </Accordion.Collapse>
-              </Accordion>
 
-              <Accordion defaultActiveKey="0">
-                <AccordionCustom eventKey="0">
-                  Flower Type
-                </AccordionCustom>
-                  <Accordion.Collapse eventKey="0">
-                    <Form>
-                      {flowerTypes.map((type) => {
-                        return(
-                          <Form.Group controlId={type} key={type}>
-                            <Form.Check type="checkbox" label={type} onClick={changeHandler} />
-                          </Form.Group>
-                        )
-                      })}
-                    </Form>
-                  </Accordion.Collapse>
-              </Accordion>
 
-              <Accordion defaultActiveKey="0">
-                <AccordionCustom eventKey="0">
-                  Color
-                </AccordionCustom>
-                  <Accordion.Collapse eventKey="0">
-                    <Form>
-                      {colors.map((color) => {
-                        return (
-                          <Form.Group controlId={color} key={color}>
-                            <Form.Check type="checkbox" label={color} onClick={changeHandler}/>
-                          </Form.Group>
-                        )
-                      })}
-                    </Form>
-                  </Accordion.Collapse>
-              </Accordion>
-            </Nav>
+          <CheckBoxNav />
+
+
+
+
+
+
+
+
+
+
+
           </Col>
 
           <Col md={9} style={{ textAlign: "center" }}>

@@ -97,7 +97,6 @@ function NavBar(props) {
             {userLoginStatus()}
           </Nav>
       </Navbar>
-
     </>
   );
 }
