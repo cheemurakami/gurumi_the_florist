@@ -81,8 +81,6 @@ function FlowerDetail(props) {
                 <p>{flower.description}</p>
                 <p>Price: ${flower.price}</p>
 
-                <p>Tags: {flower.tags}</p>
-
                 {editBtnAndDeleteBtn()}
 
                 <Link to="/">

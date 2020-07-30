@@ -18,18 +18,18 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 
 ## Behavior Driven Development 
 
-![tree](./diagram.png)
+![tree](./diagram1.png)
 
 |   **Behavior Description**        |
 |-------------------------------|
-| 1. All users see the lists of flowers at home page. []|
-| 2. All users can click one of the lists and that navigates to FlowerDetail page. []|
-| 3. Admin users can create a flower with title, description, price, images, and tags. []|
-| 4. Admin users can update a flower with title, description, price, images, and tags. []|
-| 5. Admin users can delete a flower. []|
-| 6. Admin users can delete a image. []|
-| 7. All users can search a flower by typing categories(tags) in nav bar. []|
-| 8. All users can search a flower by selecting categories(tags) in sub nav bar. []|
+| 1. All users see the lists of flowers at home page. [√]|
+| 2. All users can click one of the lists and that navigates to FlowerDetail page. [√]|
+| 3. Admin users can create a flower with title, description, price, images, and tags. [√]|
+| 4. Admin users can update a flower with title, description, price, images, and tags. [√]|
+| 5. Admin users can delete a flower. [√]|
+| 6. Admin users can delete a image. [√]|
+| 7. All users can search a flower by typing a category or a tag in nav bar. [√]|
+| 8. All users can search a flower by selecting categories and tags in sub nav bar. [√]|
 
 |   **Stretch Goals for e-commerce functionality**        |
 |-------------------------------|
