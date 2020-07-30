@@ -93,12 +93,15 @@ function FlowerList(props) {
                       border="light"
                       style={{
                         width: "100%",
-                        height: "380px",
+                        height: "500px",
                         marginBottom: "30px",
                       }}
                     >
                       <Card.Img
                         variant="top"
+                        style={{
+                          maxHeight: "300px"
+                        }}
                         src={
                           flower.flower_photos[0] && flower.flower_photos[0].url
                         }
