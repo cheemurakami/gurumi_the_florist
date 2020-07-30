@@ -96,9 +96,6 @@ function NavBar(props) {
           <Nav>
             {userLoginStatus()}
           </Nav>
-
-
-
       </Navbar>
 
     </>
@@ -106,7 +103,7 @@ function NavBar(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  //console.log(state);
   return {
     currentUser: state.loginStatusReducer.currentUser,
   };

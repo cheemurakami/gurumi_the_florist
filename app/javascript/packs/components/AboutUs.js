@@ -20,21 +20,23 @@ function AboutUs() {
             <h4>Welcome to Gurumi The Florist!</h4>
             <hr />
             <p>
-              I made this website for my Omma. ("Omma" means "mom" in Korean) She is my best friend, my ex coworker, and an amazing florist who loves her cat Gurumi!
-              <br />
-              Her dream is to open her own flower shop, so I decided to make one for her in my capstone project. 
+              All flower bouquets we list on this website are handmade by Omma.
+              While fresh flowers are beautiful, you can still enjoy and keep
+              them long time by using fake large floral arrangements.
             </p>
           </Media.Body>
         </Media>
 
         <Media className="mb-5">
           <Media.Body className="mt-5">
-          <h4>Welcome to Gurumi The Florist!</h4>
+            <h4>How to keep fake flowers to last long</h4>
             <hr />
             <p>
-              I made this website for my Omma. ("Omma" means "mom" in Korean) She is my best friend, my ex coworker, and an amazing florist who loves her cat Gurumi!
+              They aren’t real, but it doesn't last forever if you don't take care of them. The lifespan of fake
+              flowers depends on where you have them stored in your home.
               <br />
-              Her dream is to open her own flower shop, so I decided to make one for her in my capstone project. 
+              <br />
+              Avoid direct sunlight and dust artificial plants with a feather duster once a week. 
             </p>
           </Media.Body>
           <img
@@ -55,12 +57,16 @@ function AboutUs() {
             alt="Chee and Omma"
           />
           <Media.Body className="mt-5">
-            <h4>Welcome to Gurumi The Florist!</h4>
+            <h4>Thank you for stopping by!</h4>
             <hr />
             <p>
-              I made this website for my Omma. ("Omma" means "mom" in Korean) She is my best friend, my ex coworker, and an amazing florist who loves her cat Gurumi!
+              "Omma" means "mom" in Korean. Omma is Chee's best friend, her
+              ex-coworker, and an amazing florist who loves her cat Gurumi!
+              Gurumi always annoys Omma while she is making flowers, but they
+              still love each other so much!
               <br />
-              Her dream is to open her own flower shop, so I decided to make one for her in my capstone project. 
+              Omma's dream is to open her own flower shop, so Chee will keep
+              working on this website. Wish her luck! (✧ω✧)
             </p>
           </Media.Body>
         </Media>

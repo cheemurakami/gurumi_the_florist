@@ -72,9 +72,33 @@ function FlowerList(props) {
     }
   };
 
+  const changeHandler = (event) => {
+    let checked = event.target.checked
+    if (checked){
+      fetch(`/api/flowers?search=${event.target.id}`)
+      .then((response) => response.json())
+      .then((jsonifiedResponse) => {
+        const action = a.loadedFlowers(jsonifiedResponse);
+        dispatch(action);
+      })
+    } else {
+      fetch(`/api/flowers`)
+      .then((response) => response.json())
+      .then((jsonifiedResponse) => {
+        const action = a.loadedFlowers(jsonifiedResponse);
+        dispatch(action);
+      })
+    }
+  }
+
+
+  const occasionNames = ["Anniversary", "Birthday", "Romance", "Thank You", "Congratulations"]
+  const flowerTypes = ["Daisy", "Lily", "Rose", "Tulip", "Sunflower"]
+  const colors = ["Red", "Pink", "Yellow", "Puple", "Orange"]
+
   return (
     <React.Fragment>
-      <Container>
+      <Container fluid>
         
         <div className="header">
           <img
@@ -87,85 +111,61 @@ function FlowerList(props) {
         <Row>
           <Col md={3} style={{ textAlign: "left" }}>
             <Nav defaultActiveKey="/home" className="flex-column">
-              <Accordion defaultActiveKey="1">
+              <Accordion defaultActiveKey="0">
                 <AccordionCustom eventKey="0">
                   Occasion
                 </AccordionCustom>
                 
                   <Accordion.Collapse eventKey="0">
                     <Form>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Anniversary" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Birthday" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Romance" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Thank You" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Congratulations" />
-                      </Form.Group>
+                      {occasionNames.map((name) => {
+                        return (
+                          <Form.Group controlId={name} key={name}>
+                            <Form.Check type="checkbox" label={name} onChange={changeHandler}/>
+                          </Form.Group>
+                        )
+                      })}
                     </Form>
                   </Accordion.Collapse>
               </Accordion>
 
-              <Accordion defaultActiveKey="1">
+              <Accordion defaultActiveKey="0">
                 <AccordionCustom eventKey="0">
                   Flower Type
                 </AccordionCustom>
                   <Accordion.Collapse eventKey="0">
                     <Form>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Daisy" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Lily" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Rose" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Tulip" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Sunflower" />
-                      </Form.Group>
+                      {flowerTypes.map((type) => {
+                        return(
+                          <Form.Group controlId={type} key={type}>
+                            <Form.Check type="checkbox" label={type} onClick={changeHandler} />
+                          </Form.Group>
+                        )
+                      })}
                     </Form>
                   </Accordion.Collapse>
               </Accordion>
 
-              <Accordion defaultActiveKey="1">
+              <Accordion defaultActiveKey="0">
                 <AccordionCustom eventKey="0">
                   Color
                 </AccordionCustom>
                   <Accordion.Collapse eventKey="0">
                     <Form>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Red" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Yellow" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Pink" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Orange" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="purple" />
-                      </Form.Group>
+                      {colors.map((color) => {
+                        return (
+                          <Form.Group controlId={color} key={color}>
+                            <Form.Check type="checkbox" label={color} onClick={changeHandler}/>
+                          </Form.Group>
+                        )
+                      })}
                     </Form>
                   </Accordion.Collapse>
               </Accordion>
             </Nav>
           </Col>
 
-          <Col md={9} style={{ textAlign: "center", margin: "auto" }}>
+          <Col md={9} style={{ textAlign: "center" }}>
 
             {addButton()}
             <Row>
