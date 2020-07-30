@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import gurumiHeader from "./images/gurumi_header.png";
-import { Card, Container, Row, Col, Button, Spinner,} from "react-bootstrap";
+import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
 import CheckBoxNav from "./CheckBoxNav";
-
 
 function FlowerList(props) {
   const history = useHistory();
@@ -38,10 +37,10 @@ function FlowerList(props) {
   const loadingMessage = () => {
     if (isLoading) {
       return (
-        <Spinner className='mx-auto' animation="border" role="status">
+        <Spinner className="mx-auto" animation="border" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>
-      )
+      );
     }
   };
 
@@ -61,13 +60,9 @@ function FlowerList(props) {
     }
   };
 
-  
-
-
   return (
     <React.Fragment>
       <Container fluid>
-        
         <div className="header">
           <img
             src={gurumiHeader}
@@ -78,24 +73,10 @@ function FlowerList(props) {
         </div>
         <Row>
           <Col md={3} style={{ textAlign: "left" }}>
-
-
-          <CheckBoxNav />
-
-
-
-
-
-
-
-
-
-
-
+            <CheckBoxNav />
           </Col>
 
           <Col md={9} style={{ textAlign: "center" }}>
-
             {addButton()}
             <Row>
               {loadingMessage()}
@@ -134,8 +115,6 @@ function FlowerList(props) {
           </Col>
         </Row>
       </Container>
-
-      
     </React.Fragment>
   );
 }

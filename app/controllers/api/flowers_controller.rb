@@ -4,8 +4,9 @@ module Api
   def index
     #changed to add active storage -> json
     search = params[:search]
+    #"rose,lily,Birthday"
     if search
-      @flowers = Flower.tagged_with(search)
+      @flowers = Flower.tagged_with(search.split(","), :any => true)
     else
       @flowers = Flower.all
     end
