@@ -6,7 +6,7 @@
 
 ## Description
 
-_This is a flower shop website, that will allow the user to see the pictures of the flower bouquets and search by kinds, occasions, seasons, and so on. The admin user is able to use full CRUD functionalities to manage the website._ 
+_This is a flower shop website, that will allow the user to see the pictures of the flower bouquets and search by tags of kinds, occasions, seasons, and so on. The admin user is able to use full CRUD functionality to manage the website._ 
 
 ## Setup/Installation Requirements
 
@@ -15,6 +15,8 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 * _Open your terminal in Virtual Studio Code & type code . this will open all files associated with this app. 
 * _Before you initialize GIT, be sure to delete the already exisiting .git file by running this command in your terminal $rm -rf .git_
 * _Create your own repository and push new changes to GitHub_
+
+**
 
 ## Behavior Driven Development 
 
@@ -37,6 +39,11 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 | 2. All users can see flowers and save these in favorite/cart. []|
 | 3. All users can edit flowers in favorite/cart. []|
 | 4. All users can delete flowers in favorite/cart. []|
+| 5. All users can delete flowers in favorite/cart. []|
+| 6. All users can submit payment form in cart. []|
+| 7. All users can process payment in cart. []|
+| 8. Show recommended flowers based on users selections. []|
+
 
 ## Known Bugs
 
