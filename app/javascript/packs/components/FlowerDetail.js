@@ -39,64 +39,59 @@ function FlowerDetail(props) {
     if (props.showMsg) {
       return (
         <React.Fragment>
-          <div style={{ textAlign: "center", margin: "auto" }}>
-            <p>Successfully Deleted!</p>
-            <Link to="/">
-              <Button variant="outline-secondary" className="btn">
-                Back to List
-              </Button>
-            </Link>
-          </div>
+          <Container>
+            <div style={{ textAlign: "center", margin: "auto" }}>
+              <p>Successfully Deleted!</p>
+              <Link to="/">
+                <Button variant="outline-secondary" className="btn">
+                  Back to List
+                </Button>
+              </Link>
+            </div>
+          </Container>
         </React.Fragment>
       );
     } else {
       return (
-        <Container>
-          <Row>
-            <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
-              <Carousel fade={true}>
-                {flower.flower_photos &&
-                  flower.flower_photos.map((image) => {
-                    return (
-                      <Carousel.Item key={image.id}>
-                        <img
-                          className="mr-3 d-block w-100"
-                          src={image.url}
-                          alt="Generic placeholder"
-                          width="300px"
-                        />
-                      </Carousel.Item>
-                    );
-                  })}
-              </Carousel>
-            </Col>
-            <Col
-              md={5}
-              style={{ textAlign: "center", padding: "auto", margin: "auto" }}
-            >
-              <h3>{flower.title}</h3>
-              <p>{flower.description}</p>
-              <p>Price: ${flower.price}</p>
+        <React.Fragment>
+          <Container className="mt-5">
+            <Row>
+              <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
+                <Carousel fade={true}>
+                  {flower.flower_photos &&
+                    flower.flower_photos.map((image) => {
+                      return (
+                        <Carousel.Item key={image.id}>
+                          <img
+                            className="mr-3 d-block w-100"
+                            src={image.url}
+                            alt="Generic placeholder"
+                            width="300px"
+                          />
+                        </Carousel.Item>
+                      );
+                    })}
+                </Carousel>
+              </Col>
+              <Col
+                md={5}
+                style={{ textAlign: "center", padding: "auto", margin: "auto" }}
+              >
+                <h3>{flower.title}</h3>
+                <p>{flower.description}</p>
+                <p>Price: ${flower.price}</p>
 
+                <p>Tags: {flower.tags}</p>
 
+                {editBtnAndDeleteBtn()}
 
-
-
-              <p>Tags: {flower.tags}</p>
-
-
-
-
-
-
-              {editBtnAndDeleteBtn()}
-
-              <Link to="/">
-                <Button variant="outline-secondary">Back to List</Button>
-              </Link>
-            </Col>
-          </Row>
-        </Container>
+                <Link to="/">
+                  <Button variant="outline-secondary">Back to List</Button>
+                </Link>
+              </Col>
+            </Row>
+          </Container>
+        </React.Fragment>
       );
     }
   };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import gurumiHeader from "./images/gurumi_header.png";
 import {
   Nav,
   Accordion,
@@ -9,7 +10,7 @@ import {
   Row,
   Col,
   Button,
-  useAccordionToggle,
+  Spinner,
 } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
@@ -47,7 +48,11 @@ function FlowerList(props) {
 
   const loadingMessage = () => {
     if (isLoading) {
-      return <p>Loading</p>;
+      return (
+        <Spinner className='mx-auto' animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      )
     }
   };
 
@@ -70,6 +75,15 @@ function FlowerList(props) {
   return (
     <React.Fragment>
       <Container>
+        
+        <div className="header">
+          <img
+            src={gurumiHeader}
+            width="100%"
+            alt="header"
+            className="headerImg"
+          />
+        </div>
         <Row>
           <Col md={3} style={{ textAlign: "left" }}>
             <Nav defaultActiveKey="/home" className="flex-column">
@@ -152,8 +166,10 @@ function FlowerList(props) {
           </Col>
 
           <Col md={9} style={{ textAlign: "center", margin: "auto" }}>
+
             {addButton()}
             <Row>
+              {loadingMessage()}
               {props.flowers &&
                 props.flowers.map((flower) => (
                   <Col
@@ -190,7 +206,7 @@ function FlowerList(props) {
         </Row>
       </Container>
 
-      {loadingMessage()}
+      
     </React.Fragment>
   );
 }

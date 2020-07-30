@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import NavBar from './NavBar'
 import Signup from './Signup'
 import Signin from './Signin'
+import AboutUs from './AboutUs'
 import FlowerList from './FlowerList'
 import FlowerCreateForm from './FlowerCreateForm'
 import FlowerEditForm from './FlowerEditForm'
@@ -12,8 +13,6 @@ import * as a from '../actions'
 
 
 function App(props) {
-
-  
 
   //func to check if signed in or not
   const checkLogin = () => {
@@ -53,6 +52,9 @@ function App(props) {
         </Route>
         <Route path="/users/log_in">
           <Signin />
+        </Route>
+        <Route path="/aboutus">
+          <AboutUs />
         </Route>
         <Route path="/newflowers">
           <FlowerCreateForm />
