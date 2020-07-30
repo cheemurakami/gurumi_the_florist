@@ -23,7 +23,6 @@ function FlowerEditForm(props) {
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
         setTags(jsonifiedResponse.tags)
-        console.log(jsonifiedResponse.tags);
       });
     // get all flowers
     // then set all flowers to my state
