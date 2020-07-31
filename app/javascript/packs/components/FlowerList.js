@@ -12,9 +12,9 @@ function FlowerList(props) {
   const { dispatch } = props;
   //console.log(location);
 
-  const handleClick = (id) => {
-    history.push(`/flower/${id}`);
-  };
+  // const handleClick = (id) => {
+  //   history.push(`/flower/${id}`);
+  // };
 
   //const [flowers, setFlowers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -87,31 +87,34 @@ function FlowerList(props) {
                     md={4}
                     sm={6}
                     key={flower.id}
-                    onClick={() => handleClick(flower.id)}
+                    // onClick={() => handleClick(flower.id)}
                   >
-                    <Card
-                      border="light"
-                      style={{
-                        width: "100%",
-                        height: "500px",
-                        marginBottom: "30px",
-                      }}
-                    >
-                      <Card.Img
-                        variant="top"
+                    <Link to={`/flower/${flower.id}`}>
+                      <Card
+                        border="light"
                         style={{
-                          maxHeight: "300px"
+                          width: "100%",
+                          height: "500px",
+                          marginBottom: "30px",
                         }}
-                        src={
-                          flower.flower_photos[0] && flower.flower_photos[0].url
-                        }
-                      />
+                      >
+                        <Card.Img
+                          variant="top"
+                          style={{
+                            maxHeight: "300px",
+                          }}
+                          src={
+                            flower.flower_photos[0] &&
+                            flower.flower_photos[0].url
+                          }
+                        />
 
-                      <Card.Body>
-                        <Card.Title>{flower.title}</Card.Title>
-                        <Card.Text>${flower.price}</Card.Text>
-                      </Card.Body>
-                    </Card>
+                        <Card.Body>
+                          <Card.Title>{flower.title}</Card.Title>
+                          <Card.Text>${flower.price}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Link>
                   </Col>
                 ))}
             </Row>
