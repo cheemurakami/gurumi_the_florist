@@ -18,4 +18,23 @@ describe ('actions', () => {
       type: c.LOADED_FORM
     })
   })
+  it('deletedFlower should create DELETED_FLOWER action', () => {
+    expect(actions.deletedFlower()).toEqual({
+      type: c.DELETED_FLOWER
+    })
+  })
+  it('checkedLoginStatus should create CHECK_LOGIN_STATUS action', () => {
+    let currentUser = {name: "kiwi"}
+    expect(actions.checkedLoginStatus(currentUser)).toEqual({
+      type: c.CHECK_LOGIN_STATUS,
+      currentUser
+    })
+  })
+  it('loadedFlowers should create LOADED_FLOWERS action', () => {
+    let flowers = {title: "kiwi flower", price: 80}
+    expect(actions.loadedFlowers(flowers)).toEqual({
+      type: c.LOADED_FLOWERS,
+      flowers
+    })
+  })
 })

@@ -28,7 +28,7 @@ function App(props) {
           console.log("MUST SIGN IN")
         } else {
            currentUser = jsonifiedResponse.user;
-          console.log("SIGNED IN AS", jsonifiedResponse)
+          console.log("SIGNED IN AS", currentUser)
         }
         const action = a.checkedLoginStatus(currentUser);
         dispatch(action);
