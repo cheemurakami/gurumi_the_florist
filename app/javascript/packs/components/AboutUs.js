@@ -17,7 +17,7 @@ function AboutUs() {
             alt="Omma Flower 1"
           />
           <Media.Body className="mt-5">
-            <h4>Welcome to Gurumi The Florist!</h4>
+            <h4>Welcome to Gurumi The Florist!!</h4>
             <hr />
             <p>
               All flower bouquets we list on this website are handmade by Omma.

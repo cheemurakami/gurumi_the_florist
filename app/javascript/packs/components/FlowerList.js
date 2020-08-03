@@ -21,6 +21,7 @@ function FlowerList(props) {
 
   //This is what we want to happen when first loaded
   useEffect(() => {
+    console.log('use_effect')
     fetch("/api/flowers/")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
