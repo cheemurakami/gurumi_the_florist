@@ -10,7 +10,7 @@ module Api
     else
       @flowers = Flower.all
     end
-    @flowers = @flowers.map do |flower|
+    @flowers = @flowers.map do |flower| #arr with obj of flower
       {
         title: flower.title,
         description: flower.description,

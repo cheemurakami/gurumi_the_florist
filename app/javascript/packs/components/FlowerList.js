@@ -25,6 +25,7 @@ function FlowerList(props) {
     fetch("/api/flowers/")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
+        console.log(jsonifiedResponse)
         // setFlowers(jsonifiedResponse);
         const action = a.loadedFlowers(jsonifiedResponse);
         dispatch(action);

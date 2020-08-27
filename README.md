@@ -11,6 +11,8 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 ## Setup/Installation Requirements
 
 * _Clone Repository from GitHub : https://github.com/cheemurakami/gurumi_the_florist
+* _Run `rails s`
+* _Run `bin/webpack-dev-server` in the other terminal
 * _Open folder in Virtual Studio Code (or your text editor of choice)_
 * _Open your terminal in Virtual Studio Code & type code . this will open all files associated with this app. 
 * _Before you initialize GIT, be sure to delete the already exisiting .git file by running this command in your terminal $rm -rf .git_

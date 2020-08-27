@@ -24,8 +24,7 @@ Rails.application.routes.draw do
   # match '*path', to: 'home#index', via: :all  
 
   # IMPORTANT #
-  # This `match` must be the *last* route in routes.rb
-  # 
+  # This `match` must be the *last* route in routes.rb 
 
   # qiitaのノート：本番環境で、 ルーティングが存在しないパスへアクセス(GET)があった場合に、
   # ルート(/)へリダイレクトさせる

@@ -10,6 +10,7 @@ import FlowerDetail from './FlowerDetail'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import { connect } from 'react-redux'
 import * as a from '../actions'
+import FavoriteList from './FavoriteList'
 
 
 function App(props) {
@@ -32,7 +33,6 @@ function App(props) {
         }
         const action = a.checkedLoginStatus(currentUser);
         dispatch(action);
-        // console.log(jsonifiedResponse);
       });
       
   }
@@ -64,6 +64,9 @@ function App(props) {
         </Route>
         <Route path="/editflowers/:id">
           <FlowerEditForm />
+        </Route>
+        <Route path="/favoritelist">
+          <FavoriteList />
         </Route>
         <Route path="/">
           <FlowerList />

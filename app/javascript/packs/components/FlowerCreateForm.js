@@ -23,14 +23,14 @@ function FlowerCreateForm(props) {
 
     console.log(event.target.flower_photos.files);
 
-    const submittedImages = event.target.flower_photos.files;
-    const fileListAsArray = Array.from(submittedImages);
-
     let formData = new FormData();
+    
     formData.append("title", event.target.title.value);
     formData.append("description", event.target.description.value);
     formData.append("price", event.target.price.value);
     formData.append("tag_list", tags.join(", "));
+    const submittedImages = event.target.flower_photos.files;
+    const fileListAsArray = Array.from(submittedImages);
     fileListAsArray.map((image) => {
       formData.append("flower_photos[]", image); // atode each?
     });
