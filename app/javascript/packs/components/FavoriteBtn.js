@@ -1,9 +1,16 @@
-import React from "react";
-import { Button, ResponsiveEmbed } from "react-bootstrap";
-
+import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 
 function FavoriteBtn(props) {
   const data = {flower_id: props.flowerId}
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  useEffect(() => {
+    setIsFavorite(props.isFavorite)
+    return () => {
+    }
+  }, [props.isFavorite])
+
   const toggleFavorite = () => {
     fetch("/api/toggle_favorite", {
       method: "POST",
@@ -12,13 +19,29 @@ function FavoriteBtn(props) {
           "Content-Type": "application/json",
         },
     })
-    .then((response) => console.log(response.json()))
-    .then((jsonResponse) => console.log(jsonResponse))
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      //console.log(jsonResponse)
+      if (jsonResponse.msg === "Favorited"){
+        setIsFavorite(true);
+      } else {
+        setIsFavorite(false);
+      }
+    }
+    )
+  }
+
+  const favoriteBtnText = () => {
+    if (isFavorite) {
+      return "Unfavorite"
+    } else {
+      return "Add favorite"
+    }
   }
 
   return (
     <React.Fragment>  
-        <Button variant="outline-secondary" onClick={toggleFavorite}>Add to favorites</Button>
+        <Button variant="outline-secondary" onClick={toggleFavorite}>{favoriteBtnText()}</Button>
     </React.Fragment>
   );
 }

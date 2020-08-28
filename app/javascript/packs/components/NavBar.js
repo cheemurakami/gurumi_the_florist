@@ -47,6 +47,11 @@ function NavBar(props) {
               <NavDropdown.Item onClick={signOut}>
                 Sign Out 
             </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link as={Link} to="/favorites">
+                Your Favorites
+                </Link>
+            </NavDropdown.Item>
           </NavDropdown>
       );
     } else {

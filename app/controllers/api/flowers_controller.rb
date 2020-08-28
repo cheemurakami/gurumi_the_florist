@@ -43,6 +43,9 @@ module Api
 
   def show
     @flower = Flower.find(params[:id])
+    
+    favorite = Favorite.find_by(flower: @flower, user: current_user)
+
     @flower = {
       title: @flower.title,
       description: @flower.description,
@@ -51,7 +54,8 @@ module Api
       updated_at: @flower.updated_at,
       flower_photos: images(@flower),
       id: @flower.id,
-      tags: @flower.tag_list
+      tags: @flower.tag_list,
+      is_favorite: favorite.present?,
     }
     json_response(@flower)
   end

@@ -27,11 +27,11 @@ function FlowerDetail(props) {
   useEffect(() => {
     const action = a.loadedForm();
     dispatch(action);
-    fetch(`/api/flowers/${id}`)
+    fetch(`/api/flowers/${id}`) //show action in controller
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
-        console.log(jsonifiedResponse);
+        //console.log(jsonifiedResponse);
       });
     return () => {};
   }, []);
@@ -93,8 +93,10 @@ function FlowerDetail(props) {
                     })}
                 </h5>
 
+                <FavoriteBtn flowerId={id} isFavorite={flower.is_favorite}></FavoriteBtn>
+                
                 {editBtnAndDeleteBtn()}
-                <FavoriteBtn flowerId={id}></FavoriteBtn>
+                
                 <Link to="/">
                   <Button variant="outline-secondary">Back to List</Button>
                 </Link>

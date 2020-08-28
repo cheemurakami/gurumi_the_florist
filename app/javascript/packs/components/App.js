@@ -10,12 +10,10 @@ import FlowerDetail from './FlowerDetail'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import { connect } from 'react-redux'
 import * as a from '../actions'
-//import FavoriteBtn from './FavoriteBtn'
 import FavoriteList from './FavoriteList'
 
 
 function App(props) {
-
   //func to check if signed in or not
   const checkLogin = () => {
     const { dispatch } = props;
@@ -66,7 +64,7 @@ function App(props) {
         <Route path="/editflowers/:id">
           <FlowerEditForm />
         </Route>
-        <Route path="/favoritelist">
+        <Route path="/favorites">
           <FavoriteList />
         </Route>
         <Route path="/">
