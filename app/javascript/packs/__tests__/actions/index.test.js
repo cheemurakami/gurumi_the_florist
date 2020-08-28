@@ -37,4 +37,11 @@ describe ('actions', () => {
       flowers
     })
   })
+  it('loadedFavFlowers should create LOADED_FAV_FLOWERS action', () => {
+    let flowers = {title: "kiwi flower", price: 80}
+    expect(actions.loadedFavFlowers(flowers)).toEqual({
+      type: c.LOADED_FAV_FLOWERS,
+      flowers
+    })
+  })
 })

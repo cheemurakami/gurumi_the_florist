@@ -32,3 +32,9 @@ export const loadedFlowers = (flowers) => {
     flowers
   }
 }
+export const loadedFavFlowers = (flowers) => {
+  return {
+    type: c.LOADED_FAV_FLOWERS,
+    flowers
+  }
+}

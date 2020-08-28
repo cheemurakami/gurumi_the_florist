@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :flowers
     delete '/delete_image/:id' => 'flowers#delete_image'
     post '/toggle_favorite' => 'favorites#toggle'
+    get '/favorites' => 'favorites#index'
   end
   
   #at btm

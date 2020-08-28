@@ -19,4 +19,8 @@ describe("flowerListReducer", () => {
     action = { type: c.LOADED_FORM };
     expect(flowerListReducer({}, action)).toEqual({ showMsg: false });
   });
+  test("should loaded flowers and return a new state", () => {
+    action = { type: c.LOADED_FLOWERS };
+    expect(flowerListReducer({}, action)).toEqual({ flowers: action.flowers });
+  });
 });
