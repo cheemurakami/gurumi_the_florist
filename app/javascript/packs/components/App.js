@@ -10,6 +10,7 @@ import FlowerDetail from './FlowerDetail'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import { connect } from 'react-redux'
 import * as a from '../actions'
+//import FavoriteBtn from './FavoriteBtn'
 import FavoriteList from './FavoriteList'
 
 
@@ -29,7 +30,7 @@ function App(props) {
           console.log("MUST SIGN IN")
         } else {
            currentUser = jsonifiedResponse.user;
-          console.log("SIGNED IN AS", currentUser)
+          //console.log("SIGNED IN AS", currentUser)
         }
         const action = a.checkedLoginStatus(currentUser);
         dispatch(action);

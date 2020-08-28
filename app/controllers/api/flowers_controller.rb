@@ -74,9 +74,7 @@ module Api
   end
 
   private
-    def json_response(object, status = :ok)
-      render json: object, status: status
-    end
+   
 
     def flower_params
       params.permit(:title, :description, :price, :tag_list, flower_photos: []) ##array needs to be the last

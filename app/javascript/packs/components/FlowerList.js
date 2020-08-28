@@ -19,13 +19,10 @@ function FlowerList(props) {
   //const [flowers, setFlowers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  //This is what we want to happen when first loaded
   useEffect(() => {
-    console.log('use_effect')
     fetch("/api/flowers/")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse)
         // setFlowers(jsonifiedResponse);
         const action = a.loadedFlowers(jsonifiedResponse);
         dispatch(action);
