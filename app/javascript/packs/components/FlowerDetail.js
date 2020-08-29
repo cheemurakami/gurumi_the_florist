@@ -93,6 +93,10 @@ function FlowerDetail(props) {
                     })}
                 </h5>
 
+
+
+                
+
                 <FavoriteBtn flowerId={id} isFavorite={flower.is_favorite}></FavoriteBtn>
                 
                 {editBtnAndDeleteBtn()}

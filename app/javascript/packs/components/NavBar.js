@@ -8,7 +8,7 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
-import { Link, LinkContainer } from "react-router-dom";
+import { Link } from "react-router-dom";
 import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiSignInIcon from "./images/gurumi_signin_icon.png";
 import gurumiSignOutIcon from "./images/gurumi_signout_icon.png";
