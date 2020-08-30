@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Carousel, Badge } from "react-bootstrap";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
-import  FavoriteBtn from "./FavoriteBtn";
+import FavoriteBtn from "./FavoriteBtn";
 
 function FlowerDetail(props) {
   const { id } = useParams();
@@ -93,14 +93,13 @@ function FlowerDetail(props) {
                     })}
                 </h5>
 
+                <FavoriteBtn
+                  flowerId={id}
+                  isFavorite={flower.is_favorite}
+                ></FavoriteBtn>
 
-
-                
-
-                <FavoriteBtn flowerId={id} isFavorite={flower.is_favorite}></FavoriteBtn>
-                
                 {editBtnAndDeleteBtn()}
-                
+
                 <Link to="/">
                   <Button variant="outline-secondary">Back to List</Button>
                 </Link>

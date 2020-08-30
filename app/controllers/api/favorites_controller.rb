@@ -4,8 +4,28 @@ module Api
     before_action :authenticate_user!
 
     def index
-      @favorite_flowers = current_user.flowers
+      @favorite_flowers = current_user.flowers.map do |flower|
+        {
+          title: flower.title,
+          description: flower.description,
+          price: flower.price,
+          created_at: flower.created_at,
+          updated_at: flower.updated_at,
+          flower_photos: images(flower),
+          id: flower.id,
+          tags: flower.tag_list
+        }
+      end
       json_response(@favorite_flowers)
+    end
+
+    def images(flower)
+      flower.flower_photos.map do |flower_photo|
+        {
+         url: url_for(flower_photo),
+         id: flower_photo.id,
+        }
+      end
     end
 
     def toggle
@@ -22,5 +42,11 @@ module Api
         json_response(response)
     end
     
+    def delete
+      favorite = Favorite.find_by(user: current_user, flower_id: params[:id])
+      favorite.destroy
+      response = {msg: "Unfavorited"}
+      json_response(response)
+    end
   end
 end

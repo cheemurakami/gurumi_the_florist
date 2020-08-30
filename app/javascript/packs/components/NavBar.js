@@ -53,11 +53,11 @@ function NavBar(props) {
     if (props.currentUser && props.currentUser.email) {
       return (
         <NavDropdown title={props.currentUser.email} id="basic-nav-dropdown">
-          <NavDropdown.Item onClick={signOut}>
-            Sign Out
-          </NavDropdown.Item>
           <NavDropdown.Item className="link" as={Link} to="/favorites" > 
             Your Favorites
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={signOut}>
+            Sign Out
           </NavDropdown.Item>
         </NavDropdown>
       );

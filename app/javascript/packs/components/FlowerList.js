@@ -28,8 +28,6 @@ function FlowerList(props) {
         dispatch(action);
         setIsLoading(false);
       });
-    // get all flowers
-    // then set all flowers to my state
     return () => {};
   }, [location]);
 
@@ -86,7 +84,6 @@ function FlowerList(props) {
                     md={4}
                     sm={6}
                     key={flower.id}
-                    // onClick={() => handleClick(flower.id)}
                   >
                     <Link to={`/flower/${flower.id}`}>
                       <Card
@@ -101,16 +98,18 @@ function FlowerList(props) {
                           variant="top"
                           style={{
                             maxHeight: "300px",
+                            maxWidth: "300px",
+                            margin: 'auto'
                           }}
                           src={
                             flower.flower_photos[0] &&
                             flower.flower_photos[0].url
                           }
                         />
-
                         <Card.Body>
                           <Card.Title>{flower.title}</Card.Title>
                           <Card.Text>${flower.price}</Card.Text>
+
                         </Card.Body>
                       </Card>
                     </Link>
