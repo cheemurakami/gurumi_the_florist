@@ -26,6 +26,20 @@ function FavoriteList() {
     window.location.reload(false);
   };
 
+  const addToCart = (id) => {
+    fetch(`/api/cart/${id}`, {
+      method: "POST",
+      body: JSON.stringify({flower_id: id}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+    })
+      .then((response) => response.json())
+      .then((jsonifiedResponse) => {
+        console.log(jsonifiedResponse);
+      });
+  };
+
   return (
     <React.Fragment>
       <Container>
@@ -74,7 +88,7 @@ function FavoriteList() {
                       >
                         Remove
                       </Button>
-                      <Button variant="outline-secondary" className="mb-1">
+                      <Button variant="outline-secondary" className="mb-1" onClick={() => addToCart(flower.id)}>
                         Move to Cart
                       </Button>
                     </Card.Body>

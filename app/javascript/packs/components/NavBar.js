@@ -56,6 +56,9 @@ function NavBar(props) {
           <NavDropdown.Item className="link" as={Link} to="/favorites" > 
             Your Favorites
           </NavDropdown.Item>
+          <NavDropdown.Item className="link" as={Link} to="/cart" > 
+            Your Cart
+          </NavDropdown.Item>
           <NavDropdown.Item onClick={signOut}>
             Sign Out
           </NavDropdown.Item>

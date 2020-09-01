@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     post '/toggle_favorite' => 'favorites#toggle'
     get '/favorites' => 'favorites#index'
     delete '/delete_favorite/:id' => 'favorites#delete'
+    post '/cart/:id' => 'cart_items#create'
+    get '/cart' => 'cart_items#index'
+    delete '/cart_delete/:id' => 'cart_items#delete'
   end
   
   #at btm
