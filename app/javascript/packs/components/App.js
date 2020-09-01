@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from 'react-redux'
 import * as a from '../actions'
 import FavoriteList from './FavoriteList'
+import Cart from './Cart'
 
 
 function App(props) {
@@ -66,6 +67,9 @@ function App(props) {
         </Route>
         <Route path="/favorites">
           <FavoriteList />
+        </Route>
+        <Route path="/cart">
+          <Cart />
         </Route>
         <Route path="/">
           <FlowerList />
