@@ -29,8 +29,10 @@ function FavoriteList() {
   
   return (
     <React.Fragment>
-      <Container fluid>
-            <h4>Your Favorites</h4>
+      <Container>
+        <div>
+            <h4 className="mt-4 mb-4">Your Favorites</h4>
+        </div>
         <Row>
           {flowers &&
             flowers.map((flower) => {
