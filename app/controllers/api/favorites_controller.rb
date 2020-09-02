@@ -8,12 +8,13 @@ module Api
         {
           title: flower.title,
           description: flower.description,
-          price: flower.price,
+          price: flowgier.price,
           created_at: flower.created_at,
           updated_at: flower.updated_at,
           flower_photos: images(flower),
           id: flower.id,
-          tags: flower.tag_list
+          tags: flower.tag_list,
+          is_in_cart: CartItem.find_by(user_id: current_user.id, flower_id: flower.id).present?
         }
       end
       json_response(@favorite_flowers)
