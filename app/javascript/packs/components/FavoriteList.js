@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import CartBtn from "./CartBtn";
 
 function FavoriteList() {
   const [flowers, setFlowers] = useState([]);
@@ -24,20 +25,6 @@ function FavoriteList() {
         console.log(jsonifiedResponse);
       });
     window.location.reload(false);
-  };
-
-  const addToCart = (id) => {
-    fetch(`/api/cart/${id}`, {
-      method: "POST",
-      body: JSON.stringify({flower_id: id}),
-        headers: {
-          "Content-Type": "application/json",
-        },
-    })
-      .then((response) => response.json())
-      .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse);
-      });
   };
 
   return (
@@ -88,9 +75,9 @@ function FavoriteList() {
                       >
                         Remove
                       </Button>
-                      <Button variant="outline-secondary" className="mb-1" onClick={() => addToCart(flower.id)}>
-                        Move to Cart
-                      </Button>
+
+                      <CartBtn flowerId={flower.id}></CartBtn>
+
                     </Card.Body>
                   </Card>
                 </Col>
