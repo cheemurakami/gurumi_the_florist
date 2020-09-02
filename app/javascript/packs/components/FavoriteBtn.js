@@ -48,9 +48,11 @@ function FavoriteBtn(props) {
       return (
         <div style={{ textAlign: "center", margin: "auto" }}>
           <Link to="/users/log_in">
-            <Button variant="outline-secondary" className="btn">
-              Please Sign In
-            </Button>
+            <div className="btn-container">
+              <Button variant="outline-secondary" className="btn mb-3">
+                Please Sign In
+              </Button>
+            </div>
           </Link>
         </div>
       );
@@ -70,7 +72,6 @@ function FavoriteBtn(props) {
   };
 
   return msgOrBtn();
-  
 }
 
 const mapStateToProps = (state) => {

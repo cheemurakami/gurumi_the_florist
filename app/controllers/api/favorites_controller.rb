@@ -8,7 +8,7 @@ module Api
         {
           title: flower.title,
           description: flower.description,
-          price: flowgier.price,
+          price: flower.price,
           created_at: flower.created_at,
           updated_at: flower.updated_at,
           flower_photos: images(flower),

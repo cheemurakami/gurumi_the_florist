@@ -4,6 +4,7 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
 import FavoriteBtn from "./FavoriteBtn";
+import CartBtn from "./CartBtn";
 
 function FlowerDetail(props) {
   const { id } = useParams();
@@ -97,6 +98,11 @@ function FlowerDetail(props) {
                   flowerId={id}
                   isFavorite={flower.is_favorite}
                 ></FavoriteBtn>
+
+                <CartBtn
+                  flowerId={id}
+                  isFavorite={flower.is_favorite}
+                ></CartBtn>
 
                 {editBtnAndDeleteBtn()}
 
