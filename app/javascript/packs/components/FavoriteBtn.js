@@ -61,7 +61,7 @@ function FavoriteBtn(props) {
         <div className="btn-container">
           <Button
             variant="outline-secondary"
-            className="mb-3"
+            className="mb-2"
             onClick={toggleFavorite}
           >
             {favoriteBtnText()}

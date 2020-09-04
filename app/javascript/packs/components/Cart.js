@@ -9,7 +9,6 @@ function Cart() {
     fetch("/api/cart")
     .then((response) => response.json())
     .then((jsonifiedResponse) => {
-      //console.log(jsonifiedResponse)
       setFlowers(jsonifiedResponse);
     });
     return () => {};

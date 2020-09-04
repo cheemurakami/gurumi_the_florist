@@ -26,7 +26,6 @@ function CartBtn(props) {
       })
         .then((response) => response.json())
         .then((jsonifiedResponse) => {
-          console.log(jsonifiedResponse);
           if (jsonifiedResponse.msg) {
             setInCart(true);
           } else {
@@ -64,7 +63,7 @@ function CartBtn(props) {
         <div style={{ textAlign: "center", margin: "auto" }}>
           <Link to="/users/log_in">
             <div className="btn-container">
-              <Button variant="outline-secondary" className="btn mb-3">
+              <Button variant="outline-secondary" className="btn mb-2">
                 Please Sign In
               </Button>
             </div>

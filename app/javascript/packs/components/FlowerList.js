@@ -90,7 +90,7 @@ function FlowerList(props) {
                         border="light"
                         style={{
                           width: "100%",
-                          height: "500px",
+                          height: "550px",
                           marginBottom: "30px",
                         }}
                       >

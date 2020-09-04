@@ -48,7 +48,7 @@ function FavoriteList() {
                     border="light"
                     style={{
                       width: "100%",
-                      height: "500px",
+                      height: "550px",
                       marginBottom: "30px",
                     }}
                   >
@@ -76,7 +76,10 @@ function FavoriteList() {
                         Remove
                       </Button>
 
-                      <CartBtn flowerId={flower.id}></CartBtn>
+                      <CartBtn 
+                        flowerId={flower.id}
+                        isInCart={flower.is_in_cart}
+                        ></CartBtn>
                     </Card.Body>
                   </Card>
                 </Col>
