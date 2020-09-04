@@ -43,10 +43,10 @@ module Api
 
   def show
     @flower = Flower.find(params[:id])
-    
-    favorite = Favorite.find_by(flower: @flower, user: current_user)
 
-    is_in_cart = CartItem.find_by(user_id: current_user.id, flower_id: @flower.id)
+    favorite = current_user && Favorite.find_by(flower: @flower, user: current_user)
+
+    is_in_cart = current_user && CartItem.find_by(user_id: current_user.id, flower_id: @flower.id)
 
     @flower = {
       title: @flower.title,
