@@ -99,10 +99,7 @@ function FlowerDetail(props) {
                   isFavorite={flower.is_favorite}
                 ></FavoriteBtn>
 
-                <CartBtn
-                  flowerId={id}
-                  isFavorite={flower.is_favorite}
-                ></CartBtn>
+                <CartBtn flowerId={id} isInCart={flower.is_in_cart}></CartBtn>
 
                 {editBtnAndDeleteBtn()}
 

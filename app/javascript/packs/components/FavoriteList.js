@@ -77,7 +77,6 @@ function FavoriteList() {
                       </Button>
 
                       <CartBtn flowerId={flower.id}></CartBtn>
-
                     </Card.Body>
                   </Card>
                 </Col>

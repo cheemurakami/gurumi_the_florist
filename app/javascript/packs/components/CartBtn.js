@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,6 +6,12 @@ import { Link } from "react-router-dom";
 function CartBtn(props) {
   const data = { flower_id: props.flowerId };
   const [showSigninMsg, setShowSigninMsg] = useState(false);
+  const [inCart, setInCart] = useState(false);
+
+  useEffect(() => {
+    setInCart(props.isInCart);
+    return () => {};
+  }, [props.isInCart]);
 
   const addToCart = (id) => {
     if (!props.currentUser) {
@@ -21,7 +27,20 @@ function CartBtn(props) {
         .then((response) => response.json())
         .then((jsonifiedResponse) => {
           console.log(jsonifiedResponse);
+          if (jsonifiedResponse.msg === "Added in cart") {
+            setInCart(true);
+          } else {
+            setInCart(false);
+          }
         });
+    }
+  };
+
+  const cartBtnText = () => {
+    if (inCart) {
+      return "Added in cart";
+    } else {
+      return "Move to Cart";
     }
   };
 
@@ -33,7 +52,7 @@ function CartBtn(props) {
           className="mb-3"
           onClick={() => addToCart(props.flower_id)}
         >
-          Move to Cart
+          {cartBtnText()}
         </Button>
       </div>
     );

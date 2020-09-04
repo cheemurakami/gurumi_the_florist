@@ -4,6 +4,7 @@ module Api
     before_action :authenticate_user!
 
     def index
+      is_in_cart = CartItem.find_by(user_id: current_user.id, flower_id: flower.id)
       @favorite_flowers = current_user.flowers.map do |flower|
         {
           title: flower.title,
@@ -14,7 +15,7 @@ module Api
           flower_photos: images(flower),
           id: flower.id,
           tags: flower.tag_list,
-          is_in_cart: CartItem.find_by(user_id: current_user.id, flower_id: flower.id).present?
+          is_in_cart: is_in_cart.present?
         }
       end
       json_response(@favorite_flowers)

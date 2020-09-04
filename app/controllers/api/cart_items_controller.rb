@@ -17,5 +17,12 @@ module Api
       end
       json_response(response)
     end
+
+    def delete
+      @flowers_in_cart = CartItem.find_by(user: current_user, flower_id: params[:id])
+      @flowers_in_cart.destroy
+      response = {msg: "Deleted from your cart"}
+      json_response(response)
+    end
   end
 end

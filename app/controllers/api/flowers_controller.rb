@@ -46,6 +46,8 @@ module Api
     
     favorite = Favorite.find_by(flower: @flower, user: current_user)
 
+    is_in_cart = CartItem.find_by(user_id: current_user.id, flower_id: @flower.id)
+
     @flower = {
       title: @flower.title,
       description: @flower.description,
@@ -56,6 +58,7 @@ module Api
       id: @flower.id,
       tags: @flower.tag_list,
       is_favorite: favorite.present?,
+      is_in_cart: is_in_cart.present?
     }
     json_response(@flower)
   end
