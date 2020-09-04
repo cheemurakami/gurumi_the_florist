@@ -27,7 +27,7 @@ function CartBtn(props) {
         .then((response) => response.json())
         .then((jsonifiedResponse) => {
           console.log(jsonifiedResponse);
-          if (jsonifiedResponse.msg === "Added in cart") {
+          if (jsonifiedResponse.msg) {
             setInCart(true);
           } else {
             setInCart(false);
