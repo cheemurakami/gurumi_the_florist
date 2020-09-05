@@ -17,13 +17,15 @@ function Cart() {
   }, []);
 
   const removeHandler = (id) => {
-    fetch(`/cart_delete/${id}`)
+    fetch(`/api/cart_delete/${id}`, {
+      method: "DELETE",
+    })
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse);
+        setFlowers(jsonifiedResponse);
       });
-    window.location.reload(false);
   };
+
   return (
     <React.Fragment>
       <Container>
@@ -34,7 +36,11 @@ function Cart() {
         {flowers &&
           flowers.map((flower) => {
             return (
-              <Row key={flower.id} style={{ marginBottom: "15px" }}>
+              <Row
+                className="cart-wrapper"
+                key={flower.id}
+                style={{ marginBottom: "15px" }}
+              >
                 <Col lg={3}>
                   <Link to={`/flower/${flower.id}`}>
                     <Image
@@ -53,6 +59,7 @@ function Cart() {
                   <Row>
                     <Col>
                       <Button
+                        onClick={() => removeHandler(flower.id)}
                         className="btn"
                         variant="outline-secondary"
                         className="mb-3"

@@ -40,10 +40,23 @@ module Api
     end
 
     def delete
-      @flowers_in_cart = CartItem.find_by(user: current_user, flower_id: params[:id])
-      @flowers_in_cart.destroy
-      response = {msg: "Deleted from your cart"}
-      json_response(response)
+      @cart_item = CartItem.find_by(user: current_user, flower_id: params[:id])
+      @cart_item.destroy
+      @flowers_in_cart = current_user.flowers_in_cart
+      @flowers_in_cart = @flowers_in_cart.map do |flower|
+        {
+          title: flower.title,
+          description: flower.description,
+          price: flower.price,
+          created_at: flower.created_at,
+          updated_at: flower.updated_at,
+          flower_photos: images(flower),
+          id: flower.id,
+          tags: flower.tag_list
+        }
+      end
+      json_response(@flowers_in_cart)
     end
+
   end
 end
