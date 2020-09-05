@@ -22,9 +22,8 @@ function FavoriteList() {
     })
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse);
+        setFlowers(jsonifiedResponse);
       });
-    window.location.reload(false);
   };
 
   return (
@@ -76,10 +75,10 @@ function FavoriteList() {
                         Remove
                       </Button>
 
-                      <CartBtn 
+                      <CartBtn
                         flowerId={flower.id}
                         isInCart={flower.is_in_cart}
-                        ></CartBtn>
+                      ></CartBtn>
                     </Card.Body>
                   </Card>
                 </Col>

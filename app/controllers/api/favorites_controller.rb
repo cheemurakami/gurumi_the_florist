@@ -46,8 +46,21 @@ module Api
     def delete
       favorite = Favorite.find_by(user: current_user, flower_id: params[:id])
       favorite.destroy
-      response = {msg: "Unfavorited"}
-      json_response(response)
+      @favorite_flowers = current_user.flowers.map do |flower|
+        {
+          title: flower.title,
+          description: flower.description,
+          price: flower.price,
+          created_at: flower.created_at,
+          updated_at: flower.updated_at,
+          flower_photos: images(flower),
+          id: flower.id,
+          tags: flower.tag_list,
+          is_in_cart: CartItem.find_by(user_id: current_user.id, flower_id: flower.id).present?
+        }
+      end
+      json_response(@favorite_flowers)
     end
+    
   end
 end
