@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FavoriteList from "./FavoriteList";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Image, Row, Col } from "react-bootstrap";
 
 function Cart() {
   const [flowers, setFlowers] = useState([]);
@@ -10,6 +10,7 @@ function Cart() {
     .then((response) => response.json())
     .then((jsonifiedResponse) => {
       setFlowers(jsonifiedResponse);
+      console.log(jsonifiedResponse)
     });
     return () => {};
   }, []);
@@ -29,23 +30,27 @@ function Cart() {
           <h4 className="mt-4 mb-4">Your Cart</h4>
         </div>
 
-        <Row>
           {flowers && flowers.map((flower) => {
             return (
-            <Col>
-                  <p key={flower.id}>{flower.title}</p>
-            </Col>
-            // <p>{flower.price}</p>
-                  // <Button 
-                  //   variant="outline-secondary"
-                  //   className="mb-1 mr-1"  
-                  //   onClick={() => removeHandler(flower.id)}
-                  //   >delete
-                  //   </Button>
-                  )
- 
+              <Row key={flower.id}>  
+                  <Col lg={3}>
+                      <Image 
+                        src={flower.flower_photos && flower.flower_photos[0].url}
+                        style={{
+                          width: "150px",
+                          height: "150px",
+                        }}
+                      />
+                  </Col>
+                  <Col lg={6}>
+                        <p key={flower.id}>{flower.title}</p>
+                  </Col>
+                  <Col lg={3}>
+                    <p>{flower.price}</p>
+                  </Col>     
+              </Row>
+            )
           })}
-        </Row>
 
         <FavoriteList />
       </Container>
