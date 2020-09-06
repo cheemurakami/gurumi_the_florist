@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartBtn from "./CartBtn";
+import { connect } from "react-redux";
+import * as a from "../actions";
 
-function FavoriteList() {
+function FavoriteList(props) {
   const [flowers, setFlowers] = useState([]);
+  const { dispatch } = props;
 
   useEffect(() => {
     fetch("/api/favorites")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse);
-        setFlowers(jsonifiedResponse);
+        const action = a.loadedFavFlowers(jsonifiedResponse);
+        dispatch(action);
       });
     return () => {};
   }, []);
@@ -22,7 +25,8 @@ function FavoriteList() {
     })
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        setFlowers(jsonifiedResponse);
+        const action = a.loadedFavFlowers(jsonifiedResponse);
+        dispatch(action);
       });
   };
 
@@ -33,8 +37,8 @@ function FavoriteList() {
           <h4 className="mt-4 mb-4">Your Favorites</h4>
         </div>
         <Row>
-          {flowers &&
-            flowers.map((flower) => {
+          {props.flowers &&
+            props.flowers.map((flower) => {
               return (
                 <Col
                   lg={4}
@@ -90,4 +94,10 @@ function FavoriteList() {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    flowers: state.favFlowerListReducer.flowers,
+  }
+}
+FavoriteList = connect(mapStateToProps)(FavoriteList);
 export default FavoriteList;
