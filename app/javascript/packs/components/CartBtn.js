@@ -26,7 +26,7 @@ function CartBtn(props) {
       })
         .then((response) => response.json())
         .then((jsonifiedResponse) => {
-          if (jsonifiedResponse.msg) {
+          if (jsonifiedResponse) {
             setInCart(true);
           } else {
             setInCart(false);
