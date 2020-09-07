@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import * as a from "../actions";
 
 function FavoriteList(props) {
-  const [flowers, setFlowers] = useState([]);
   const { dispatch } = props;
 
   useEffect(() => {
@@ -95,6 +94,7 @@ function FavoriteList(props) {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state, "favorite list")
   return {
     flowers: state.favFlowerListReducer.flowers,
   }

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import FavoriteList from "./FavoriteList";
 import { Container, Image, Row, Col, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as a from "../actions";
 import { connect } from "react-redux";
 
-
 function Cart(props) {
-  const [flowers, setFlowers] = useState([]);
   const { dispatch } = props;
 
   useEffect(() => {
@@ -26,7 +24,10 @@ function Cart(props) {
     })
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        setFlowers(jsonifiedResponse);
+        const action = a.loadedFlowersInCart(jsonifiedResponse);
+        dispatch(action);
+        const actionTwo = a.deletedFlowerInCart();
+        dispatch(actionTwo);
       });
   };
 
@@ -98,11 +99,12 @@ function Cart(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state.flowersInCartListReducer.flowers, "cart")
   return {
-    flowers: state.flowersInCartListReducer.flowers
-  }
-}
+    flowers: state.flowersInCartListReducer.flowers,
+    //inCart: state.flowersInCartListReducer.inCart,
+  };
+};
 
 Cart = connect(mapStateToProps)(Cart);
 export default Cart;

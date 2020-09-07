@@ -51,4 +51,14 @@ describe ('actions', () => {
       flowers
     })
   })
+  it('addedFlowerInCart should create ADDED_FLOWER_IN_CART action', () => {
+    expect(actions.addedFlowerInCart()).toEqual({
+      type: c.ADDED_FLOWER_IN_CART
+    })
+  })
+  it('deletedFlowerInCart should create DELETED_FLOWER_IN_CART action', () => {
+    expect(actions.deletedFlowerInCart()).toEqual({
+      type: c.DELETED_FLOWER_IN_CART
+    })
+  })
 })

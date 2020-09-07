@@ -44,3 +44,14 @@ export const loadedFlowersInCart = (flowers) => {
     flowers
   }
 }
+export const addedFlowerInCart = (flower) => {
+  return {
+    type: c.ADDED_FLOWER_IN_CART,
+    flower
+  }
+}
+export const deletedFlowerInCart = () => {
+  return {
+    type: c.DELETED_FLOWER_IN_CART
+  }
+}

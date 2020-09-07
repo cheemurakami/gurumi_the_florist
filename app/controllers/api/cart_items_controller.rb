@@ -23,8 +23,7 @@ module Api
         CartItem.create!(user_id: current_user.id, flower_id: params[:flower_id])
         response = {msg: "Added in cart"}
       end
-        response[:flowers_in_cart] = flowers_in_cart
-        (response)
+        response[:flower_in_cart] = flower_hash(Flower.find(params[:flower_id]))
         json_response(response)
     end
 
@@ -37,17 +36,22 @@ module Api
     def flowers_in_cart
       @flowers_in_cart = current_user.flowers_in_cart
       @flowers_in_cart = @flowers_in_cart.map do |flower|
-        {
-          title: flower.title,
-          description: flower.description,
-          price: flower.price,
-          created_at: flower.created_at,
-          updated_at: flower.updated_at,
-          flower_photos: images(flower),
-          id: flower.id,
-          tags: flower.tag_list
-        }
+        flower_hash(flower)
       end
+    end
+
+    def flower_hash(flower)
+      {
+        title: flower.title,
+        description: flower.description,
+        price: flower.price,
+        created_at: flower.created_at,
+        updated_at: flower.updated_at,
+        flower_photos: images(flower),
+        id: flower.id,
+        tags: flower.tag_list,
+        is_in_cart: true
+      }
     end
 
   end

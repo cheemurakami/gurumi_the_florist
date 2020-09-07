@@ -1,5 +1,5 @@
 import flowersInCartListReducer from "../../reducers/flowers-in-cart-list-reducer";
-import * as c from "../../actions/Actiontype";
+import * as c from "../../actions/ActionType";
 
 describe("flowersInCartListReducer", () => {
   let action;
@@ -9,8 +9,17 @@ describe("flowersInCartListReducer", () => {
       {}
     );
   })
-  test("should loaded flowers in cart and return a new state", () => {
+  test("should loaded flowers in cart return a new state", () => {
     action = { type: c.LOADED_FLOWERS_IN_CART };
     expect(flowersInCartListReducer({}, action)).toEqual({ flowers: action.flowers });
+  });
+  test("should added flowers in cart return a new state", () => {
+    action = { type: c.ADDED_FLOWER_IN_CART };
+    
+    expect(flowersInCartListReducer({}, action)).toEqual({ inCart: true });
+  });
+  test("should deleted flowers in cart return a new state", () => {
+    action = { type: c.DELETED_FLOWER_IN_CART };
+    expect(flowersInCartListReducer({}, action)).toEqual({ inCart: false });
   });
 })
