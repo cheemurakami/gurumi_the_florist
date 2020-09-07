@@ -44,4 +44,11 @@ describe ('actions', () => {
       flowers
     })
   })
+  it('loadedFlowersInCart should create LOADED_FLOWERS_IN_CART action', () => {
+    let flowers = {title: "kiwi flower", price: 80}
+    expect(actions.loadedFlowersInCart(flowers)).toEqual({
+      type: c.LOADED_FLOWERS_IN_CART,
+      flowers
+    })
+  })
 })

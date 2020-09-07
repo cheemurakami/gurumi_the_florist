@@ -25,6 +25,7 @@ module Api
       end
         response[:flowers_in_cart] = flowers_in_cart
         (response)
+        json_response(response)
     end
 
     def delete

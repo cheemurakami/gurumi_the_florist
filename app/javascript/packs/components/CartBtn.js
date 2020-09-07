@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import * as a from "../actions";
 
 function CartBtn(props) {
   const data = { flower_id: props.flowerId };
   const [showSigninMsg, setShowSigninMsg] = useState(false);
   const [inCart, setInCart] = useState(false);
+  const { dispatch } = props;
 
   useEffect(() => {
     setInCart(props.isInCart);
@@ -26,6 +28,9 @@ function CartBtn(props) {
       })
         .then((response) => response.json())
         .then((jsonifiedResponse) => {
+          console.log((jsonifiedResponse.flowers_in_cart))
+          const action = a.loadedFlowersInCart(jsonifiedResponse.flowers_in_cart);
+          dispatch(action);
           if (jsonifiedResponse) {
             setInCart(true);
           } else {
@@ -49,7 +54,7 @@ function CartBtn(props) {
         <Button
           variant="outline-secondary"
           className="mb-3"
-          onClick={() => addToCart(props.flower_id)}
+          onClick={() => addToCart(props.flowerId)}
         >
           {cartBtnText()}
         </Button>

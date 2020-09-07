@@ -95,11 +95,11 @@ function FlowerDetail(props) {
                 </h5>
 
                 <FavoriteBtn
-                  flowerId={id}
+                  flowerId={flower.id}
                   isFavorite={flower.is_favorite}
                 ></FavoriteBtn>
 
-                <CartBtn flowerId={id} isInCart={flower.is_in_cart}></CartBtn>
+                <CartBtn flowerId={flower.id} isInCart={flower.is_in_cart}></CartBtn>
 
                 {editBtnAndDeleteBtn()}
 
