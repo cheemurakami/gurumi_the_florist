@@ -6,15 +6,13 @@ export default (state = {}, action) => {
       return Object.assign({}, state, {
         flowers: action.flowers,
       });
-
-      //idtoka iru 1ko dakara
     case c.ADDED_FLOWER_IN_CART:
       //new to use Array.from to make a new copy of the flowers array so that the component will know the array has changed so it will update.
-      let flowers = Array.from(state.flowers)
-      flowers.push(action.flower)
-   
+      let flowers = Array.from(state.flowers);
+      flowers.push(action.flower);
+
       return Object.assign({}, state, {
-        flowers: flowers
+        flowers: flowers,
       });
     case c.DELETED_FLOWER_IN_CART:
       return Object.assign({}, state, {
@@ -24,5 +22,4 @@ export default (state = {}, action) => {
     default:
       return state;
   }
-
 };
