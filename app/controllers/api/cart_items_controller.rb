@@ -34,13 +34,14 @@ module Api
     end
 
     def flowers_in_cart
-      @flowers_in_cart = current_user.flowers_in_cart
-      @flowers_in_cart = @flowers_in_cart.map do |flower|
-        flower_hash(flower)
+      @cart_items = current_user.cart_items
+      @flowers_in_cart = @cart_items.map do |cart_item|
+        flower_hash(cart_item)
       end
     end
 
-    def flower_hash(flower)
+    def flower_hash(cart_item)
+      flower = cart_item.flower
       {
         title: flower.title,
         description: flower.description,
@@ -50,7 +51,8 @@ module Api
         flower_photos: images(flower),
         id: flower.id,
         tags: flower.tag_list,
-        is_in_cart: true
+        is_in_cart: true,
+        qty: cart_item.qty
       }
     end
 

@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import FavoriteList from "./FavoriteList";
-import { Container, Image, Row, Col, Button, Form } from "react-bootstrap";
+import {
+  Container,
+  Image,
+  Row,
+  Col,
+  Button,
+  Form,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as a from "../actions";
 import { connect } from "react-redux";
@@ -30,6 +37,10 @@ function Cart(props) {
         dispatch(actionTwo);
       });
   };
+
+  const itemCounter = () => {
+
+  }
 
   return (
     <React.Fragment>
@@ -73,12 +84,15 @@ function Cart(props) {
                       </Button>
                     </Col>
                     <Col>
-                      <Form>
+                      <Form >
                         <Form.Group controlId="exampleForm.SelectCustom">
-                          <Form.Control as="select" custom>
-                            <option>Qty 1</option>
-                            <option>Qty 2</option>
-                            <option>Qty 3</option>
+                          <Form.Label>Custom select</Form.Label>
+                          <Form.Control as="select" custom onChange={(e) => console.log(e.target.value)}>
+                            <option hidden>Qty</option>
+                            <option value="0">0(delete)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                           </Form.Control>
                         </Form.Group>
                       </Form>
@@ -91,7 +105,9 @@ function Cart(props) {
               </Row>
             );
           })}
-
+        <Row>
+          <h5>Total {props.flowers && props.flowers.length} items</h5>
+        </Row>
         <FavoriteList />
       </Container>
     </React.Fragment>
@@ -99,7 +115,7 @@ function Cart(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.flowersInCartListReducer.flowers, "cart")
+  console.log(state.flowersInCartListReducer.flowers, "cart");
   return {
     flowers: state.flowersInCartListReducer.flowers,
     //inCart: state.flowersInCartListReducer.inCart,
