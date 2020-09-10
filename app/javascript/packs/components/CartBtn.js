@@ -99,7 +99,6 @@ function CartBtn(props) {
   return msgOrBtn();
 }
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     currentUser: state.loginStatusReducer.currentUser,
     //inCart: state.flowersInCartListReducer.inCart,

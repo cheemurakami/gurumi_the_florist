@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 
 function Cart(props) {
   const { dispatch } = props;
+  let numOfItem = [];
 
   useEffect(() => {
     fetch("/api/cart")
@@ -39,7 +40,15 @@ function Cart(props) {
   };
 
   const itemCounter = () => {
-
+    if(props.flowers){
+      let qtyArray = props.flowers.map((flower) => {
+        return flower.qty
+      });
+      let totalQty = qtyArray.reduce((acc, value) => {
+        return acc + value
+      });
+      return totalQty;
+    }
   }
 
   return (
@@ -89,7 +98,6 @@ function Cart(props) {
                           <Form.Label>Custom select</Form.Label>
                           <Form.Control as="select" custom onChange={(e) => console.log(e.target.value)}>
                             <option hidden>Qty</option>
-                            <option value="0">0(delete)</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -106,7 +114,7 @@ function Cart(props) {
             );
           })}
         <Row>
-          <h5>Total {props.flowers && props.flowers.length} items</h5>
+          <h5>Total {itemCounter()} items</h5>
         </Row>
         <FavoriteList />
       </Container>
@@ -115,7 +123,6 @@ function Cart(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.flowersInCartListReducer.flowers, "cart");
   return {
     flowers: state.flowersInCartListReducer.flowers,
     //inCart: state.flowersInCartListReducer.inCart,
