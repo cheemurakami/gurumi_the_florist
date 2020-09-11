@@ -81,7 +81,6 @@ module Api
   end
 
   private
-   
 
     def flower_params
       params.permit(:title, :description, :price, :tag_list, flower_photos: []) ##array needs to be the last

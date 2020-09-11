@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
-import Dropzone from "react-dropzone";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css' 
 
 function FlowerCreateForm(props) {
-  // const [direct, setDirect] = useState(false);
   const [tags, setTags] = useState([]);
 
   const { dispatch } = props;

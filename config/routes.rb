@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post '/cart/:id' => 'cart_items#create'
     get '/cart' => 'cart_items#index'
     delete '/cart_delete/:id' => 'cart_items#delete'
+    put '/cart_update/:id' => 'cart_items#update'
   end
   
   #at btm

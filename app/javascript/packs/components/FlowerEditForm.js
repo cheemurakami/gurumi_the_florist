@@ -8,9 +8,6 @@ import "react-tagsinput/react-tagsinput.css";
 
 function FlowerEditForm(props) {
   const { id } = useParams();
-  // const [direct, setDirect] = useState(false);
-  // const [showMsg, setShowMsg] = useState(false);
-
   const { dispatch } = props;
   const [flower, setFlower] = useState({});
   const [tags, setTags] = useState([]);
@@ -24,8 +21,7 @@ function FlowerEditForm(props) {
         setFlower(jsonifiedResponse);
         setTags(jsonifiedResponse.tags)
       });
-    // get all flowers
-    // then set all flowers to my state
+ 
     return () => {};
   }, []);
 
@@ -42,30 +38,18 @@ function FlowerEditForm(props) {
     formData.append("tag_list", tags.join(", "));
 
     fileListAsArray.map((image) => {
-      formData.append("flower_photos[]", image); // atode each?
+      formData.append("flower_photos[]", image);
     });
-
-    // const data = {
-    //   title: event.target.title.value,
-    //   description: event.target.description.value,
-    //   price: event.target.price.value,
-    // };
 
     fetch(`/api/flowers/${id}`, {
       method: "PUT",
       body: formData,
-      // body: JSON.stringify(data),
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
     })
       .then((response) => response.json())
       .then((resposeData) => {
         console.log("Success:", resposeData);
         const action = a.updatedFlower();
         dispatch(action);
-        //setShowMsg(true);
-        //setDirect(true);
       });
   }
 
@@ -83,12 +67,6 @@ function FlowerEditForm(props) {
     const action = a.updatedFlower();
     dispatch(action);
   };
-
-  // const directToHome = () => {
-  //   if (direct) {
-  //     return <Redirect to="/" />;
-  //   }
-  // };
 
   const msgOrForm = () => {
     if (props.showMsg) {

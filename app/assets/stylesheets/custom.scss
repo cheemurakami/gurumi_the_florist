@@ -101,7 +101,11 @@ a:hover{
   width: 80px;
 }
 .cart-wrapper{
-  border: 1px solid gray;
+  padding-bottom: 16px;
+  border-bottom: 1px solid gray;
+}
+.flex-column{
+  margin-left: 2rem;
 }
 
 

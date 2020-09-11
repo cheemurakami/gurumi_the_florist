@@ -27,6 +27,7 @@ function Cart(props) {
   }, []);
 
   const removeHandler = (id) => {
+
     fetch(`/api/cart_delete/${id}`, {
       method: "DELETE",
     })
@@ -37,6 +38,7 @@ function Cart(props) {
         const actionTwo = a.deletedFlowerInCart();
         dispatch(actionTwo);
       });
+
   };
 
   const itemCounter = () => {
@@ -49,6 +51,23 @@ function Cart(props) {
       });
       return totalQty;
     }
+  }
+
+  const qtyHandler = (id, qty) => {
+    const qtyNum = parseInt(qty)
+    const data = {"qty": qtyNum}
+    fetch(`/api/cart_update/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+      "Content-Type": "application/json",
+      },
+    })
+     .then((response) => response.json())
+     .then((jsonifiedResponse) => {
+       const action = a.loadedFlowersInCart(jsonifiedResponse);
+        dispatch(action);
+     })
   }
 
   return (
@@ -96,7 +115,7 @@ function Cart(props) {
                       <Form >
                         <Form.Group controlId="exampleForm.SelectCustom">
                           <Form.Label>Custom select</Form.Label>
-                          <Form.Control as="select" custom onChange={(e) => console.log(e.target.value)}>
+                          <Form.Control as="select" value={flower.qty} custom onChange={(e) => qtyHandler(flower.id, e.target.value)}>
                             <option hidden>Qty</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -125,7 +144,6 @@ function Cart(props) {
 const mapStateToProps = (state) => {
   return {
     flowers: state.flowersInCartListReducer.flowers,
-    //inCart: state.flowersInCartListReducer.inCart,
   };
 };
 

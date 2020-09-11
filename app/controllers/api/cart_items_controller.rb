@@ -23,13 +23,19 @@ module Api
         CartItem.create!(user_id: current_user.id, flower_id: params[:flower_id])
         response = {msg: "Added in cart"}
       end
-        response[:flower_in_cart] = flower_hash(Flower.find(params[:flower_id]))
+        response[:flower_in_cart] = flower_hash(CartItem.find_by(user_id: current_user.id, flower_id: params[:flower_id]))
         json_response(response)
     end
 
     def delete
       @cart_item = CartItem.find_by(user: current_user, flower_id: params[:id])
       @cart_item.destroy
+      json_response(flowers_in_cart)
+    end
+
+    def update
+      @cart_item = CartItem.find_by(user: current_user, flower_id: params[:id])
+      @cart_item.update!(cart_item_params)
       json_response(flowers_in_cart)
     end
 
@@ -54,6 +60,12 @@ module Api
         is_in_cart: true,
         qty: cart_item.qty
       }
+    end
+
+    private
+
+    def cart_item_params
+      params.permit(:qty)
     end
 
   end
