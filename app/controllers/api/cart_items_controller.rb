@@ -40,7 +40,7 @@ module Api
     end
 
     def flowers_in_cart
-      @cart_items = current_user.cart_items
+      @cart_items = current_user.cart_items.order(updated_at: :desc)
       @flowers_in_cart = @cart_items.map do |cart_item|
         flower_hash(cart_item)
       end
