@@ -149,7 +149,7 @@ function Cart(props) {
             <h5></h5>
           </Col>
           <Col>
-        <h5>subtotal: ({itemCounter()} items) ${totalPrice()}</h5>
+        <h5>Subtotal: ({itemCounter()} items) ${totalPrice()}</h5>
           </Col>
         </Row>
         <FavoriteList />
