@@ -58,7 +58,8 @@ module Api
         id: flower.id,
         tags: flower.tag_list,
         is_in_cart: true,
-        qty: cart_item.qty
+        qty: cart_item.qty,
+        total_price: flower.price * cart_item.qty
       }
     end
 

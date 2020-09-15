@@ -53,6 +53,18 @@ function Cart(props) {
     }
   }
 
+  const totalPrice = () => {
+    if(props.flowers){
+      let priceArray = props.flowers.map((flower) => {
+        return flower.total_price;
+      });
+      let totalPrice = priceArray.reduce((acc, value) => {
+        return acc + value
+      });
+      return totalPrice;
+    }
+  }
+
   const qtyHandler = (id, qty) => {
     const qtyNum = parseInt(qty)
     const data = {"qty": qtyNum}
@@ -114,7 +126,7 @@ function Cart(props) {
                     <Col>
                       <Form >
                         <Form.Group controlId="exampleForm.SelectCustom">
-                          <Form.Label>Custom select</Form.Label>
+                          <Form.Label>Select Qty</Form.Label>
                           <Form.Control as="select" value={flower.qty} custom onChange={(e) => qtyHandler(flower.id, e.target.value)}>
                             <option hidden>Qty</option>
                             <option value="1">1</option>
@@ -133,7 +145,12 @@ function Cart(props) {
             );
           })}
         <Row>
-          <h5>Total {itemCounter()} items</h5>
+          <Col>
+            <h5></h5>
+          </Col>
+          <Col>
+        <h5>subtotal: ({itemCounter()} items) ${totalPrice()}</h5>
+          </Col>
         </Row>
         <FavoriteList />
       </Container>
