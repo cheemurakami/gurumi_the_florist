@@ -81,7 +81,7 @@ function FlowerList(props) {
                 props.flowers.map((flower) => (
                   <Col
                     lg={4}
-                    md={4}
+                    md={6}
                     sm={6}
                     key={flower.id}
                   >

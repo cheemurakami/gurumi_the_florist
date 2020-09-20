@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
 import FavoriteList from "./FavoriteList";
-import {
-  Container,
-  Image,
-  Row,
-  Col,
-  Button,
-  Form,
-} from "react-bootstrap";
+import RemoveFromCart from "./RemoveFromCart";
+import { Container, Image, Row, Col, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as a from "../actions";
 import { connect } from "react-redux";
@@ -26,61 +20,48 @@ function Cart(props) {
     return () => {};
   }, []);
 
-  const removeHandler = (id) => {
+  const itemCounter = () => {
+    if (props.flowers && props.flowers.length > 0) {
+      let qtyArray =
+        props.flowers &&
+        props.flowers.map((flower) => {
+          return flower.qty;
+        });
+      let totalQty = qtyArray.reduce((acc, value) => {
+        return acc + value;
+      });
+      return totalQty;
+    }
+  };
 
-    fetch(`/api/cart_delete/${id}`, {
-      method: "DELETE",
+  const totalPrice = () => {
+    if (props.flowers && props.flowers.length > 0) {
+      let priceArray = props.flowers.map((flower) => {
+        return flower.total_price;
+      });
+      let totalPrice = priceArray.reduce((acc, value) => {
+        return acc + value;
+      });
+      return totalPrice;
+    }
+  };
+
+  const qtyHandler = (id, qty) => {
+    const qtyNum = parseInt(qty);
+    const data = { qty: qtyNum };
+    fetch(`/api/cart_update/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         const action = a.loadedFlowersInCart(jsonifiedResponse);
         dispatch(action);
-        const actionTwo = a.deletedFlowerInCart();
-        dispatch(actionTwo);
       });
-
   };
-
-  const itemCounter = () => {
-    if(props.flowers){
-      let qtyArray = props.flowers.map((flower) => {
-        return flower.qty
-      });
-      let totalQty = qtyArray.reduce((acc, value) => {
-        return acc + value
-      });
-      return totalQty;
-    }
-  }
-
-  const totalPrice = () => {
-    if(props.flowers){
-      let priceArray = props.flowers.map((flower) => {
-        return flower.total_price;
-      });
-      let totalPrice = priceArray.reduce((acc, value) => {
-        return acc + value
-      });
-      return totalPrice;
-    }
-  }
-
-  const qtyHandler = (id, qty) => {
-    const qtyNum = parseInt(qty)
-    const data = {"qty": qtyNum}
-    fetch(`/api/cart_update/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-      "Content-Type": "application/json",
-      },
-    })
-     .then((response) => response.json())
-     .then((jsonifiedResponse) => {
-       const action = a.loadedFlowersInCart(jsonifiedResponse);
-        dispatch(action);
-     })
-  }
 
   return (
     <React.Fragment>
@@ -114,20 +95,29 @@ function Cart(props) {
                   </Row>
                   <Row>
                     <Col>
-                      <Button
+                      <RemoveFromCart flowerId={flower.id}></RemoveFromCart>
+
+                      {/* <Button
                         onClick={() => removeHandler(flower.id)}
                         className="btn"
                         variant="outline-secondary"
                         className="mb-3"
                       >
                         Remove
-                      </Button>
+                      </Button> */}
                     </Col>
                     <Col>
-                      <Form >
+                      <Form>
                         <Form.Group controlId="exampleForm.SelectCustom">
                           <Form.Label>Select Qty</Form.Label>
-                          <Form.Control as="select" value={flower.qty} custom onChange={(e) => qtyHandler(flower.id, e.target.value)}>
+                          <Form.Control
+                            as="select"
+                            value={flower.qty}
+                            custom
+                            onChange={(e) =>
+                              qtyHandler(flower.id, e.target.value)
+                            }
+                          >
                             <option hidden>Qty</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -149,7 +139,9 @@ function Cart(props) {
             <h5></h5>
           </Col>
           <Col>
-        <h5>Subtotal: ({itemCounter()} items) ${totalPrice()}</h5>
+            <h5>
+              Subtotal: ({itemCounter()} items) ${totalPrice()}
+            </h5>
           </Col>
         </Row>
         <FavoriteList />

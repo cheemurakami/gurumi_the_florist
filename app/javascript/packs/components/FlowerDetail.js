@@ -32,7 +32,6 @@ function FlowerDetail(props) {
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
-        //console.log(jsonifiedResponse);
       });
     return () => {};
   }, []);

@@ -50,7 +50,7 @@ function FavoriteList(props) {
                     border="light"
                     style={{
                       width: "100%",
-                      height: "500px",
+                      height: "550px",
                       marginBottom: "30px",
                     }}
                   >
@@ -94,10 +94,11 @@ function FavoriteList(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state, "favorite list")
+  console.log(state, "favorite list");
   return {
     flowers: state.favFlowerListReducer.flowers,
-  }
-}
+    inCart: state.flowersInCartListReducer.inCart,
+  };
+};
 FavoriteList = connect(mapStateToProps)(FavoriteList);
 export default FavoriteList;

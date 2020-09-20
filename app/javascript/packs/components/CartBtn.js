@@ -30,8 +30,6 @@ function CartBtn(props) {
         .then((jsonifiedResponse) => {
           console.log(jsonifiedResponse); //koko
 
-
-          
           if (jsonifiedResponse) {
             setInCart(true);
           } else {
@@ -41,18 +39,8 @@ function CartBtn(props) {
           // we get just one flower back from the rails controller
 
           //Sends just the flower that has been added to the Cart Reducer so that it shows up in the Cart,js component section
-          const action = a.addedFlowerInCart(
-            jsonifiedResponse.flower_in_cart
-          );
+          const action = a.addedFlowerInCart(jsonifiedResponse.flower_in_cart);
           dispatch(action);
-
-          // const action = a.loadedFlowersInCart(
-          //   jsonifiedResponse.flowers_in_cart
-          // );
-          // dispatch(action);
-
-          // const actionTwo = a.addedFlowerInCart(id);
-          // dispatch(actionTwo);
         });
     }
   };
@@ -101,7 +89,6 @@ function CartBtn(props) {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.loginStatusReducer.currentUser,
-    //inCart: state.flowersInCartListReducer.inCart,
   };
 };
 
