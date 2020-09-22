@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartBtn from "./CartBtn";
@@ -77,7 +77,6 @@ function FavoriteList(props) {
                       >
                         Remove
                       </Button>
-
                       <CartBtn
                         flowerId={flower.id}
                         isInCart={flower.is_in_cart}
@@ -94,10 +93,9 @@ function FavoriteList(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state, "favorite list");
+  console.log(state)
   return {
     flowers: state.favFlowerListReducer.flowers,
-    inCart: state.flowersInCartListReducer.inCart,
   };
 };
 FavoriteList = connect(mapStateToProps)(FavoriteList);

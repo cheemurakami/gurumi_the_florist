@@ -50,8 +50,9 @@ export const addedFlowerInCart = (flower) => {
     flower
   }
 }
-export const deletedFlowerInCart = () => {
+export const deletedFlowerInCart = (id) => {
   return {
-    type: c.DELETED_FLOWER_IN_CART
+    type: c.DELETED_FLOWER_IN_CART,
+    id
   }
 }

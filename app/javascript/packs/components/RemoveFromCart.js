@@ -3,18 +3,18 @@ import { Button } from "react-bootstrap";
 import * as a from "../actions";
 import { connect } from "react-redux";
 
-function RemoveFromCart(props) {
+function RemoveFromCartBtn(props) {
   const { dispatch } = props;
   const removeHandler = (id) => {
+    
     fetch(`/api/cart_delete/${id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log("REMOVED FROM CART", jsonifiedResponse);
         const action = a.loadedFlowersInCart(jsonifiedResponse);
         dispatch(action);
-        const actionTwo = a.deletedFlowerInCart();
+        const actionTwo = a.deletedFlowerInCart(id);
         dispatch(actionTwo);
       });
   };
@@ -32,5 +32,5 @@ function RemoveFromCart(props) {
   );
 }
 
-RemoveFromCart = connect()(RemoveFromCart);
-export default RemoveFromCart;
+RemoveFromCartBtn = connect()(RemBtnoveFromCart);
+export default RemoveFromCartBtn;

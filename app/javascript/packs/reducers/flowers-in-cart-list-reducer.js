@@ -15,10 +15,6 @@ export default (state = {}, action) => {
             flowers: flowers,
           });
       }
-    case c.DELETED_FLOWER_IN_CART:
-      return Object.assign({}, state, {
-        inCart: false,
-      });
 
     default:
       return state;

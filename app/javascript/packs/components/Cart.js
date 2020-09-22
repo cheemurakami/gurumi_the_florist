@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import FavoriteList from "./FavoriteList";
-import RemoveFromCart from "./RemoveFromCart";
-import { Container, Image, Row, Col, Button, Form } from "react-bootstrap";
+import RemoveFromCartBtn from "./RemoveFromCartBtn";
+import { Container, Image, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as a from "../actions";
 import { connect } from "react-redux";
@@ -95,16 +95,7 @@ function Cart(props) {
                   </Row>
                   <Row>
                     <Col>
-                      <RemoveFromCart flowerId={flower.id}></RemoveFromCart>
-
-                      {/* <Button
-                        onClick={() => removeHandler(flower.id)}
-                        className="btn"
-                        variant="outline-secondary"
-                        className="mb-3"
-                      >
-                        Remove
-                      </Button> */}
+                      <RemoveFromCartBtn flowerId={flower.id}></RemoveFromCartBtn>
                     </Col>
                     <Col>
                       <Form>

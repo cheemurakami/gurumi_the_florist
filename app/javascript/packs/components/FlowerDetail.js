@@ -19,7 +19,6 @@ function FlowerDetail(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        // console.log("Success:", responseData);
         const action = a.deletedFlower();
         dispatch(action);
       });
@@ -28,7 +27,7 @@ function FlowerDetail(props) {
   useEffect(() => {
     const action = a.loadedForm();
     dispatch(action);
-    fetch(`/api/flowers/${id}`) //show action in controller
+    fetch(`/api/flowers/${id}`)
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);

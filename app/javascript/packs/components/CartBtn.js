@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,13 +7,7 @@ import * as a from "../actions";
 function CartBtn(props) {
   const data = { flower_id: props.flowerId };
   const [showSigninMsg, setShowSigninMsg] = useState(false);
-  const [inCart, setInCart] = useState(false);
   const { dispatch } = props;
-
-  useEffect(() => {
-    setInCart(props.isInCart);
-    return () => {};
-  }, [props.isInCart]);
 
   const addToCart = (id) => {
     if (!props.currentUser) {
@@ -28,16 +22,8 @@ function CartBtn(props) {
       })
         .then((response) => response.json())
         .then((jsonifiedResponse) => {
-          console.log(jsonifiedResponse); //koko
-
-          if (jsonifiedResponse) {
-            setInCart(true);
-          } else {
-            setInCart(false);
-          }
-
+          console.log(jsonifiedResponse);
           // we get just one flower back from the rails controller
-
           //Sends just the flower that has been added to the Cart Reducer so that it shows up in the Cart,js component section
           const action = a.addedFlowerInCart(jsonifiedResponse.flower_in_cart);
           dispatch(action);
@@ -46,7 +32,7 @@ function CartBtn(props) {
   };
 
   const cartBtnText = () => {
-    if (inCart) {
+    if (props.isInCart) {
       return "Added in cart";
     } else {
       return "Move to Cart";
