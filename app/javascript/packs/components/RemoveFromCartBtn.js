@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 function RemoveFromCartBtn(props) {
   const { dispatch } = props;
   const removeHandler = (id) => {
-    
     fetch(`/api/cart_delete/${id}`, {
       method: "DELETE",
     })
@@ -32,5 +31,5 @@ function RemoveFromCartBtn(props) {
   );
 }
 
-RemoveFromCartBtn = connect()(RemBtnoveFromCart);
+RemoveFromCartBtn = connect()(RemoveFromCartBtn);
 export default RemoveFromCartBtn;

@@ -8,12 +8,12 @@ import { connect } from "react-redux";
 
 function Cart(props) {
   const { dispatch } = props;
-  let numOfItem = [];
 
   useEffect(() => {
     fetch("/api/cart")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
+        console.log(jsonifiedResponse);
         const action = a.loadedFlowersInCart(jsonifiedResponse);
         dispatch(action);
       });
@@ -63,15 +63,11 @@ function Cart(props) {
       });
   };
 
-  return (
-    <React.Fragment>
-      <Container>
+  const cartDetail = () => {
+    if (props.flowers && props.flowers.length > 0) {
+      return (
         <div>
-          <h4 className="mt-4 mb-4">Your Cart</h4>
-        </div>
-
-        {props.flowers &&
-          props.flowers.map((flower) => {
+          {props.flowers.map((flower) => {
             return (
               <Row
                 className="cart-wrapper"
@@ -95,7 +91,9 @@ function Cart(props) {
                   </Row>
                   <Row>
                     <Col>
-                      <RemoveFromCartBtn flowerId={flower.id}></RemoveFromCartBtn>
+                      <RemoveFromCartBtn
+                        flowerId={flower.id}
+                      ></RemoveFromCartBtn>
                     </Col>
                     <Col>
                       <Form>
@@ -125,16 +123,40 @@ function Cart(props) {
               </Row>
             );
           })}
-        <Row>
-          <Col>
-            <h5></h5>
-          </Col>
-          <Col>
-            <h5>
-              Subtotal: ({itemCounter()} items) ${totalPrice()}
-            </h5>
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <h5></h5>
+            </Col>
+            <Col>
+              <h5>
+                Subtotal: ({itemCounter()} items) ${totalPrice()}
+              </h5>
+            </Col>
+          </Row>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h5 className="mt-4 mb-4 ml-4">Your cart is empty</h5>
+          <p className="ml-4">
+            Check Your Favorites or browse <Link to="/">flowers</Link>
+          </p>
+          <hr></hr>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <React.Fragment>
+      <Container>
+        <div>
+          <h4 className="mt-4 mb-4">Your Cart</h4>
+        </div>
+
+        {cartDetail()}
+
         <FavoriteList />
       </Container>
     </React.Fragment>

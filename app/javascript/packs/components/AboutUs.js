@@ -33,7 +33,7 @@ function AboutUs() {
             <hr />
             <p>
               They aren’t real, but it doesn't last forever if you don't take care of them. The lifespan of fake
-              flowers depends on where you have them stored in your home.
+              flowers may vary depending on where you have them stored in your home.
               <br />
               <br />
               Avoid direct sunlight and dust artificial plants with a feather duster once a week. 
