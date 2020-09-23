@@ -19,9 +19,9 @@ function FlowerEditForm(props) {
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
         setFlower(jsonifiedResponse);
-        setTags(jsonifiedResponse.tags)
+        setTags(jsonifiedResponse.tags);
       });
- 
+
     return () => {};
   }, []);
 
@@ -85,7 +85,14 @@ function FlowerEditForm(props) {
     } else {
       return (
         <React.Fragment>
-          <Container>
+          <Container className="mt-5">
+            <div
+              style={{ textAlign: "center", margin: "auto", width: "350px" }}
+            >
+              <h4>Edit this flower</h4>
+              <hr></hr>
+              <br></br>
+            </div>
             <Row>
               <Col md={7} style={{ textAlign: "center", padding: "auto" }}>
                 {flower.flower_photos &&

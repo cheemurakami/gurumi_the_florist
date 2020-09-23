@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import TagsInput from 'react-tagsinput'
-import 'react-tagsinput/react-tagsinput.css' 
+import { Container, Button, Form } from "react-bootstrap";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 
 function FlowerCreateForm(props) {
   const [tags, setTags] = useState([]);
@@ -22,7 +22,7 @@ function FlowerCreateForm(props) {
     console.log(event.target.flower_photos.files);
 
     let formData = new FormData();
-    
+
     formData.append("title", event.target.title.value);
     formData.append("description", event.target.description.value);
     formData.append("price", event.target.price.value);
@@ -30,7 +30,7 @@ function FlowerCreateForm(props) {
     const submittedImages = event.target.flower_photos.files;
     const fileListAsArray = Array.from(submittedImages);
     fileListAsArray.map((image) => {
-      formData.append("flower_photos[]", image); // atode each?
+      formData.append("flower_photos[]", image);
     });
 
     // const data = {
@@ -52,14 +52,12 @@ function FlowerCreateForm(props) {
         console.log("Success:", responseData);
         const action = a.addedFlower();
         dispatch(action);
-        // setShowMsg(true);
-        // setDirect(true);
       });
   }
 
   const handleChange = (tags) => {
     setTags(tags);
-  }
+  };
 
   const msgOrForm = () => {
     if (props.showMsg) {
@@ -78,19 +76,19 @@ function FlowerCreateForm(props) {
     } else {
       return (
         <React.Fragment>
-          <Container>
+          <Container className="mt-5">
             <div
               style={{ textAlign: "center", margin: "auto", width: "350px" }}
             >
+              <h4>Add a new flower</h4>
+              <hr></hr>
+              <br></br>
               <Form className="text-center" onSubmit={formSubmissionHandler}>
                 <Form.Group controlId="title-input">
                   <div className="text-left">
                     <Form.Label>Title</Form.Label>
                   </div>
-                  <Form.Control 
-                    type="text" 
-                    name="title" 
-                    placeholder="Title" />
+                  <Form.Control type="text" name="title" placeholder="Title" />
                 </Form.Group>
 
                 <Form.Group controlId="formControlsTextarea">
@@ -125,7 +123,7 @@ function FlowerCreateForm(props) {
                       label="Custom file input"
                       type="file"
                       accept="image/png, image/jpeg"
-                      name="flower_photos" 
+                      name="flower_photos"
                       multiple="multiple"
                     />
                   </div>
@@ -135,7 +133,12 @@ function FlowerCreateForm(props) {
                   <div className="text-left">
                     <Form.Label>Tags</Form.Label>
                   </div>
-                  <TagsInput name="tags" value={tags} placeholder="Tags" onChange={handleChange}/>
+                  <TagsInput
+                    name="tags"
+                    value={tags}
+                    placeholder="Tags"
+                    onChange={handleChange}
+                  />
                 </Form.Group>
 
                 <Button
@@ -159,12 +162,7 @@ function FlowerCreateForm(props) {
     }
   };
 
-  return (
-    <React.Fragment>
-      {/* {directToHome()} */}
-      {msgOrForm()}
-    </React.Fragment>
-  );
+  return <React.Fragment>{msgOrForm()}</React.Fragment>;
 }
 const mapStateToProps = (state) => {
   return {

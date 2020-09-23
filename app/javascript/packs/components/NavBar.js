@@ -6,12 +6,10 @@ import {
   Form,
   FormControl,
   Button,
-  Card,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import gurumiIcon from "./images/gurumi_icon.png";
 import gurumiSignInIcon from "./images/gurumi_signin_icon.png";
-import gurumiSignOutIcon from "./images/gurumi_signout_icon.png";
 import { connect } from "react-redux";
 import * as a from "../actions";
 
@@ -38,17 +36,6 @@ function NavBar(props) {
       });
   };
 
-  {
-    /* <Nav.Item className='ml-3'>
-            <img height={25} className="mr-2" src={gurumiSignOutIcon} alt="gutumiSignoutIcon" />
-            {props.currentUser.email}
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link className="link" onClick={signOut}>
-              Sign Out
-            </Nav.Link>
-          </Nav.Item> */
-  }
   const userLoginStatus = () => {
     if (props.currentUser && props.currentUser.email) {
       return (
@@ -83,7 +70,7 @@ function NavBar(props) {
   };
   return (
     <>
-      <Navbar bg="light">
+      <Navbar bg="light" fixed="top">
         <Navbar.Brand as={Link} to="/">
           <img height={50} src={gurumiIcon} alt="gutumiIcon" />
         </Navbar.Brand>
@@ -124,7 +111,6 @@ function NavBar(props) {
 }
 
 const mapStateToProps = (state) => {
-  //console.log(state);
   return {
     currentUser: state.loginStatusReducer.currentUser,
   };
