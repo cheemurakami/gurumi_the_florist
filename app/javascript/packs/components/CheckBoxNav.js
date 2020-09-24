@@ -3,31 +3,26 @@ import { Nav, Accordion, Form } from "react-bootstrap";
 import AccordionCustom from "./AccordionCustom";
 import * as a from "../actions";
 import { connect } from "react-redux";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 
 function CheckBoxNav(props) {
   const { dispatch } = props;
 
-  const [searchWords, setSearchWords] = useState({})
+  const [searchWords, setSearchWords] = useState({});
 
-  const occasionNames = [
-    "Anniversary",
-    "Birthday",
-    "Romance",
-    "Thank You",
-    "Congratulations",
-  ];
+  const occasions = ["Anniversary", "Birthday", "Romance", "Thank You", "Congratulations"];
   const flowerTypes = ["Daisy", "Lily", "Rose", "Tulip", "Sunflower"];
   const colors = ["Red", "Pink", "Yellow", "Puple", "Orange"];
 
   const changeHandler = (event) => {
     let checked = event.target.checked;
-    let word = event.target.id
+    let word = event.target.id;
     if (checked) {
-      const newSearchWords = Object.assign({}, searchWords, {[word]:  null })
-      let newSearchWordsArr = Object.keys(newSearchWords)
-      let newSearchWordsStr = newSearchWordsArr.join(',')
-      console.log(newSearchWordsStr)
+      const newSearchWords = Object.assign({}, searchWords, { [word]: null });
+      let newSearchWordsArr = Object.keys(newSearchWords);
+      let newSearchWordsStr = newSearchWordsArr.join(",");
+      console.log(newSearchWordsStr);
 
       fetch(`/api/flowers?search=${newSearchWordsStr}`)
         .then((response) => response.json())
@@ -35,30 +30,29 @@ function CheckBoxNav(props) {
           const action = a.loadedFlowers(jsonifiedResponse);
           dispatch(action);
         });
-        setSearchWords(newSearchWords)
-
+      setSearchWords(newSearchWords);
     } else {
-      delete searchWords[word]
+      delete searchWords[word];
       fetch(`/api/flowers`)
         .then((response) => response.json())
         .then((jsonifiedResponse) => {
           const action = a.loadedFlowers(jsonifiedResponse);
           dispatch(action);
         });
-        setSearchWords(searchWords)
-
+      setSearchWords(searchWords);
     }
-
   };
 
   return (
     <Nav defaultActiveKey="/home" className="flex-column">
       <Accordion defaultActiveKey="0">
-        <AccordionCustom eventKey="0">Occasion</AccordionCustom>
+        <AccordionCustom eventKey="0">
+          Occasion <FontAwesomeIcon icon={faAngleDoubleDown} className="icon" />
+        </AccordionCustom>
 
         <Accordion.Collapse eventKey="0">
           <Form>
-            {occasionNames.map((name) => {
+            {occasions.map((name) => {
               return (
                 <Form.Group controlId={name} key={name}>
                   <Form.Check
@@ -74,7 +68,10 @@ function CheckBoxNav(props) {
       </Accordion>
 
       <Accordion defaultActiveKey="0">
-        <AccordionCustom eventKey="0">Flower Type</AccordionCustom>
+        <AccordionCustom eventKey="0">
+          Flower Type
+          <FontAwesomeIcon icon={faAngleDoubleDown} className="icon" />
+        </AccordionCustom>
         <Accordion.Collapse eventKey="0">
           <Form>
             {flowerTypes.map((type) => {
@@ -93,7 +90,10 @@ function CheckBoxNav(props) {
       </Accordion>
 
       <Accordion defaultActiveKey="0">
-        <AccordionCustom eventKey="0">Color</AccordionCustom>
+        <AccordionCustom eventKey="0">
+          Color
+          <FontAwesomeIcon icon={faAngleDoubleDown} className="icon" />
+        </AccordionCustom>
         <Accordion.Collapse eventKey="0">
           <Form>
             {colors.map((color) => {

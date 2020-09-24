@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import gurumiHeader from "./images/gurumi_header.png";
 import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
 import CheckBoxNav from "./CheckBoxNav";
 
 function FlowerList(props) {
-  const history = useHistory();
   const location = useLocation();
   const { dispatch } = props;
-  //console.log(location);
-
-  // const handleClick = (id) => {
-  //   history.push(`/flower/${id}`);
-  // };
-
-  //const [flowers, setFlowers] = useState([]);
+  
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
