@@ -9,7 +9,6 @@ import CartBtn from "./CartBtn";
 function FlowerDetail(props) {
   const { id } = useParams();
   const [flower, setFlower] = useState({});
-  const location = useLocation();
   const { dispatch } = props;
 
   function deleteHandler(event) {

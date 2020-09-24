@@ -37,14 +37,13 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 
 |   **Stretch Goals for e-commerce functionality**        |
 |-------------------------------|
-| 1. All users can select flowers and save these in favorite/cart. []|
-| 2. All users can see flowers and save these in favorite/cart. []|
-| 3. All users can edit flowers in favorite/cart. []|
-| 4. All users can delete flowers in favorite/cart. []|
-| 5. All users can delete flowers in favorite/cart. []|
-| 6. All users can submit payment form in cart. []|
-| 7. All users can process payment in cart. []|
-| 8. Show recommended flowers based on users selections. []|
+| 1. Logged-in users can select flowers and add these in favorite/cart. [√]|
+| 2. Logged-in users can see flowers and save these in favorite/cart. [√]|
+| 3. Logged-in users can unfavorite flowers. [√]|
+| 4. Logged-in users can remove flowers in cart. [√]|
+| 5. Logged-in users can select payment options. []|
+| 6. Logged-in users can process payment. []|
+| 7. Show recommended flowers based on users selections. []|
 
 
 ## Known Bugs
@@ -57,7 +56,7 @@ _If you have any questions or any issues please feel free to submit an issue her
 
 ## Technologies Used
 
-_JavaScript, React, Redux, Ruby on Rails_ 
+_JavaScript, React, Redux, Ruby on Rails, React Bootstrap_ 
 
 
 ### Licenses

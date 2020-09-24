@@ -210,7 +210,6 @@ function FlowerEditForm(props) {
   };
   return (
     <React.Fragment>
-      {/* {directToHome()} */}
       {msgOrForm()}
     </React.Fragment>
   );

@@ -23,7 +23,6 @@ function FlowerList(props) {
     fetch("/api/flowers/")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        // setFlowers(jsonifiedResponse);
         const action = a.loadedFlowers(jsonifiedResponse);
         dispatch(action);
         setIsLoading(false);
@@ -109,7 +108,6 @@ function FlowerList(props) {
                         <Card.Body>
                           <Card.Title>{flower.title}</Card.Title>
                           <Card.Text>${flower.price}</Card.Text>
-
                         </Card.Body>
                       </Card>
                     </Link>
