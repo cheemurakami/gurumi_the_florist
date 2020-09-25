@@ -4,14 +4,23 @@ import AccordionCustom from "./AccordionCustom";
 import * as a from "../actions";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDoubleDown,
+  faAngleDoubleUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 function CheckBoxNav(props) {
   const { dispatch } = props;
 
   const [searchWords, setSearchWords] = useState({});
 
-  const occasions = ["Anniversary", "Birthday", "Romance", "Thank You", "Congratulations"];
+  const occasions = [
+    "Anniversary",
+    "Birthday",
+    "Romance",
+    "Thank You",
+    "Congratulations",
+  ];
   const flowerTypes = ["Daisy", "Lily", "Rose", "Tulip", "Sunflower"];
   const colors = ["Red", "Pink", "Yellow", "Puple", "Orange"];
 
@@ -46,10 +55,10 @@ function CheckBoxNav(props) {
   return (
     <Nav defaultActiveKey="/home" className="flex-column">
       <Accordion defaultActiveKey="0">
-        <AccordionCustom eventKey="0">
-          Occasion <FontAwesomeIcon icon={faAngleDoubleDown} className="icon" />
-        </AccordionCustom>
-
+        <AccordionCustom
+          eventKey="0"
+          accordionTitle="Occasion"
+        ></AccordionCustom>
         <Accordion.Collapse eventKey="0">
           <Form>
             {occasions.map((name) => {
@@ -68,8 +77,7 @@ function CheckBoxNav(props) {
       </Accordion>
 
       <Accordion defaultActiveKey="0">
-        <AccordionCustom eventKey="0">
-          Flower Type
+        <AccordionCustom eventKey="0" accordionTitle="Flower Type">
           <FontAwesomeIcon icon={faAngleDoubleDown} className="icon" />
         </AccordionCustom>
         <Accordion.Collapse eventKey="0">
@@ -90,8 +98,7 @@ function CheckBoxNav(props) {
       </Accordion>
 
       <Accordion defaultActiveKey="0">
-        <AccordionCustom eventKey="0">
-          Color
+        <AccordionCustom eventKey="0" accordionTitle="Color">
           <FontAwesomeIcon icon={faAngleDoubleDown} className="icon" />
         </AccordionCustom>
         <Accordion.Collapse eventKey="0">

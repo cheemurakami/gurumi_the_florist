@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import gurumiHeader from "./images/gurumi_header.png";
-import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
+import {
+  CardDeck,
+  Card,
+  Container,
+  Row,
+  Col,
+  Button,
+  Spinner,
+} from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
@@ -9,7 +17,7 @@ import CheckBoxNav from "./CheckBoxNav";
 function FlowerList(props) {
   const location = useLocation();
   const { dispatch } = props;
-  
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -61,51 +69,49 @@ function FlowerList(props) {
           />
         </div>
         <Row>
-          <Col md={3} style={{ textAlign: "left" }}>
+          <Col lg={3} md={3} style={{ textAlign: "left" }}>
             <CheckBoxNav />
           </Col>
 
-          <Col md={9} style={{ textAlign: "center" }}>
+          <Col lg={9} md={9} style={{ textAlign: "center" }}>
             {addButton()}
             <Row>
               {loadingMessage()}
-              {props.flowers &&
-                props.flowers.map((flower) => (
-                  <Col
-                    lg={4}
-                    md={6}
-                    sm={6}
-                    key={flower.id}
-                  >
-                    <Link to={`/flower/${flower.id}`}>
-                      <Card
-                        border="light"
-                        style={{
-                          width: "100%",
-                          height: "550px",
-                          marginBottom: "30px",
-                        }}
-                      >
-                        <Card.Img
-                          variant="top"
+              <CardDeck className="mr-5">
+                {props.flowers &&
+                  props.flowers.map((flower) => (
+                    <Col lg={3} md={3} sm={6} key={flower.id}>
+                      <Link to={`/flower/${flower.id}`}>
+                        <Card
+                          border="light"
                           style={{
-                            maxHeight: "300px",
-                            maxWidth: "300px",
-                            margin: 'auto'
+                            width: "100%",
+                            minHeight: "400px",
+                            maxHeight: "400px",
+                            marginBottom: "30px",
                           }}
-                          src={
-                            flower.flower_photos[0] &&
-                            flower.flower_photos[0].url
-                          }
-                        />
-                        <Card.Body>
-                          <Card.Title>{flower.title}</Card.Title>
-                          <Card.Text>${flower.price}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Link>
-                  </Col>
-                ))}
+                        >
+                          <Card.Img
+                            variant="top"
+                            style={{
+                              maxHeight: "300px",
+                              maxWidth: "300px",
+                              margin: "auto",
+                            }}
+                            src={
+                              flower.flower_photos[0] &&
+                              flower.flower_photos[0].url
+                            }
+                          />
+                          <Card.Body>
+                            <Card.Title>{flower.title}</Card.Title>
+                            <Card.Text>${flower.price}</Card.Text>
+                          </Card.Body>
+                        </Card>
+                      </Link>
+                    </Col>
+                  ))}
+              </CardDeck>
             </Row>
           </Col>
         </Row>

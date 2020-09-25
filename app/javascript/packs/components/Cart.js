@@ -13,7 +13,6 @@ function Cart(props) {
     fetch("/api/cart")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse);
         const action = a.loadedFlowersInCart(jsonifiedResponse);
         dispatch(action);
       });
