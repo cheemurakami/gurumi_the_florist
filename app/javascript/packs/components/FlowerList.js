@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import gurumiHeader from "./images/gurumi_header.png";
-import {
-  CardDeck,
-  Card,
-  Container,
-  Row,
-  Col,
-  Button,
-  Spinner,
-} from "react-bootstrap";
+import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
@@ -77,41 +69,36 @@ function FlowerList(props) {
             {addButton()}
             <Row>
               {loadingMessage()}
-              <CardDeck className="mr-5">
-                {props.flowers &&
-                  props.flowers.map((flower) => (
-                    <Col lg={3} md={3} sm={6} key={flower.id}>
-                      <Link to={`/flower/${flower.id}`}>
-                        <Card
-                          border="light"
+
+              {props.flowers &&
+                props.flowers.map((flower) => (
+                  <Col lg={3} md={4} sm={6} key={flower.id} className="mb-3">
+                    <Link to={`/flower/${flower.id}`}>
+                      <Card
+                        border="light"
+                        className="h-100"
+                        style={{
+                          width: "100%",
+                        }}
+                      >
+                        <Card.Img
+                          variant="top"
                           style={{
-                            width: "100%",
-                            minHeight: "400px",
-                            maxHeight: "400px",
-                            marginBottom: "30px",
+                            margin: "auto",
                           }}
-                        >
-                          <Card.Img
-                            variant="top"
-                            style={{
-                              maxHeight: "300px",
-                              maxWidth: "300px",
-                              margin: "auto",
-                            }}
-                            src={
-                              flower.flower_photos[0] &&
-                              flower.flower_photos[0].url
-                            }
-                          />
-                          <Card.Body>
-                            <Card.Title>{flower.title}</Card.Title>
-                            <Card.Text>${flower.price}</Card.Text>
-                          </Card.Body>
-                        </Card>
-                      </Link>
-                    </Col>
-                  ))}
-              </CardDeck>
+                          src={
+                            flower.flower_photos[0] &&
+                            flower.flower_photos[0].url
+                          }
+                        />
+                        <Card.Body>
+                          <Card.Title>{flower.title}</Card.Title>
+                          <Card.Text>${flower.price}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Col>
+                ))}
             </Row>
           </Col>
         </Row>
