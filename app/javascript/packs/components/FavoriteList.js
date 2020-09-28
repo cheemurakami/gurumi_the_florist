@@ -90,7 +90,6 @@ function FavoriteList(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     flowers: state.favFlowerListReducer.flowers,
   };

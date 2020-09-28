@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Carousel, Badge } from "react-bootstrap";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
 import FavoriteBtn from "./FavoriteBtn";

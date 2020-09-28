@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import FavoriteList from "./FavoriteList";
 import RemoveFromCartBtn from "./RemoveFromCartBtn";
-import { Container, Image, Row, Col, Form } from "react-bootstrap";
+import { Container, Image, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as a from "../actions";
 import { connect } from "react-redux";
@@ -123,13 +123,17 @@ function Cart(props) {
             );
           })}
           <Row>
-            <Col>
-              <h5></h5>
-            </Col>
-            <Col>
+            <Col md={{ span: 4, offset: 4 }} style={{ textAlign: "right" }}>
               <h5>
                 Subtotal: ({itemCounter()} items) ${totalPrice()}
               </h5>
+            </Col>
+            <Col md={4} style={{ textAlign: "right" }}>
+              <Link to="/checkout">
+                <Button variant="outline-secondary" className="btn">
+                  Proceed to Checkout
+                </Button>
+              </Link>
             </Col>
           </Row>
         </div>

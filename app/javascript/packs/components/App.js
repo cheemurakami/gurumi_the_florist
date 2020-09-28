@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import * as a from '../actions'
 import FavoriteList from './FavoriteList'
 import Cart from './Cart'
+import Checkout from './Checkout'
 
 
 function App(props) {
@@ -70,6 +71,9 @@ function App(props) {
         </Route>
         <Route path="/cart">
           <Cart />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
         </Route>
         <Route path="/">
           <FlowerList />
