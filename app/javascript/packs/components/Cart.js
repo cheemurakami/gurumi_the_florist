@@ -29,7 +29,11 @@ function Cart(props) {
       let totalQty = qtyArray.reduce((acc, value) => {
         return acc + value;
       });
-      return totalQty;
+      if (totalQty == 1){
+        return (<span>{totalQty} item</span>)
+      } else {
+        return (<span>{totalQty} items</span>)
+      }
     }
   };
 
@@ -41,7 +45,7 @@ function Cart(props) {
       let totalPrice = priceArray.reduce((acc, value) => {
         return acc + value;
       });
-      return totalPrice;
+      return (<span>{totalPrice}</span>);
     }
   };
 
@@ -125,7 +129,7 @@ function Cart(props) {
           <Row>
             <Col md={{ span: 4, offset: 4 }} style={{ textAlign: "right" }}>
               <h5>
-                Subtotal: ({itemCounter()} items) ${totalPrice()}
+                Subtotal: {itemCounter()} ${totalPrice()}
               </h5>
             </Col>
             <Col md={4} style={{ textAlign: "right" }}>
