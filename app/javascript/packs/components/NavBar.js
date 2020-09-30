@@ -39,17 +39,27 @@ function NavBar(props) {
   const userLoginStatus = () => {
     if (props.currentUser && props.currentUser.email) {
       return (
-        <NavDropdown title={props.currentUser.email} id="basic-nav-dropdown">
-          <NavDropdown.Item className="link" as={Link} to="/favorites" > 
-            Your Favorites
-          </NavDropdown.Item>
-          <NavDropdown.Item className="link" as={Link} to="/cart" > 
-            Your Cart
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={signOut}>
-            Sign Out
-          </NavDropdown.Item>
-        </NavDropdown>
+        <React.Fragment>
+          <Nav.Item>
+            <Nav.Link className="link" as={Link} to="/account">
+              <img
+                className="ml-2"
+                height={25}
+                src={gurumiSignInIcon}
+                alt="gutumiAccIcon"
+              />
+            </Nav.Link>
+          </Nav.Item>
+          <NavDropdown title={props.currentUser.email} id="basic-nav-dropdown">
+            <NavDropdown.Item className="link" as={Link} to="/favorites">
+              Your Favorites
+            </NavDropdown.Item>
+            <NavDropdown.Item className="link" as={Link} to="/cart">
+              Your Cart
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={signOut}>Sign Out</NavDropdown.Item>
+          </NavDropdown>
+        </React.Fragment>
       );
     } else {
       return (

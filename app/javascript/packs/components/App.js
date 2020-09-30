@@ -13,6 +13,7 @@ import * as a from '../actions'
 import FavoriteList from './FavoriteList'
 import Cart from './Cart'
 import Checkout from './Checkout'
+import Account from './Account'
 
 
 function App(props) {
@@ -74,6 +75,9 @@ function App(props) {
         </Route>
         <Route path="/checkout">
           <Checkout />
+        </Route>
+        <Route path="/account">
+          <Account />
         </Route>
         <Route path="/">
           <FlowerList />

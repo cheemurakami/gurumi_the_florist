@@ -29,10 +29,10 @@ function Cart(props) {
       let totalQty = qtyArray.reduce((acc, value) => {
         return acc + value;
       });
-      if (totalQty == 1){
-        return (<span>{totalQty} item</span>)
+      if (totalQty == 1) {
+        return <span>{totalQty} item</span>;
       } else {
-        return (<span>{totalQty} items</span>)
+        return <span>{totalQty} items</span>;
       }
     }
   };
@@ -45,7 +45,7 @@ function Cart(props) {
       let totalPrice = priceArray.reduce((acc, value) => {
         return acc + value;
       });
-      return (<span>{totalPrice}</span>);
+      return <span>{totalPrice}</span>;
     }
   };
 
