@@ -14,7 +14,8 @@ import FavoriteList from './FavoriteList'
 import Cart from './Cart'
 import Checkout from './Checkout'
 import Account from './Account'
-
+import Addresses from './Addresses'
+import AddressCreateForm from './AddressCreateForm'
 
 function App(props) {
   //func to check if signed in or not
@@ -78,6 +79,12 @@ function App(props) {
         </Route>
         <Route path="/account">
           <Account />
+        </Route>
+        <Route path="/addresses">
+          <Addresses />
+        </Route>
+        <Route path="/newaddress">
+          <AddressCreateForm />
         </Route>
         <Route path="/">
           <FlowerList />
