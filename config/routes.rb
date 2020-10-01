@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get '/cart' => 'cart_items#index'
     delete '/cart_delete/:id' => 'cart_items#delete'
     put '/cart_update/:id' => 'cart_items#update'
+    resources :addresses
   end
   
   #at btm
