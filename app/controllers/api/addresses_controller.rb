@@ -1,15 +1,15 @@
 module Api
-  class AddressController < ApplicationController
+  class AddressesController < ApplicationController
 
     before_action :authenticate_user!
 
     def index
-      @address = Address.all 
-      json_response(@address)
+      @addresses = Address.all 
+      json_response(@addresses)
     end
 
     def create
-      @address = Address.create!(user_id: current_user.id, address_params)
+      @address = Address.create!({user_id: current_user.id}.merge!(address_params))
       json_response(@address)
     end
 

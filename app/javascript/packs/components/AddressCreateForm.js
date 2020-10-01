@@ -1,43 +1,83 @@
 import React from "react";
 import { Container, Form, Button, Col } from "react-bootstrap";
 
+const formSubmissionHandler = (e) => {
+  e.preventDefault();
+  const data = {
+    first_name: e.target.first_name.value,
+    last_name: e.target.last_name.value,
+    street: e.target.street.value,
+    apt_ste_unit: e.target.apt_ste_unit.value,
+    city: e.target.city.value,
+    state: e.target.state.value,
+    zip: e.target.zip.value,
+    phone: e.target.phone.value,
+  };
+  console.log("ADDRESS CREATE CLICKED", data);
+
+  fetch("/api/addresses", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log("Success:", responseData);
+    });
+};
+
 function AddressCreateForm() {
   return (
     <Container>
-      <Form>
+      <Form onSubmit={formSubmissionHandler}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridFirstName">
             <Form.Label>First Name</Form.Label>
-            <Form.Control type="text" />
+            <Form.Control type="text" name="first_name" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridLastName">
             <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" />
+            <Form.Control type="text" name="last_name" />
           </Form.Group>
         </Form.Row>
 
         <Form.Row>
           <Form.Group as={Col} controlId="formGridAddresses1">
             <Form.Label>Street Addresses</Form.Label>
-            <Form.Control placeholder="1234 Main St" />
+            <Form.Control
+              placeholder="1234 Main St"
+              type="text"
+              name="street"
+            />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridAddresses2">
             <Form.Label>Apt/ Suite/ Unit</Form.Label>
-            <Form.Control placeholder="Don't forget this one!" />
+            <Form.Control
+              placeholder="Don't forget this one!"
+              type="text"
+              name="apt_ste_unit"
+            />
           </Form.Group>
         </Form.Row>
 
         <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
-            <Form.Control />
+            <Form.Control type="text" name="city" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>State</Form.Label>
-            <Form.Control as="select" defaultValue="Choose...">
+            <Form.Control
+              as="select"
+              defaultValue="Choose..."
+              type="text"
+              name="state"
+            >
               <option>Choose...</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
@@ -95,14 +135,14 @@ function AddressCreateForm() {
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
-            <Form.Control />
+            <Form.Control type="integer" name="zip" />
           </Form.Group>
         </Form.Row>
 
         <Form.Row>
           <Form.Group controlId="formGridFirstName">
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="text" />
+            <Form.Control type="integer" name="phone" />
           </Form.Group>
         </Form.Row>
 
