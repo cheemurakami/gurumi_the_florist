@@ -125,11 +125,20 @@ a:hover{
   line-height: 100px ;
   border: 1px  white solid;
 }
-.address-btn{
+.address-add-btn{
   margin-top: 8px;
   margin-right: 8px;
   text-align: center;
   height: 300px;
   line-height: 300px ;
+  border: 1px  white solid;
+}
+.address{
+  margin-top: 8px;
+  margin-right: 8px;
+  text-align: left;
+  height: 300px;
+  padding: 24px;
+  // line-height: 300px ;
   border: 1px  white solid;
 }

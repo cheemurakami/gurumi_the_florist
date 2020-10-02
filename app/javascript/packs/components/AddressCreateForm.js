@@ -13,7 +13,6 @@ const formSubmissionHandler = (e) => {
     zip: e.target.zip.value,
     phone: e.target.phone.value,
   };
-  console.log("ADDRESS CREATE CLICKED", data);
 
   fetch("/api/addresses", {
     method: "POST",

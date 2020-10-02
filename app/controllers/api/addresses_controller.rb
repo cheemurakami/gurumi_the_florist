@@ -4,7 +4,7 @@ module Api
     before_action :authenticate_user!
 
     def index
-      @addresses = Address.all 
+      @addresses = current_user.addresses
       json_response(@addresses)
     end
 
