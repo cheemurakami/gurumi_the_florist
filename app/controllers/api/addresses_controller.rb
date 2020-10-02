@@ -13,6 +13,12 @@ module Api
       json_response(@address)
     end
 
+    def destroy
+      @address = Address.find_by(user_id: current_user.id, id: params[:id])
+      @address.destroy
+      response = {msg: "Deleted"}
+      json_response(response)
+    end
 
     private
      def address_params

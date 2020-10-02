@@ -23,6 +23,17 @@ function Addresses(props) {
       );
     }
   };
+
+  const deleteHandler = (id) => {
+    fetch(`/api/addresses/${id}`, {
+      method: "DELETE",
+    })
+      .then((resp) => resp.json())
+      .then((respData) => {
+        console.log(respData);
+      });
+  };
+
   return (
     <React.Fragment>
       <Container>
@@ -55,7 +66,10 @@ function Addresses(props) {
                   <p>Phone: {address.phone}</p>
                   <br />
                   <p>
-                    <span>Edit</span> <span>Remove</span>
+                    <span>Edit</span>{" "}
+                    <span onClick={() => deleteHandler(address.id)}>
+                      Remove
+                    </span>
                   </p>
                 </div>
               </Col>
