@@ -1,35 +1,50 @@
 import React from "react";
 import { Container, Form, Button, Col } from "react-bootstrap";
+import * as a from "../actions";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-const formSubmissionHandler = (e) => {
-  e.preventDefault();
-  const data = {
-    first_name: e.target.first_name.value,
-    last_name: e.target.last_name.value,
-    street: e.target.street.value,
-    apt_ste_unit: e.target.apt_ste_unit.value,
-    city: e.target.city.value,
-    state: e.target.state.value,
-    zip: e.target.zip.value,
-    phone: e.target.phone.value,
+function AddressCreateForm(props) {
+  const { dispatch } = props;
+
+  const formSubmissionHandler = (e) => {
+    e.preventDefault();
+    const data = {
+      first_name: e.target.first_name.value,
+      last_name: e.target.last_name.value,
+      street: e.target.street.value,
+      apt_ste_unit: e.target.apt_ste_unit.value,
+      city: e.target.city.value,
+      state: e.target.state.value,
+      zip: e.target.zip.value,
+      phone: e.target.phone.value,
+    };
+
+    fetch("/api/addresses", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        // console.log("Success:", responseData);
+        const action = a.addedAddress();
+        dispatch(action);
+      });
   };
 
-  fetch("/api/addresses", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((responseData) => {
-      console.log("Success:", responseData);
-    });
-};
-
-function AddressCreateForm() {
+  const directToAddresses = () => {
+    if(props.showMsg){
+      return (
+        <Redirect to="/addresses" />
+      )
+    }
+  }
   return (
     <Container>
+      {directToAddresses()}
       <Form onSubmit={formSubmissionHandler}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridFirstName">
@@ -157,4 +172,10 @@ function AddressCreateForm() {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    showMsg: state.addressListReducer.showMsg,
+  };
+};
+AddressCreateForm = connect(mapStateToProps)(AddressCreateForm)
 export default AddressCreateForm;

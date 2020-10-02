@@ -123,7 +123,7 @@ a:hover{
   text-align: center;
   height: 100px;
   line-height: 100px ;
-  border: 1px  white solid;
+  border: 1px white solid;
 }
 .address-add-btn{
   margin-top: 8px;
@@ -131,14 +131,22 @@ a:hover{
   text-align: center;
   height: 300px;
   line-height: 300px ;
-  border: 1px  white solid;
+  border: 1px white solid;
 }
 .address{
   margin-top: 8px;
   margin-right: 8px;
   text-align: left;
   height: 300px;
-  padding: 24px;
-  // line-height: 300px ;
-  border: 1px  white solid;
+  padding: 12px;
+  border: 1px white solid;
+}
+.address-msg{
+  margin-top: 8px;
+  margin-right: 8px;
+  text-align: left;
+  height: 100px;
+  line-height: 50px ;
+  padding: 12px;
+  border: 1px white solid;
 }

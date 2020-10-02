@@ -56,3 +56,8 @@ export const deletedFlowerInCart = (id) => {
     id
   }
 }
+export const addedAddress = () => {
+  return {
+    type: c.ADDED_ADDRESS
+  }
+}
