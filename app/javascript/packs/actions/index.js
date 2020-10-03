@@ -61,3 +61,8 @@ export const addedAddress = () => {
     type: c.ADDED_ADDRESS
   }
 }
+export const deletedAddress = () => {
+  return {
+    type: c.DELETED_ADDRESS
+  }
+}

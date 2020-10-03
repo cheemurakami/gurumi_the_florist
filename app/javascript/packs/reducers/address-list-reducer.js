@@ -4,7 +4,11 @@ export default (state = {}, action) => {
   switch (action.type) {
     case c.ADDED_ADDRESS:
       return Object.assign({}, state, {
-        showMsg: true,
+        showAddedMsg: true,
+      });
+    case c.DELETED_ADDRESS:
+      return Object.assign({}, state, {
+        showDeletedMsg: true,
       });
     default:
       return state;

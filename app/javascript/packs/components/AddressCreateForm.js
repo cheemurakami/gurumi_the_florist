@@ -36,12 +36,10 @@ function AddressCreateForm(props) {
   };
 
   const directToAddresses = () => {
-    if(props.showMsg){
-      return (
-        <Redirect to="/addresses" />
-      )
+    if (props.showAddedMsg) {
+      return <Redirect to="/addresses" />;
     }
-  }
+  };
   return (
     <Container>
       {directToAddresses()}
@@ -174,8 +172,8 @@ function AddressCreateForm(props) {
 
 const mapStateToProps = (state) => {
   return {
-    showMsg: state.addressListReducer.showMsg,
+    showAddedMsg: state.addressListReducer.showAddedMsg,
   };
 };
-AddressCreateForm = connect(mapStateToProps)(AddressCreateForm)
+AddressCreateForm = connect(mapStateToProps)(AddressCreateForm);
 export default AddressCreateForm;

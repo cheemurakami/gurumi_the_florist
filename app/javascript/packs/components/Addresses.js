@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import * as a from "../actions";
 
 function Addresses(props) {
   const [addresses, setAddresses] = useState([]);
+  const { dispatch } = props;
 
   useEffect(() => {
     fetch("/api/addresses")
@@ -15,10 +17,16 @@ function Addresses(props) {
   }, []);
 
   const showMessage = () => {
-    if (props.showMsg) {
+    if (props.showAddedMsg) {
       return (
         <div className="address-msg">
           <h5>Added Address!</h5>
+        </div>
+      );
+    } else if (props.showDeletedMsg) {
+      return (
+        <div className="address-msg">
+          <h5>Deleted Address!</h5>
         </div>
       );
     }
@@ -31,6 +39,9 @@ function Addresses(props) {
       .then((resp) => resp.json())
       .then((respData) => {
         console.log(respData);
+        setAddresses(respData);
+        const action = a.deletedAddress();
+        dispatch(action);
       });
   };
 
@@ -83,7 +94,8 @@ function Addresses(props) {
 
 const mapStateToProps = (state) => {
   return {
-    showMsg: state.addressListReducer.showMsg,
+    showAddedMsg: state.addressListReducer.showAddedMsg,
+    showDeletedMsg: state.addressListReducer.showDeletedMsg,
   };
 };
 Addresses = connect(mapStateToProps)(Addresses);
