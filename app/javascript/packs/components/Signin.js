@@ -46,7 +46,7 @@ function Signin(props) {
               <div className="text-left">
                 <Form.Label>Email</Form.Label>
               </div>
-              <Form.Control type="text" name="email" placeholder="Email" />
+              <Form.Control type="text" name="email" placeholder="Email" defaultValue="kiwi@fake.com"/>
             </Form.Group>
 
             <Form.Group controlId="title-input">
@@ -57,6 +57,7 @@ function Signin(props) {
                 type="password"
                 name="password"
                 placeholder="Password"
+                defaultValue="123456"
               />
             </Form.Group>
 
