@@ -16,6 +16,7 @@ import Checkout from './Checkout'
 import Account from './Account'
 import Addresses from './Addresses'
 import AddressCreateForm from './AddressCreateForm'
+import AddressEditForm from './AddressEditForm'
 
 function App(props) {
   //func to check if signed in or not
@@ -85,6 +86,9 @@ function App(props) {
         </Route>
         <Route path="/newaddress">
           <AddressCreateForm />
+        </Route>
+        <Route path="/editaddress/:id">
+          <AddressEditForm />
         </Route>
         <Route path="/">
           <FlowerList />

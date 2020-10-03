@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
@@ -75,11 +75,21 @@ function Addresses(props) {
                     {address.city}, {address.state} {address.zip}
                   </p>
                   <p>Phone: {address.phone}</p>
-                  <br />
                   <p>
-                    <span>Edit</span>{" "}
+                    <span>
+                      <Link to={`/editaddress/${address.id}`}>
+                        <Button
+                          variant="outline-secondary"
+                          className="mb-1 mr-1"
+                        >
+                          Edit
+                        </Button>
+                      </Link>
+                    </span>{" "}
                     <span onClick={() => deleteHandler(address.id)}>
-                      Remove
+                      <Button variant="outline-secondary" className="mb-1 mr-1">
+                        Remove
+                      </Button>
                     </span>
                   </p>
                 </div>
