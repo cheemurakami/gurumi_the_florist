@@ -29,7 +29,6 @@ function AddressCreateForm(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        // console.log("Success:", responseData);
         const action = a.addedAddress();
         dispatch(action);
       });

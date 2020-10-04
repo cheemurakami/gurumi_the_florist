@@ -21,6 +21,11 @@ module Api
       json_response(response)
     end
 
+    def show
+      @address = Address.find(params[:id])
+      json_response(@address)
+    end
+
     private
      def address_params
       params.permit(:first_name, :last_name, :street,:apt_ste_unit, :city, :state, :zip, :phone)

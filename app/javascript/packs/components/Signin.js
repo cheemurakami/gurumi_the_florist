@@ -22,7 +22,6 @@ function Signin(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
         const action = a.checkedLoginStatus(responseData);
         dispatch(action);
       });
@@ -39,14 +38,19 @@ function Signin(props) {
       <Container>
         {directToHome()}
 
-         <div style={{ textAlign: "center", margin: "auto", width: "350px" }}>
+        <div style={{ textAlign: "center", margin: "auto", width: "350px" }}>
           <h4>Sign In</h4>
           <Form className="text-center" onSubmit={signIn}>
             <Form.Group controlId="title-input">
               <div className="text-left">
                 <Form.Label>Email</Form.Label>
               </div>
-              <Form.Control type="text" name="email" placeholder="Email" defaultValue="kiwi@fake.com"/>
+              <Form.Control
+                type="text"
+                name="email"
+                placeholder="Email"
+                defaultValue="kiwi@fake.com"
+              />
             </Form.Group>
 
             <Form.Group controlId="title-input">
@@ -69,13 +73,11 @@ function Signin(props) {
           <p className="mt-3">Don't have an account?</p>
 
           <Link to="/users/sign_up">
-            <Button  variant="outline-secondary" className="btn mb-3">
+            <Button variant="outline-secondary" className="btn mb-3">
               Create Account
             </Button>
           </Link>
-        </div> 
-
-        
+        </div>
       </Container>
     </React.Fragment>
   );

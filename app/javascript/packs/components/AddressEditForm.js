@@ -1,7 +1,21 @@
-import React from "react";
+import React,{ useEffect, useState } from "react";
 import { Container, Form, Button, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 function AddressEditForm() {
+  const [address, setAddress] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+  console.log("Hellooooo")
+    fetch(`/api/addresses/${id}`)
+    .then((resp) => resp.json())
+    .then((jsonifiedResp) => {
+      setAddress(jsonifiedResp);
+    });
+    return () => {};
+  }, []);
+
   return (
     <React.Fragment>
       <Container>
@@ -9,12 +23,12 @@ function AddressEditForm() {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>First Name</Form.Label>
-              <Form.Control type="text" name="first_name" />
+              <Form.Control type="text" name="first_name" defaultValue={address.first_name}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control type="text" name="last_name" />
+              <Form.Control type="text" name="last_name" defaultValue={address.last_name}/>
             </Form.Group>
           </Form.Row>
 
@@ -25,6 +39,7 @@ function AddressEditForm() {
                 placeholder="1234 Main St"
                 type="text"
                 name="street"
+                defaultValue={address.street}
               />
             </Form.Group>
 
@@ -34,6 +49,7 @@ function AddressEditForm() {
                 placeholder="Don't forget this one!"
                 type="text"
                 name="apt_ste_unit"
+                defaultValue={address.apt_ste_unit}
               />
             </Form.Group>
           </Form.Row>
@@ -41,7 +57,7 @@ function AddressEditForm() {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>City</Form.Label>
-              <Form.Control type="text" name="city" />
+              <Form.Control type="text" name="city" defaultValue={address.city} />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
@@ -51,6 +67,7 @@ function AddressEditForm() {
                 defaultValue="Choose..."
                 type="text"
                 name="state"
+                defaultValue={address.state}
               >
                 <option>Choose...</option>
                 <option value="AL">Alabama</option>
@@ -109,14 +126,14 @@ function AddressEditForm() {
 
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Zip</Form.Label>
-              <Form.Control type="integer" name="zip" />
+              <Form.Control type="integer" name="zip" defaultValue={address.zip}/>
             </Form.Group>
           </Form.Row>
 
           <Form.Row>
             <Form.Group controlId="formGridFirstName">
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control type="integer" name="phone" />
+              <Form.Control type="integer" name="phone" defaultValue={address.phone}/>
             </Form.Group>
           </Form.Row>
 
