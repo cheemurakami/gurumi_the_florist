@@ -47,7 +47,7 @@ function AddressEditForm(props) {
   };
 
   const directToAddresses = () => {
-    if (props.showUpdatedMsg) {
+    if (props.showMsg) {
       return <Redirect to="/addresses" />;
     }
   };
@@ -212,7 +212,7 @@ function AddressEditForm(props) {
 
 const mapStateToProps = (state) => {
   return {
-    showUpdatedMsg: state.addressListReducer.showUpdatedMsg,
+    showMsg: state.addressListReducer.showMsg,
   };
 };
 AddressEditForm = connect(mapStateToProps)(AddressEditForm);

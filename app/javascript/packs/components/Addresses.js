@@ -17,22 +17,15 @@ function Addresses(props) {
   }, []);
 
   const showMessage = () => {
-    if (props.showAddedMsg) {
+    if (props.showMsg) {
+      setTimeout(() => {
+        const action = a.resetMessage();
+        dispatch(action);
+      }, 3000);
+
       return (
         <div className="address-msg">
-          <h5>Address Added!</h5>
-        </div>
-      );
-    } else if (props.showDeletedMsg) {
-      return (
-        <div className="address-msg">
-          <h5>Address Deleted!</h5>
-        </div>
-      );
-    } else if (props.showUpdatedMsg) {
-      return (
-        <div className="address-msg">
-          <h5>Address Updated!</h5>
+          <h5>{props.showMsg}</h5>
         </div>
       );
     }
@@ -109,9 +102,7 @@ function Addresses(props) {
 
 const mapStateToProps = (state) => {
   return {
-    showAddedMsg: state.addressListReducer.showAddedMsg,
-    showDeletedMsg: state.addressListReducer.showDeletedMsg,
-    showUpdatedMsg: state.addressListReducer.showUpdatedMsg,
+    showMsg: state.addressListReducer.showMsg,
   };
 };
 Addresses = connect(mapStateToProps)(Addresses);

@@ -71,3 +71,8 @@ export const updatedAddress = () => {
     type: c.UPDATED_ADDRESS
   }
 }
+export const resetMessage = () => {
+  return {
+    type: c.RESET_MESSAGE
+  }
+}
