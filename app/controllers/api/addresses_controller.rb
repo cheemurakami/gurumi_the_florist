@@ -26,6 +26,12 @@ module Api
       json_response(@address)
     end
 
+    def update
+      @address = Address.find(params[:id])
+      @address.update!(address_params)
+      json_response(@address)
+    end
+
     private
      def address_params
       params.permit(:first_name, :last_name, :street,:apt_ste_unit, :city, :state, :zip, :phone)

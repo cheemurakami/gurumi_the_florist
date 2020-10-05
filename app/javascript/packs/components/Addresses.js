@@ -20,13 +20,19 @@ function Addresses(props) {
     if (props.showAddedMsg) {
       return (
         <div className="address-msg">
-          <h5>Added Address!</h5>
+          <h5>Address Added!</h5>
         </div>
       );
     } else if (props.showDeletedMsg) {
       return (
         <div className="address-msg">
-          <h5>Deleted Address!</h5>
+          <h5>Address Deleted!</h5>
+        </div>
+      );
+    } else if (props.showUpdatedMsg) {
+      return (
+        <div className="address-msg">
+          <h5>Address Updated!</h5>
         </div>
       );
     }
@@ -38,7 +44,6 @@ function Addresses(props) {
     })
       .then((resp) => resp.json())
       .then((respData) => {
-        console.log(respData);
         setAddresses(respData);
         const action = a.deletedAddress();
         dispatch(action);
@@ -49,7 +54,7 @@ function Addresses(props) {
     <React.Fragment>
       <Container>
         <h4>Your Addresses</h4>
-        {showMessage()}
+        <Row>{showMessage()}</Row>
         <Row className="mt-3">
           <Col xs={12} sm={12} md={4} lg={4}>
             <Link to={"/newaddress"}>
@@ -106,6 +111,7 @@ const mapStateToProps = (state) => {
   return {
     showAddedMsg: state.addressListReducer.showAddedMsg,
     showDeletedMsg: state.addressListReducer.showDeletedMsg,
+    showUpdatedMsg: state.addressListReducer.showUpdatedMsg,
   };
 };
 Addresses = connect(mapStateToProps)(Addresses);

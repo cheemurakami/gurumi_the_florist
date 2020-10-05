@@ -216,7 +216,6 @@ function FlowerEditForm(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     showMsg: state.flowerListReducer.showMsg,
   };

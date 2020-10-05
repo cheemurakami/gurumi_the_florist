@@ -1,34 +1,79 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form, Button, Col } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import * as a from "../actions";
 
-function AddressEditForm() {
+function AddressEditForm(props) {
   const [address, setAddress] = useState({});
   const { id } = useParams();
+  const { dispatch } = props;
 
   useEffect(() => {
-  console.log("Hellooooo")
     fetch(`/api/addresses/${id}`)
-    .then((resp) => resp.json())
-    .then((jsonifiedResp) => {
-      setAddress(jsonifiedResp);
-    });
+      .then((resp) => resp.json())
+      .then((jsonifiedResp) => {
+        setAddress(jsonifiedResp);
+      });
     return () => {};
   }, []);
+
+  const formSubmissionHandler = (e) => {
+    e.preventDefault();
+
+    const data = {
+      first_name: e.target.first_name.value,
+      last_name: e.target.last_name.value,
+      street: e.target.street.value,
+      apt_ste_unit: e.target.apt_ste_unit.value,
+      city: e.target.city.value,
+      state: e.target.state.value,
+      zip: e.target.zip.value,
+      phone: e.target.phone.value,
+    };
+
+    fetch(`/api/addresses/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((respData) => {
+        const action = a.updatedAddress();
+        dispatch(action);
+      });
+  };
+
+  const directToAddresses = () => {
+    if (props.showUpdatedMsg) {
+      return <Redirect to="/addresses" />;
+    }
+  };
 
   return (
     <React.Fragment>
       <Container>
-        <Form>
+        {directToAddresses()}
+        <Form onSubmit={formSubmissionHandler}>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>First Name</Form.Label>
-              <Form.Control type="text" name="first_name" defaultValue={address.first_name}/>
+              <Form.Control
+                type="text"
+                name="first_name"
+                defaultValue={address.first_name}
+              />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control type="text" name="last_name" defaultValue={address.last_name}/>
+              <Form.Control
+                type="text"
+                name="last_name"
+                defaultValue={address.last_name}
+              />
             </Form.Group>
           </Form.Row>
 
@@ -57,14 +102,17 @@ function AddressEditForm() {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>City</Form.Label>
-              <Form.Control type="text" name="city" defaultValue={address.city} />
+              <Form.Control
+                type="text"
+                name="city"
+                defaultValue={address.city}
+              />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>State</Form.Label>
               <Form.Control
                 as="select"
-                defaultValue="Choose..."
                 type="text"
                 name="state"
                 defaultValue={address.state}
@@ -126,14 +174,22 @@ function AddressEditForm() {
 
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Zip</Form.Label>
-              <Form.Control type="integer" name="zip" defaultValue={address.zip}/>
+              <Form.Control
+                type="integer"
+                name="zip"
+                defaultValue={address.zip}
+              />
             </Form.Group>
           </Form.Row>
 
           <Form.Row>
             <Form.Group controlId="formGridFirstName">
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control type="integer" name="phone" defaultValue={address.phone}/>
+              <Form.Control
+                type="integer"
+                name="phone"
+                defaultValue={address.phone}
+              />
             </Form.Group>
           </Form.Row>
 
@@ -154,4 +210,10 @@ function AddressEditForm() {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    showUpdatedMsg: state.addressListReducer.showUpdatedMsg,
+  };
+};
+AddressEditForm = connect(mapStateToProps)(AddressEditForm);
 export default AddressEditForm;

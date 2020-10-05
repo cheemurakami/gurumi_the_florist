@@ -10,6 +10,10 @@ export default (state = {}, action) => {
       return Object.assign({}, state, {
         showDeletedMsg: true,
       });
+    case c.UPDATED_ADDRESS:
+      return Object.assign({}, state, {
+        showUpdatedMsg: true,
+      });
     default:
       return state;
   }
