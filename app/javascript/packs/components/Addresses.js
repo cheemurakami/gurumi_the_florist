@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
+import DefaultBtn from "./DefaultBtn";
 
 function Addresses(props) {
   const [addresses, setAddresses] = useState([]);
@@ -101,11 +102,9 @@ function Addresses(props) {
                         </Button>
                       </span>
                       {!address.default && (
-                        <span>
-                          <Button variant="outline-secondary" className="mb-1">
-                            Set as default
-                          </Button>
-                        </span>
+                        <DefaultBtn 
+                          addressId={address.id}
+                        ></DefaultBtn>
                       )}
                     </p>
                   </div>

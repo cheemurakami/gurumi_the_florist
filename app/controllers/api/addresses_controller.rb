@@ -32,6 +32,14 @@ module Api
       json_response(@address)
     end
 
+    def set_default
+      @addresses = current_user.addresses
+      @addresses.update_all(default: false)
+      @address = Address.find(params[:id])
+      @address.update!(default: true)
+      json_response(@address)
+    end
+
     private
      def address_params
       params.permit(:first_name, :last_name, :street,:apt_ste_unit, :city, :state, :zip, :phone)
