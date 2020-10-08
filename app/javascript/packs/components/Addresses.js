@@ -13,7 +13,8 @@ function Addresses(props) {
     fetch("/api/addresses")
       .then((response) => response.json())
       .then((jsonifiedResponse) => {
-        setAddresses(jsonifiedResponse);
+        const action = a.changedAddressesState(jsonifiedResponse);
+        dispatch(action);
       });
   }, []);
 
@@ -68,49 +69,51 @@ function Addresses(props) {
               </div>
             </Link>
           </Col>
-          {addresses
-            .sort((a, b) => (a.default < b.default ? 1 : -1))
-            .map((address) => {
-              return (
-                <Col xs={12} sm={12} md={4} lg={3} key={address.id}>
-                  <div className="address">
-                    {ifDefault(address.default)}
-                    <p>
-                      {address.first_name} {address.last_name}
-                    </p>
-                    <p>
-                      <span>{address.street} </span>
-                      {address.apt_ste_unit && (
-                        <span>#{address.apt_ste_unit}</span>
-                      )}
-                    </p>
-                    <p>
-                      {address.city}, {address.state} {address.zip}
-                    </p>
-                    <p>Phone: {address.phone}</p>
-                    <p>
-                      <span>
-                        <Link to={`/editaddress/${address.id}`}>
+          {props.addresses &&
+            props.addresses
+              .sort((a, b) => (a.default < b.default ? 1 : -1))
+              .map((address) => {
+                return (
+                  <Col xs={12} sm={12} md={4} lg={3} key={address.id}>
+                    <div className="address">
+                      {ifDefault(address.default)}
+                      <p>
+                        {address.first_name} {address.last_name}
+                      </p>
+                      <p>
+                        <span>{address.street} </span>
+                        {address.apt_ste_unit && (
+                          <span>#{address.apt_ste_unit}</span>
+                        )}
+                      </p>
+                      <p>
+                        {address.city}, {address.state} {address.zip}
+                      </p>
+                      <p>Phone: {address.phone}</p>
+                      <p>
+                        <span>
+                          <Link to={`/editaddress/${address.id}`}>
+                            <Button
+                              variant="outline-secondary"
+                              className="mb-1"
+                            >
+                              Edit
+                            </Button>
+                          </Link>
+                        </span>{" "}
+                        <span onClick={() => deleteHandler(address.id)}>
                           <Button variant="outline-secondary" className="mb-1">
-                            Edit
+                            Remove
                           </Button>
-                        </Link>
-                      </span>{" "}
-                      <span onClick={() => deleteHandler(address.id)}>
-                        <Button variant="outline-secondary" className="mb-1">
-                          Remove
-                        </Button>
-                      </span>
-                      {!address.default && (
-                        <DefaultBtn 
-                          addressId={address.id}
-                        ></DefaultBtn>
-                      )}
-                    </p>
-                  </div>
-                </Col>
-              );
-            })}
+                        </span>
+                        {!address.default && (
+                          <DefaultBtn addressId={address.id}></DefaultBtn>
+                        )}
+                      </p>
+                    </div>
+                  </Col>
+                );
+              })}
         </Row>
       </Container>
     </React.Fragment>
@@ -120,6 +123,7 @@ function Addresses(props) {
 const mapStateToProps = (state) => {
   return {
     showMsg: state.addressListReducer.showMsg,
+    addresses: state.addressListReducer.addresses,
   };
 };
 Addresses = connect(mapStateToProps)(Addresses);

@@ -1,17 +1,20 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import * as a from "../actions";
 
 function DefaultBtn(props) {
   const id = props.addressId;
+  const { dispatch } = props;
 
-  const setDefaultBtn = (id) => {
-    console.log(id);
+  const changedAddressesStateBtn = (id) => {
     fetch(`/api/addresses/${id}/set_default`, {
       method: "PUT",
     })
       .then((resp) => resp.json())
       .then((respData) => {
-        console.log("Success:", respData);
+        const action = a.changedAddressesState(respData);
+        dispatch(action);
       });
   };
 
@@ -21,7 +24,7 @@ function DefaultBtn(props) {
         <Button
           variant="outline-secondary"
           className="mb-1"
-          onClick={() => setDefaultBtn(id)}
+          onClick={() => changedAddressesStateBtn(id)}
         >
           Set as default
         </Button>
@@ -30,4 +33,5 @@ function DefaultBtn(props) {
   );
 }
 
+DefaultBtn = connect()(DefaultBtn);
 export default DefaultBtn;

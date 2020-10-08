@@ -76,3 +76,9 @@ export const resetMessage = () => {
     type: c.RESET_MESSAGE,
   };
 };
+export const changedAddressesState = (addresses) => {
+  return {
+    type: c.CHANGED_ADDRESSES_STATE,
+    addresses,
+  };
+};

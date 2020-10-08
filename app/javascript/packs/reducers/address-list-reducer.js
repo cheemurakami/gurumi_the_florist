@@ -4,7 +4,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case c.ADDED_ADDRESS:
       return Object.assign({}, state, {
-        showMsg: "Address Added!"
+        showMsg: "Address Added!",
       });
     case c.DELETED_ADDRESS:
       return Object.assign({}, state, {
@@ -15,7 +15,11 @@ export default (state = {}, action) => {
         showMsg: "Address Updated",
       });
     case c.RESET_MESSAGE:
-      return {};
+      return Object.assign({}, state, {});
+    case c.CHANGED_ADDRESSES_STATE:
+      return Object.assign({}, state, {
+        addresses: action.addresses,
+      });
     default:
       return state;
   }

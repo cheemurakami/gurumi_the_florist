@@ -37,8 +37,10 @@ module Api
       @addresses.update_all(default: false)
       @address = Address.find(params[:id])
       @address.update!(default: true)
-      json_response(@address)
+      @addresses = current_user.addresses
+      json_response(@addresses)
     end
+
 
     private
      def address_params
