@@ -16,6 +16,7 @@ function Addresses(props) {
         const action = a.changedAddressesState(jsonifiedResponse);
         dispatch(action);
       });
+    return () => {};
   }, []);
 
   const showMessage = () => {
@@ -23,7 +24,7 @@ function Addresses(props) {
       setTimeout(() => {
         const action = a.resetMessage();
         dispatch(action);
-      }, 2000);
+      }, 1500);
       return (
         <div className="address-msg">
           <h5>{props.showMsg}</h5>

@@ -10,12 +10,15 @@ function AddressEditForm(props) {
   const { dispatch } = props;
 
   useEffect(() => {
+    let mounted = true;
     fetch(`/api/addresses/${id}`)
       .then((resp) => resp.json())
       .then((jsonifiedResp) => {
-        setAddress(jsonifiedResp);
+        if (mounted) {
+          setAddress(jsonifiedResp);
+        }
       });
-    return () => {};
+    return () => mounted = false;
   }, []);
 
   const formSubmissionHandler = (e) => {

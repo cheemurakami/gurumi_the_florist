@@ -19,7 +19,7 @@ export default (state = {}, action) => {
         showMsg: "Default Address Updated",
       });
     case c.RESET_MESSAGE:
-      return Object.assign({}, state, {});
+      return Object.assign({}, state, { showMsg: null });
     case c.CHANGED_ADDRESSES_STATE:
       return Object.assign({}, state, {
         addresses: action.addresses,
