@@ -20,8 +20,7 @@ module Api
       @address = Address.find_by(user_id: current_user.id, id: params[:id])
       @address.destroy
       @addresses = current_user.addresses
-      response = @addresses
-      json_response(response)
+      json_response(@addresses)
     end
 
     def show

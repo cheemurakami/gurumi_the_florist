@@ -57,25 +57,15 @@ function AddressEditForm(props) {
   };
 
   const setDefault = () => {
-    if (address && !address.default){
       return (
         <React.Fragment>
           <Form.Group id="formGridCheckbox">
-          <Form.Check type="checkbox" name="default" label="Set as default" />
+          <Form.Check type="checkbox" name="default" defaultChecked={address && address.default} label="Set as default" />
           </Form.Group>
         </React.Fragment>
       )
-    } else if (address && address.default){
-      return (
-        <React.Fragment>
-          <Form.Group id="formGridCheckbox">
-          <Form.Check type="checkbox" name="default" default="checked" label="Set as default" />
-          </Form.Group>
-        </React.Fragment>
-      )
-    }
   }
-  
+
   return (
     <React.Fragment>
       <Container>

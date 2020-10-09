@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -6,7 +6,6 @@ import * as a from "../actions";
 import DefaultBtn from "./DefaultBtn";
 
 function Addresses(props) {
-  const [addresses, setAddresses] = useState([]);
   const { dispatch } = props;
 
   useEffect(() => {
@@ -39,9 +38,10 @@ function Addresses(props) {
     })
       .then((resp) => resp.json())
       .then((respData) => {
-        setAddresses(respData);
         const action = a.deletedAddress();
         dispatch(action);
+        const action2 = a.changedAddressesState(respData);
+        dispatch(action2);
       });
   };
 
