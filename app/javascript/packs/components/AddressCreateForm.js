@@ -8,6 +8,7 @@ function AddressCreateForm(props) {
   const { dispatch } = props;
 
   const formSubmissionHandler = (e) => {
+    console.log(e.target.default.checked);
     e.preventDefault();
     const data = {
       first_name: e.target.first_name.value,
@@ -18,7 +19,7 @@ function AddressCreateForm(props) {
       state: e.target.state.value,
       zip: e.target.zip.value,
       phone: e.target.phone.value,
-      default: e.target.default.value,
+      default: e.target.default.checked,
     };
 
     fetch("/api/addresses", {
@@ -167,13 +168,10 @@ function AddressCreateForm(props) {
           Continue
         </Button>
         <Link to="/addresses">
-            <Button
-              variant="outline-secondary"
-              className="mb-1 mr-1"
-            >
-              Back
-            </Button>
-          </Link>
+          <Button variant="outline-secondary" className="mb-1 mr-1">
+            Back
+          </Button>
+        </Link>
       </Form>
     </Container>
   );

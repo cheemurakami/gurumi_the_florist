@@ -9,6 +9,9 @@ module Api
     end
 
     def create
+      if address_params[:default] == true
+        reset_default
+      end
       @address = Address.create!({user_id: current_user.id}.merge!(address_params))
       json_response(@address)
     end
@@ -33,8 +36,7 @@ module Api
     end
 
     def set_default
-      @addresses = current_user.addresses
-      @addresses.update_all(default: false)
+      reset_default
       @address = Address.find(params[:id])
       @address.update!(default: true)
       @addresses = current_user.addresses
@@ -45,6 +47,10 @@ module Api
     private
      def address_params
       params.permit(:first_name, :last_name, :street,:apt_ste_unit, :city, :state, :zip, :phone, :default)
+     end
+     
+     def reset_default
+      @addresses = current_user.addresses.update_all(default: false) 
      end
   end
 end
