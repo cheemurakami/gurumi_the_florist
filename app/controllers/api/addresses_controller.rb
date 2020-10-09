@@ -30,6 +30,9 @@ module Api
     end
 
     def update
+      if address_params[:default] == true
+        reset_default
+      end
       @address = Address.find(params[:id])
       @address.update!(address_params)
       json_response(@address)

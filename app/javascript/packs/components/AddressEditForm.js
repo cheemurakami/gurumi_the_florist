@@ -33,6 +33,7 @@ function AddressEditForm(props) {
       state: e.target.state.value,
       zip: e.target.zip.value,
       phone: e.target.phone.value,
+      default: e.target.default.checked,
     };
 
     fetch(`/api/addresses/${id}`, {
@@ -55,6 +56,26 @@ function AddressEditForm(props) {
     }
   };
 
+  const setDefault = () => {
+    if (address && !address.default){
+      return (
+        <React.Fragment>
+          <Form.Group id="formGridCheckbox">
+          <Form.Check type="checkbox" name="default" label="Set as default" />
+          </Form.Group>
+        </React.Fragment>
+      )
+    } else if (address && address.default){
+      return (
+        <React.Fragment>
+          <Form.Group id="formGridCheckbox">
+          <Form.Check type="checkbox" name="default" default="checked" label="Set as default" />
+          </Form.Group>
+        </React.Fragment>
+      )
+    }
+  }
+  
   return (
     <React.Fragment>
       <Container>
@@ -196,9 +217,7 @@ function AddressEditForm(props) {
             </Form.Group>
           </Form.Row>
 
-          <Form.Group id="formGridCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
+          {setDefault()}
 
           <Button
             variant="outline-secondary"
