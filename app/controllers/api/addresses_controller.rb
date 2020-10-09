@@ -44,7 +44,7 @@ module Api
 
     private
      def address_params
-      params.permit(:first_name, :last_name, :street,:apt_ste_unit, :city, :state, :zip, :phone)
+      params.permit(:first_name, :last_name, :street,:apt_ste_unit, :city, :state, :zip, :phone, :default)
      end
   end
 end

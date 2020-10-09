@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Form, Button, Col } from "react-bootstrap";
 import * as a from "../actions";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 function AddressCreateForm(props) {
   const { dispatch } = props;
@@ -18,6 +18,7 @@ function AddressCreateForm(props) {
       state: e.target.state.value,
       zip: e.target.zip.value,
       phone: e.target.phone.value,
+      default: e.target.default.value,
     };
 
     fetch("/api/addresses", {
@@ -39,6 +40,7 @@ function AddressCreateForm(props) {
       return <Redirect to="/addresses" />;
     }
   };
+
   return (
     <Container>
       {directToAddresses()}
@@ -158,12 +160,20 @@ function AddressCreateForm(props) {
         </Form.Row>
 
         <Form.Group id="formGridCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+          <Form.Check type="checkbox" name="default" label="Set as default" />
         </Form.Group>
 
         <Button variant="outline-secondary" className="mb-1 mr-1" type="submit">
           Continue
         </Button>
+        <Link to="/addresses">
+            <Button
+              variant="outline-secondary"
+              className="mb-1 mr-1"
+            >
+              Back
+            </Button>
+          </Link>
       </Form>
     </Container>
   );

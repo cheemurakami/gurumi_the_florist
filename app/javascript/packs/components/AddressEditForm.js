@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Form, Button, Col } from "react-bootstrap";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as a from "../actions";
 
@@ -207,6 +207,14 @@ function AddressEditForm(props) {
           >
             Continue
           </Button>
+          <Link to="/addresses">
+            <Button
+              variant="outline-secondary"
+              className="mb-1 mr-1"
+            >
+              Back
+            </Button>
+          </Link>
         </Form>
       </Container>
     </React.Fragment>
