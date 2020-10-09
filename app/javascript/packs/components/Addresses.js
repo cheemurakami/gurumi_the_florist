@@ -23,8 +23,7 @@ function Addresses(props) {
       setTimeout(() => {
         const action = a.resetMessage();
         dispatch(action);
-      }, 3000);
-
+      }, 2000);
       return (
         <div className="address-msg">
           <h5>{props.showMsg}</h5>

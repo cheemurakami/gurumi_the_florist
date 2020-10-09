@@ -71,6 +71,11 @@ export const updatedAddress = () => {
     type: c.UPDATED_ADDRESS,
   };
 };
+export const setDefault = () => {
+  return {
+    type: c.SET_DEFAULT,
+  };
+};
 export const resetMessage = () => {
   return {
     type: c.RESET_MESSAGE,

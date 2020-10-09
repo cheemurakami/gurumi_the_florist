@@ -13,6 +13,8 @@ function DefaultBtn(props) {
     })
       .then((resp) => resp.json())
       .then((respData) => {
+        const action2 = a.setDefault();
+        dispatch(action2);
         const action = a.changedAddressesState(respData);
         dispatch(action);
       });
