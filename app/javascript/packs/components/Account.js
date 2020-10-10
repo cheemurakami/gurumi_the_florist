@@ -16,9 +16,11 @@ function Account() {
             </Link>
           </Col>
           <Col xs={12} sm={12} md={4} lg={4}>
-            <div className="acc-btn">
-              <p>Your Payments</p>
-            </div>
+            <Link to={"/payments"}>
+              <div className="acc-btn">
+                <p>Your Payments</p>
+              </div>
+            </Link>
           </Col>
           <Col xs={12} sm={12} md={4} lg={4}>
             <div className="acc-btn">
