@@ -9,22 +9,22 @@ class Store extends React.Component {
   };
 
   async componentDidMount() {
-    // Get a client token for authorization from your server
-    const response = await fetch("server.test/client_token");
-    const clientToken = await response.json(); // If returned as JSON string
-
+    // Get a client token for authorization from -
+    const response = await fetch("api/braintrees/client_token");
+    const responseObject = await response.json(); // If returned as JSON string
     this.setState({
-      clientToken,
+      clientToken: responseObject.client_token,
     });
   }
 
-  async buy() {
+  async save() {
     // Send the nonce to your server
     const { nonce } = await this.instance.requestPaymentMethod();
     await fetch(`server.test/purchase/${nonce}`);
   }
 
   render() {
+    console.log(this.state.clientToken)
     if (!this.state.clientToken) {
       return (
         <div>
@@ -38,7 +38,7 @@ class Store extends React.Component {
             options={{ authorization: this.state.clientToken }}
             onInstance={(instance) => (this.instance = instance)}
           />
-          <button onClick={this.buy.bind(this)}>Buy</button>
+          <button onClick={this.save.bind(this)}>Save</button>
         </div>
       );
     }

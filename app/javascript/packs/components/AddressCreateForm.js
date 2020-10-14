@@ -8,7 +8,6 @@ function AddressCreateForm(props) {
   const { dispatch } = props;
 
   const formSubmissionHandler = (e) => {
-    console.log(e.target.default.checked);
     e.preventDefault();
     const data = {
       first_name: e.target.first_name.value,
@@ -24,16 +23,14 @@ function AddressCreateForm(props) {
 
     fetch("/api/addresses", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(data), //obj->json
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        const action = a.addedAddress();
-        dispatch(action);
-      });
+    }).then(() => {
+      const action = a.addedAddress();
+      dispatch(action)
+    }); 
   };
 
   const directToAddresses = () => {

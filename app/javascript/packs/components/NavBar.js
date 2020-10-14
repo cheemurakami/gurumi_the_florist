@@ -27,7 +27,6 @@ function NavBar(props) {
 
   const searchHandler = (event) => {
     event.preventDefault();
-
     fetch(`/api/flowers?search=${event.target.search.value}`)
       .then((response) => response.json())
       .then((jsonifiedResponse) => {

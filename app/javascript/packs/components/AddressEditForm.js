@@ -43,8 +43,7 @@ function AddressEditForm(props) {
         "Content-Type": "application/json",
       },
     })
-      .then((resp) => resp.json())
-      .then((respData) => {
+      .then(() => {
         const action = a.updatedAddress();
         dispatch(action);
       });

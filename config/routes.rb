@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     patch '/cart_update/:id' => 'cart_items#update'
     resources :addresses
     put '/addresses/:id/set_default' => 'addresses#set_default'
+    get '/braintrees/client_token' => 'braintrees#client_token'
   end
   
   #at btm
