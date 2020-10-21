@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import * as a from '../actions'
 import FavoriteList from './FavoriteList'
 import Cart from './Cart'
-import Checkout from './Checkout'
+import SelectAddress from './SelectAddress'
 import Account from './Account'
 import Addresses from './Addresses'
 import AddressCreateForm from './AddressCreateForm'
@@ -76,8 +76,8 @@ function App(props) {
         <Route path="/cart">
           <Cart />
         </Route>
-        <Route path="/checkout">
-          <Checkout />
+        <Route path="/select_address">
+          <SelectAddress />
         </Route>
         <Route path="/account">
           <Account />
