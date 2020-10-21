@@ -1,5 +1,6 @@
 import React from "react";
 import DropIn from "braintree-web-drop-in-react";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 
 class Store extends React.Component {
   instance;
@@ -24,25 +25,30 @@ class Store extends React.Component {
   }
 
   render() {
-    console.log(this.state.clientToken)
     if (!this.state.clientToken) {
       return (
-        <div>
-          <h1>Loading...</h1>
-        </div>
+        <Container>
+          <div>
+            <h4>Loading...</h4>
+          </div>
+        </Container>
       );
     } else {
       return (
-        <div>
-          <DropIn
-            options={{ authorization: this.state.clientToken }}
-            onInstance={(instance) => (this.instance = instance)}
-          />
-          <button onClick={this.save.bind(this)}>Save</button>
-        </div>
+        <Container>
+          <div>
+            <DropIn
+              options={{ authorization: this.state.clientToken }}
+              onInstance={(instance) => (this.instance = instance)}
+            />
+            <Button variant="outline-secondary" onClick={this.save.bind(this)}>
+              Save
+            </Button>
+          </div>
+        </Container>
       );
     }
   }
 }
 
-export default Store
+export default Store;

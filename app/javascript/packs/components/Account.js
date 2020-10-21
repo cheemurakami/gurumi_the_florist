@@ -27,6 +27,20 @@ function Account() {
               <p>Your Profile</p>
             </div>
           </Col>
+          <Col xs={12} sm={12} md={4} lg={4}>
+            <Link to={"/cart"}>
+              <div className="acc-btn">
+                <p>Your Cart</p>
+              </div>
+            </Link>
+          </Col>
+          <Col xs={12} sm={12} md={4} lg={4}>
+            <Link to={"/favorites"}>
+              <div className="acc-btn">
+                <p>Your Favorite List</p>
+              </div>
+            </Link>
+          </Col>
         </Row>
       </Container>
     </React.Fragment>
