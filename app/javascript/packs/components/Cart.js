@@ -70,7 +70,7 @@ function Cart(props) {
     fetch("/api/cart_items")
     .then((resp) => resp.json())
     .then((jsonResp) => {
-      const action = a.checkingOut(jsonResp);
+      const action = a.loadedFlowersInCart(jsonResp);
       dispatch(action);
     })
   }
@@ -183,7 +183,6 @@ function Cart(props) {
 const mapStateToProps = (state) => {
   return {
     flowers: state.flowersInCartListReducer.flowers,
-    cartItems: state.checkingOutReducer.cartItems,
   };
 };
 

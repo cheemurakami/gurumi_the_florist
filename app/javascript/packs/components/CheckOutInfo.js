@@ -10,7 +10,7 @@ function CheckOutInfo(props) {
     fetch("/api/cart_items")
       .then((resp) => resp.json())
       .then((jsonResp) => {
-        const action = a.checkingOut(jsonResp);
+        const action = a.loadedFlowersInCart(jsonResp);
         dispatch(action);
       });
     return () => {};
@@ -28,15 +28,15 @@ function CheckOutInfo(props) {
         </Card>
       </Row>
       <Row>
-        {props.cartItems &&
-          props.cartItems.map((cartItem) => {
+        {props.flowers &&
+          props.flowers.map((flower) => {
             return (
-              <Card key={cartItem.id} className="mt-4" style={{ width: "18rem" }}>
+              <Card key={flower.id} className="mt-4" style={{ width: "18rem" }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                   <Card.Title>Card Title</Card.Title>
                   <Card.Text>Price</Card.Text>
-                  <Card.Text>Qty: {cartItem.qty}</Card.Text>
+                  <Card.Text>Qty: {flower.qty}</Card.Text>
                   <Button variant="outline-secondary" className="mb-1">
                     Remove
                   </Button>
@@ -49,9 +49,8 @@ function CheckOutInfo(props) {
   );
 }
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    cartItems: state.checkingOutReducer.cartItems,
+    flowers: state.flowersInCartListReducer.flowers,
   };
 };
 

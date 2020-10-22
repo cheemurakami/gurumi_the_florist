@@ -3,7 +3,6 @@ import loginStatusReducer from './login-status-reducer'
 import favFlowerListReducer from './fav-flower-list-reducer'
 import flowersInCartListReducer from './flowers-in-cart-list-reducer'
 import addressListReducer from './address-list-reducer'
-import checkingOutReducer from './checking-out-reducer'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers(
@@ -13,7 +12,6 @@ const rootReducer = combineReducers(
     favFlowerListReducer,
     flowersInCartListReducer,
     addressListReducer,
-    checkingOutReducer,
   }
 );
 
