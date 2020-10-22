@@ -46,11 +46,6 @@ module Api
       end
     end
 
-    def user_cart_items
-      @cart_items = current_user.cart_items.order(updated_at: :desc)
-      json_response(@cart_items)
-    end
-
     def flower_hash(cart_item)
       flower = cart_item.flower
       {

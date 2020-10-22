@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import * as a from "../actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";

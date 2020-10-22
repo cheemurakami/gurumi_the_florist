@@ -7,9 +7,10 @@ function CheckOutInfo(props) {
   const { dispatch } = props;
 
   useEffect(() => {
-    fetch("/api/cart_items")
+    fetch("/api/cart")
       .then((resp) => resp.json())
       .then((jsonResp) => {
+        console.log(jsonResp);
         const action = a.loadedFlowersInCart(jsonResp);
         dispatch(action);
       });
@@ -18,6 +19,7 @@ function CheckOutInfo(props) {
 
   return (
     <React.Fragment>
+      {console.log(props.flowers)}
       <Row>
         <Card style={{ width: "18rem" }}>
           <Card.Body>
@@ -32,10 +34,13 @@ function CheckOutInfo(props) {
           props.flowers.map((flower) => {
             return (
               <Card key={flower.id} className="mt-4" style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img
+                  variant="top"
+                  src={flower.flower_photos[0] && flower.flower_photos[0].url}
+                />
                 <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>Price</Card.Text>
+                  <Card.Title>{flower.title}</Card.Title>
+                  <Card.Text>${flower.price}</Card.Text>
                   <Card.Text>Qty: {flower.qty}</Card.Text>
                   <Button variant="outline-secondary" className="mb-1">
                     Remove

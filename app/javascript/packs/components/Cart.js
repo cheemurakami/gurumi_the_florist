@@ -67,13 +67,13 @@ function Cart(props) {
   };
 
   const showCartItems = () => {
-    fetch("/api/cart_items")
-    .then((resp) => resp.json())
-    .then((jsonResp) => {
-      const action = a.loadedFlowersInCart(jsonResp);
-      dispatch(action);
-    })
-  }
+    fetch("/api/cart")
+      .then((resp) => resp.json())
+      .then((jsonResp) => {
+        const action = a.loadedFlowersInCart(jsonResp);
+        dispatch(action);
+      });
+  };
 
   const cartDetail = () => {
     if (props.flowers && props.flowers.length > 0) {
@@ -136,15 +136,20 @@ function Cart(props) {
             );
           })}
           <Row>
-            <Col md={{ span: 4, offset
-              : 4 }} style={{ textAlign: "right" }}>
+            <Col md={{ span: 4, offset: 4 }} style={{ textAlign: "right" }}>
               <h5>
                 Subtotal: {itemCounter()} ${totalPrice()}
               </h5>
             </Col>
             <Col md={4} style={{ textAlign: "right" }}>
               <Link to="/select_address">
-                <Button variant="outline-secondary" className="btn" onClick={() => {showCartItems()}}>
+                <Button
+                  variant="outline-secondary"
+                  className="btn"
+                  onClick={() => {
+                    showCartItems();
+                  }}
+                >
                   Proceed to checkout
                 </Button>
               </Link>
