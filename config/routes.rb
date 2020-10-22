@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/cart' => 'cart_items#index'
     delete '/cart_delete/:id' => 'cart_items#delete'
     put '/cart_update/:id' => 'cart_items#update'
+    get '/cart_items' => 'cart_items#user_cart_items'
     resources :addresses
     put '/addresses/:id/set_default' => 'addresses#set_default'
     get '/braintrees/client_token' => 'braintrees#client_token'

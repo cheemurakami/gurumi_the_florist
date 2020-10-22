@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import FavoriteList from "./FavoriteList";
 import RemoveFromCartBtn from "./RemoveFromCartBtn";
 import { Container, Image, Row, Col, Form, Button } from "react-bootstrap";
@@ -65,6 +65,15 @@ function Cart(props) {
         dispatch(action);
       });
   };
+
+  const showCartItems = () => {
+    fetch("/api/cart_items")
+    .then((resp) => resp.json())
+    .then((jsonResp) => {
+      const action = a.checkingOut(jsonResp);
+      dispatch(action);
+    })
+  }
 
   const cartDetail = () => {
     if (props.flowers && props.flowers.length > 0) {
@@ -135,7 +144,7 @@ function Cart(props) {
             </Col>
             <Col md={4} style={{ textAlign: "right" }}>
               <Link to="/select_address">
-                <Button variant="outline-secondary" className="btn">
+                <Button variant="outline-secondary" className="btn" onClick={() => {showCartItems()}}>
                   Proceed to checkout
                 </Button>
               </Link>
@@ -174,6 +183,7 @@ function Cart(props) {
 const mapStateToProps = (state) => {
   return {
     flowers: state.flowersInCartListReducer.flowers,
+    cartItems: state.checkingOutReducer.cartItems,
   };
 };
 

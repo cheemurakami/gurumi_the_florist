@@ -87,3 +87,9 @@ export const changedAddressesState = (addresses) => {
     addresses,
   };
 };
+export const checkingOut = (cartItems) => {
+  return {
+    type: c.CHECKING_OUT,
+    cartItems,
+  };
+};
