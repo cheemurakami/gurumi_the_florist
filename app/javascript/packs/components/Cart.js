@@ -127,7 +127,8 @@ function Cart(props) {
             );
           })}
           <Row>
-            <Col md={{ span: 4, offset: 4 }} style={{ textAlign: "right" }}>
+            <Col md={{ span: 4, offset
+              : 4 }} style={{ textAlign: "right" }}>
               <h5>
                 Subtotal: {itemCounter()} ${totalPrice()}
               </h5>

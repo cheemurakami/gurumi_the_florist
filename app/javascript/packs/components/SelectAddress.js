@@ -53,14 +53,12 @@ function SelectAddress(props) {
                       <p>Phone: {address.phone}</p>
                       <p>
                         <span>
-                          <Link to={`/editaddress/${address.id}`}>
                             <Button
                               variant="outline-secondary"
                               className="mb-1"
                             >
                               Deliver to this address
                             </Button>
-                          </Link>
                         </span>{" "}
                       </p>
                     </div>
