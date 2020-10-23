@@ -17,15 +17,26 @@ function CheckOutInfo(props) {
     return () => {};
   }, []);
 
+  const subTotal = () => {
+    if (props.flowers) {
+      const totalPrices = props.flowers.map((flower) => {
+        return flower.total_price;
+      });
+      return totalPrices.reduce((acc, cur) => {
+        return acc + cur;
+      });
+    }
+  };
+
   return (
     <React.Fragment>
       {console.log(props.flowers)}
       <Row>
         <Card style={{ width: "18rem" }}>
           <Card.Body>
-            <Card.Text>Order Subtotal:</Card.Text>
+            <Card.Text>Order Subtotal: ${subTotal()}</Card.Text>
             <Card.Text>Estimated Tax:</Card.Text>
-            <Card.Title>Estimated Subtotal:</Card.Title>
+            <Card.Title>Estimated Subtotal:${subTotal()}</Card.Title>
           </Card.Body>
         </Card>
       </Row>
