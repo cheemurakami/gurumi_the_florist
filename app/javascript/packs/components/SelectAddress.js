@@ -22,7 +22,7 @@ function SelectAddress(props) {
     <div>
       <Container>
         <Row>
-          <Col md={9}>
+          <Col md={8}>
             <h4>Select a shipping address</h4>
             <hr />
             <Row className="mt-3">
@@ -69,7 +69,7 @@ function SelectAddress(props) {
                   })}
             </Row>
           </Col>
-          <Col md={3}>
+          <Col md={4}>
             <CheckOutInfo />
           </Col>
         </Row>

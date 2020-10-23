@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Card, Button } from "react-bootstrap";
+import { Row, Col, Card, Button, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as a from "../actions";
 
@@ -10,7 +10,6 @@ function CheckOutInfo(props) {
     fetch("/api/cart")
       .then((resp) => resp.json())
       .then((jsonResp) => {
-        console.log(jsonResp);
         const action = a.loadedFlowersInCart(jsonResp);
         dispatch(action);
       });
@@ -30,13 +29,12 @@ function CheckOutInfo(props) {
 
   return (
     <React.Fragment>
-      {console.log(props.flowers)}
       <Row>
         <Card style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Text>Order Subtotal: ${subTotal()}</Card.Text>
             <Card.Text>Estimated Tax:</Card.Text>
-            <Card.Title>Estimated Subtotal:${subTotal()}</Card.Title>
+            <Card.Text>Estimated Subtotal:${subTotal()}</Card.Text>
           </Card.Body>
         </Card>
       </Row>
@@ -44,19 +42,28 @@ function CheckOutInfo(props) {
         {props.flowers &&
           props.flowers.map((flower) => {
             return (
-              <Card key={flower.id} className="mt-4" style={{ width: "18rem" }}>
-                <Card.Img
-                  variant="top"
-                  src={flower.flower_photos[0] && flower.flower_photos[0].url}
-                />
-                <Card.Body>
-                  <Card.Title>{flower.title}</Card.Title>
-                  <Card.Text>${flower.price}</Card.Text>
-                  <Card.Text>Qty: {flower.qty}</Card.Text>
-                  <Button variant="outline-secondary" className="mb-1">
-                    Remove
-                  </Button>
-                </Card.Body>
+              <Card
+                key={flower.id}
+                className="mt-4"
+                style={{ padding: "auto", width: "18rem" }}
+              >
+                <Row>
+                  <Col className="pt-3 pb-3">
+                    <Image
+                      variant="top"
+                      style={{ padding: 10, width: 100, height: 100 }}
+                      src={
+                        flower.flower_photos[0] && flower.flower_photos[0].url
+                      }
+                    />
+                  </Col>
+                  <Col className="pt-4 pb-3 card-checkout">
+                    <Card.Text>{flower.title}</Card.Text>
+                    <Card.Text>Price: ${flower.price}</Card.Text>
+                    <Card.Text>Qty: {flower.qty}</Card.Text>
+                    <Card.Text className="remove-checkout" onClick={(() => console.log("REMOVE CLICKED"))}>Remove</Card.Text>
+                  </Col>
+                </Row>
               </Card>
             );
           })}
