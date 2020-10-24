@@ -52,7 +52,6 @@ function SelectAddress(props) {
                           <p>
                             {address.city}, {address.state} {address.zip}
                           </p>
-                          <p>Phone: {address.phone}</p>
                           <p>
                             <span>
                               <Button

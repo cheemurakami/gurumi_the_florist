@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Row, Col, Card, Button, Image } from "react-bootstrap";
+import { Row, Col, Card, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as a from "../actions";
+import RemoveFromCartBtn from "./RemoveFromCartBtn";
 
 function CheckOutInfo(props) {
   const { dispatch } = props;
@@ -34,7 +35,7 @@ function CheckOutInfo(props) {
           <Card.Body>
             <Card.Text>Order Subtotal: ${subTotal()}</Card.Text>
             <Card.Text>Estimated Tax:</Card.Text>
-            <Card.Text>Estimated Subtotal:${subTotal()}</Card.Text>
+            <Card.Text>Estimated Subtotal: ${subTotal()}</Card.Text>
           </Card.Body>
         </Card>
       </Row>
@@ -61,7 +62,10 @@ function CheckOutInfo(props) {
                     <Card.Text>{flower.title}</Card.Text>
                     <Card.Text>Price: ${flower.price}</Card.Text>
                     <Card.Text>Qty: {flower.qty}</Card.Text>
-                    <Card.Text className="remove-checkout" onClick={(() => console.log("REMOVE CLICKED"))}>Remove</Card.Text>
+                    <RemoveFromCartBtn
+                      flowerId={flower.id}
+                      comp={"checkOutInfo"}
+                    ></RemoveFromCartBtn>
                   </Col>
                 </Row>
               </Card>
