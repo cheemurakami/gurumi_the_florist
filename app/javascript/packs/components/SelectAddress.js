@@ -4,6 +4,7 @@ import * as a from "../actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import CheckOutInfo from "./CheckOutInfo";
+import SelectAddressBtn from "./SelectAddressBtn";
 
 function SelectAddress(props) {
   const { dispatch } = props;
@@ -54,13 +55,10 @@ function SelectAddress(props) {
                           </p>
                           <p>
                             <span>
-                              <Button
-                                variant="outline-secondary"
-                                className="mb-1"
-                              >
-                                Deliver to this address
-                              </Button>
-                            </span>{" "}
+                              <SelectAddressBtn
+                                addressId={address.id}
+                              ></SelectAddressBtn>
+                            </span>
                           </p>
                         </div>
                       </Col>
