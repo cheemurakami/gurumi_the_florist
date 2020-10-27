@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function SelectAddressBtn(props) {
   const { addressId } = props;
@@ -11,8 +12,15 @@ function SelectAddressBtn(props) {
 
   return (
     <React.Fragment>
-      <FontAwesomeIcon icon={faTruck} className="icon" onClick={() => selectedAddress()}/>
-     
+      <Link to={"/selectpayment"}>
+        <Button
+          variant="outline-secondary"
+          className="btn"
+          onClick={() => selectedAddress()}
+        >
+          <FontAwesomeIcon icon={faTruck} className="icon" /> <span className="delivery-btn">Select</span>
+        </Button>
+      </Link>
     </React.Fragment>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import FavoriteList from "./FavoriteList";
 import RemoveFromCartBtn from "./RemoveFromCartBtn";
 import { Container, Image, Row, Col, Form, Button } from "react-bootstrap";

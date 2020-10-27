@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import * as a from "../actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -39,7 +39,7 @@ function SelectAddress(props) {
                   .sort((a, b) => (a.default < b.default ? 1 : -1))
                   .map((address) => {
                     return (
-                      <Col xs={12} sm={12} md={4} lg={3} key={address.id}>
+                      <Col xs={12} sm={12} md={4} lg={4} key={address.id}>
                         <div className="address">
                           <p>
                             {address.first_name} {address.last_name}
