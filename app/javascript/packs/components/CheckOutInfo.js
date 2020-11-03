@@ -31,9 +31,11 @@ function CheckOutInfo(props) {
   return (
     <React.Fragment>
       <Row>
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "18rem" }} className="card-checkout">
           <Card.Body>
+            <Card.Text>Delivery Date: </Card.Text>
             <Card.Text>Order Subtotal: ${subTotal()}</Card.Text>
+            <Card.Text>Delivery Cost:</Card.Text>
             <Card.Text>Estimated Tax:</Card.Text>
             <Card.Text>Estimated Subtotal: ${subTotal()}</Card.Text>
           </Card.Body>
