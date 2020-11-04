@@ -60,7 +60,7 @@ function CheckOutInfo(props) {
                       }
                     />
                   </Col>
-                  <Col className="pt-4 pb-3 card-checkout">
+                  <Col className="pt-4 pb-3 mr-3 card-checkout">
                     <Card.Text>{flower.title}</Card.Text>
                     <Card.Text>Price: ${flower.price}</Card.Text>
                     <Card.Text>Qty: {flower.qty}</Card.Text>

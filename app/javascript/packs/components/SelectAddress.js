@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import CheckOutInfo from "./CheckOutInfo";
 import SelectAddressBtn from "./SelectAddressBtn";
+import ChooseShippingOptions from "./ChooseShippingOptions";
 
 function SelectAddress(props) {
   const { dispatch } = props;
@@ -24,6 +25,7 @@ function SelectAddress(props) {
       <Container>
         <Row>
           <Col md={8}>
+            <ChooseShippingOptions />
             <h4>Select a shipping address</h4>
             <hr />
             <Row className="mt-3">

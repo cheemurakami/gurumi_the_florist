@@ -12,7 +12,7 @@ function SelectAddressBtn(props) {
 
   return (
     <React.Fragment>
-      <Link to={"/shippingoptions"}>
+      <Link to={"/payments"}>
         <Button
           variant="outline-secondary"
           className="btn"

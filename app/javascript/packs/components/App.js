@@ -41,7 +41,6 @@ function App(props) {
         const action = a.checkedLoginStatus(currentUser);
         dispatch(action);
       });
-      
   }
 
   useEffect(() => {
