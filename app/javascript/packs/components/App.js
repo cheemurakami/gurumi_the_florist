@@ -98,7 +98,7 @@ function App(props) {
         <Route path="/selectpayment">
           <SelectPayment />
         </Route>
-        <Route path="/shippingoptions">
+        <Route path="/shipping_options">
           <ChooseShippingOptions />
         </Route>
         <Route path="/">

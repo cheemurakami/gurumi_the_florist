@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import * as a from "../actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import CheckOutInfo from "./CheckOutInfo";
 import SelectAddressBtn from "./SelectAddressBtn";
-import ChooseShippingOptions from "./ChooseShippingOptions";
 
 function SelectAddress(props) {
   const { dispatch } = props;
@@ -22,10 +20,8 @@ function SelectAddress(props) {
 
   return (
     <div>
-      <Container>
-        <Row>
+        <Row className="mt-5">
           <Col md={8}>
-            <ChooseShippingOptions />
             <h4>Select a shipping address</h4>
             <hr />
             <Row className="mt-3">
@@ -68,11 +64,8 @@ function SelectAddress(props) {
                   })}
             </Row>
           </Col>
-          <Col md={4}>
-            <CheckOutInfo />
-          </Col>
+          
         </Row>
-      </Container>
     </div>
   );
 }

@@ -142,7 +142,7 @@ function Cart(props) {
               </h5>
             </Col>
             <Col md={4} style={{ textAlign: "right" }}>
-              <Link to="/select_address">
+              <Link to="/shipping_options">
                 <Button
                   variant="outline-secondary"
                   className="btn"

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Container, Row, ButtonGroup, ToggleButton } from "react-bootstrap";
+import { Row, Col, ButtonGroup, ToggleButton } from "react-bootstrap";
+import CheckOutInfo from "./CheckOutInfo";
+import SelectAddress from "./SelectAddress";
 
 function ChooseShippingOptions() {
   const [radioValue, setRadioValue] = useState("pickup");
@@ -8,30 +10,46 @@ function ChooseShippingOptions() {
     { name: "Delivery", value: "delivery" },
   ];
 
+  const showSelectAddress = () => {
+    if (radioValue === "delivery") {
+      return (
+        <div>
+          <SelectAddress />
+        </div>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
-      <h4>Choose your shipping options</h4>
-      <hr />
-      <Container>
-        <Row className="mb-5 mt-5 pl-5">
-          <ButtonGroup toggle>
-            {radios.map((radio, idx) => (
-              <ToggleButton
-                key={idx}
-                type="radio"
-                variant="secondary"
-                name={radio.name}
-                value={radio.value}
-                checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
-                style={{ paddingLeft: 50, paddingRight: 50 }}
-              >
-                {radio.name}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
-        </Row>
-      </Container>
+      <Row className="ml-5">
+        <Col md={8}>
+          <h4>Choose your shipping options</h4>
+          <hr />
+          <Row className="mb-5 mt-5 pl-5">
+            <ButtonGroup toggle>
+              {radios.map((radio, idx) => (
+                <ToggleButton
+                  key={idx}
+                  type="radio"
+                  variant="secondary"
+                  name={radio.name}
+                  value={radio.value}
+                  checked={radioValue === radio.value}
+                  onChange={(e) => setRadioValue(e.currentTarget.value)}
+                  style={{ paddingLeft: 50, paddingRight: 50 }}
+                >
+                  {radio.name}
+                </ToggleButton>
+              ))}
+            </ButtonGroup>
+            {showSelectAddress()}
+          </Row>
+        </Col>
+        <Col md={4}>
+          <CheckOutInfo />
+        </Col>
+      </Row>
     </React.Fragment>
   );
 }
