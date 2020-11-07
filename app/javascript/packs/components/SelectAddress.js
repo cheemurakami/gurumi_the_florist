@@ -53,7 +53,7 @@ function SelectAddress(props) {
                       <p>
                         <span>
                           <SelectAddressBtn
-                            addressId={address.id}
+                            address={address}
                           ></SelectAddressBtn>
                         </span>
                       </p>

@@ -7,18 +7,11 @@ import { connect } from "react-redux";
 import * as a from "../actions";
 
 function SelectAddressBtn(props) {
-  const { addressId } = props;
-  const { dispatch } = props;
+  const { dispatch, address } = props;
 
-  const selectedAddress = (id) => {
-    fetch(`/api/addresses/${id}`, {
-      method: "GET"
-    })
-    .then((resp) => resp.json())
-    .then((respData) => {
-      const action = a.selectedAddressState(respData);
-      dispatch(action);
-    })
+  const selectedAddress = () => {
+    const action = a.selectedAddressState(address);
+    dispatch(action);
   };
 
   return (
@@ -27,9 +20,10 @@ function SelectAddressBtn(props) {
         <Button
           variant="outline-secondary"
           className="btn"
-          onClick={() => selectedAddress(addressId)}
+          onClick={() => selectedAddress()}
         >
-          <FontAwesomeIcon icon={faTruck} className="icon" /> <span className="delivery-btn">Select</span>
+          <FontAwesomeIcon icon={faTruck} className="icon" />{" "}
+          <span className="delivery-btn">Select</span>
         </Button>
       </Link>
     </React.Fragment>

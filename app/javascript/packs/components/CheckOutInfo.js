@@ -86,7 +86,6 @@ function CheckOutInfo(props) {
   );
 }
 const mapStateToProps = (state) => {
-  console.log(state.addressReducer.address);
   return {
     flowers: state.flowersInCartListReducer.flowers,
     address: state.addressReducer.address,
