@@ -17,7 +17,7 @@ function FlowerDetail(props) {
       method: "DELETE",
     })
       .then((response) => response.json())
-      .then((responseData) => {
+      .then(() => {
         const action = a.deletedFlower();
         dispatch(action);
       });

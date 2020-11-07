@@ -87,4 +87,10 @@ export const changedAddressesState = (addresses) => {
     addresses,
   };
 };
+export const selectedAddressState = (address) => {
+  return {
+    type: c.SELECTED_ADDRESS_STATE,
+    address,
+  };
+};
 

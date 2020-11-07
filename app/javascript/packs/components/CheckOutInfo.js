@@ -28,6 +28,13 @@ function CheckOutInfo(props) {
     }
   };
 
+  const displayAddress = () => {
+    if (props.address) {
+      const deliveryAddress = props.address.street;
+      return <Card.Text>{deliveryAddress}</Card.Text>;
+    }
+  };
+
   return (
     <React.Fragment>
       <Row>
@@ -38,6 +45,7 @@ function CheckOutInfo(props) {
             <Card.Text>Delivery Cost:</Card.Text>
             <Card.Text>Estimated Tax:</Card.Text>
             <Card.Text>Estimated Subtotal: ${subTotal()}</Card.Text>
+            {displayAddress()}
           </Card.Body>
         </Card>
       </Row>
@@ -78,8 +86,10 @@ function CheckOutInfo(props) {
   );
 }
 const mapStateToProps = (state) => {
+  console.log(state.addressReducer.address);
   return {
     flowers: state.flowersInCartListReducer.flowers,
+    address: state.addressReducer.address,
   };
 };
 

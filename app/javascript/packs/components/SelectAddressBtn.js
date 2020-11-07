@@ -3,11 +3,22 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as a from "../actions";
 
 function SelectAddressBtn(props) {
   const { addressId } = props;
-  const selectedAddress = () => {
-    console.log(addressId);
+  const { dispatch } = props;
+
+  const selectedAddress = (id) => {
+    fetch(`/api/addresses/${id}`, {
+      method: "GET"
+    })
+    .then((resp) => resp.json())
+    .then((respData) => {
+      const action = a.selectedAddressState(respData);
+      dispatch(action);
+    })
   };
 
   return (
@@ -16,7 +27,7 @@ function SelectAddressBtn(props) {
         <Button
           variant="outline-secondary"
           className="btn"
-          onClick={() => selectedAddress()}
+          onClick={() => selectedAddress(addressId)}
         >
           <FontAwesomeIcon icon={faTruck} className="icon" /> <span className="delivery-btn">Select</span>
         </Button>
@@ -24,5 +35,5 @@ function SelectAddressBtn(props) {
     </React.Fragment>
   );
 }
-
+SelectAddressBtn = connect()(SelectAddressBtn);
 export default SelectAddressBtn;
