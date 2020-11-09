@@ -5,7 +5,8 @@ import * as a from "../actions";
 import RemoveFromCartBtn from "./RemoveFromCartBtn";
 
 function CheckOutInfo(props) {
-  const { dispatch } = props;
+  const { dispatch, address } = props;
+  const deliveryFee = 3;
 
   useEffect(() => {
     fetch("/api/cart")
@@ -22,16 +23,35 @@ function CheckOutInfo(props) {
       const totalPrices = props.flowers.map((flower) => {
         return flower.total_price;
       });
-      return totalPrices.reduce((acc, cur) => {
-        return acc + cur;
-      });
+      if (props.address) {
+        return totalPrices.reduce((acc, cur) => {
+          return acc + cur + deliveryFee;
+        });
+      } else {
+        return totalPrices.reduce((acc, cur) => {
+          return acc + cur;
+        });
+      }
     }
   };
 
   const displayAddress = () => {
-    if (props.address) {
-      const deliveryAddress = props.address.street;
-      return <Card.Text>{deliveryAddress}</Card.Text>;
+    if (address) {
+      const deliveryAddress =
+        address.street +
+        " " +
+        address.city +
+        ", " +
+        address.state +
+        " " +
+        address.zip;
+      const deliveryFee = 3;
+      return (
+        <>
+          <Card.Text>Ship to: {deliveryAddress}</Card.Text>
+          <Card.Text>Delivery fee: ${deliveryFee}</Card.Text>
+        </>
+      );
     }
   };
 
@@ -42,10 +62,9 @@ function CheckOutInfo(props) {
           <Card.Body>
             <Card.Text>Delivery Date: </Card.Text>
             <Card.Text>Order Subtotal: ${subTotal()}</Card.Text>
-            <Card.Text>Delivery Cost:</Card.Text>
+            {displayAddress()}
             <Card.Text>Estimated Tax:</Card.Text>
             <Card.Text>Estimated Subtotal: ${subTotal()}</Card.Text>
-            {displayAddress()}
           </Card.Body>
         </Card>
       </Row>
