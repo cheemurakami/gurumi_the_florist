@@ -1,12 +1,15 @@
 import React from "react";
 import DropIn from "braintree-web-drop-in-react";
-import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
+import ReviewOrder from "./ReviewOrder";
+import { Redirect, Link } from "react-router-dom";
 
 class Store extends React.Component {
   instance;
 
   state = {
     clientToken: null,
+    savedCC: false,
   };
 
   async componentDidMount() {
@@ -22,7 +25,16 @@ class Store extends React.Component {
     // Send the nonce to your server
     const { nonce } = await this.instance.requestPaymentMethod();
     await fetch(`server.test/purchase/${nonce}`);
+    this.setState({
+      savedCC: true,
+    });
   }
+
+  toReviewOrder = () => {
+    if (this.state.savedCC) {
+      return <Redirect to="/review_order" />;
+    }
+  };
 
   render() {
     if (!this.state.clientToken) {
@@ -44,6 +56,7 @@ class Store extends React.Component {
             <Button variant="outline-secondary" onClick={this.save.bind(this)}>
               Save
             </Button>
+            {this.toReviewOrder()}
           </div>
         </Container>
       );
