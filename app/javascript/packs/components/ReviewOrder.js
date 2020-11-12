@@ -1,10 +1,20 @@
-import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Container, Row, Col, Card, Image } from "react-bootstrap";
 import { connect } from "react-redux";
+import * as a from "../actions";
 
 function ReviewOrder(props) {
-  const { address } = props;
-  const deliveryFee = 3;
+  const { flowers, address } = props;
+
+  useEffect(() => {
+    fetch("/api/cart")
+      .then((resp) => resp.json())
+      .then((jsonResp) => {
+        const action = a.loadedFlowersInCart(jsonResp);
+        dispatch(action);
+      });
+    return () => {};
+  }, []);
 
   const displayShippingOption = () => {
     if (address) {
@@ -20,8 +30,8 @@ function ReviewOrder(props) {
         <>
           <Card style={{ width: "18rem" }} className="card-checkout">
             <Card.Body>
-              <Card.Text>Ship to: {deliveryAddress}</Card.Text>
-              <Card.Text>Delivery fee: ${deliveryFee}</Card.Text>
+              <Card.Text>Ship to:</Card.Text>
+              <Card.Text>{deliveryAddress}</Card.Text>
             </Card.Body>
           </Card>
         </>
@@ -51,7 +61,35 @@ function ReviewOrder(props) {
             <div>.....</div>
           </Col>
         </Row>
-        <Row className="mb-5 mt-5"></Row>
+        <Row>
+          {flowers &&
+            flowers.map((flower) => {
+              return (
+                <Card
+                  key={flower.id}
+                  className="mt-4"
+                  style={{ padding: "auto", width: "18rem" }}
+                >
+                  <Row>
+                    <Col className="pt-3 pb-3">
+                      <Image
+                        variant="top"
+                        style={{ padding: 10, width: 100, height: 100 }}
+                        src={
+                          flower.flower_photos[0] && flower.flower_photos[0].url
+                        }
+                      />
+                    </Col>
+                    <Col className="pt-4 pb-3 mr-3 card-checkout">
+                      <Card.Text>{flower.title}</Card.Text>
+                      <Card.Text>Price: ${flower.price}</Card.Text>
+                      <Card.Text>Qty: {flower.qty}</Card.Text>
+                    </Col>
+                  </Row>
+                </Card>
+              );
+            })}
+        </Row>
       </Container>
     </React.Fragment>
   );
@@ -59,6 +97,7 @@ function ReviewOrder(props) {
 
 const mapStateToProps = (state) => {
   return {
+    flowers: state.flowersInCartListReducer.flowers,
     address: state.addressReducer.address,
   };
 };
