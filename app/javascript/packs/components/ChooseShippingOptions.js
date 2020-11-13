@@ -6,11 +6,12 @@ import {
   ButtonGroup,
   ToggleButton,
 } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import CheckOutInfo from "./CheckOutInfo";
 import SelectAddress from "./SelectAddress";
 
 function ChooseShippingOptions() {
-  const [radioValue, setRadioValue] = useState("pickup");
+  const [radioValue, setRadioValue] = useState("");
   const radios = [
     { name: "Pick up", value: "pickup" },
     { name: "Delivery", value: "delivery" },
@@ -18,11 +19,9 @@ function ChooseShippingOptions() {
 
   const showSelectAddress = () => {
     if (radioValue === "delivery") {
-      return (
-        <div>
-          <SelectAddress />
-        </div>
-      );
+      return <SelectAddress />;
+    } else if (radioValue === "pickup") {
+      return <Redirect to="/payments" />;
     }
   };
 
