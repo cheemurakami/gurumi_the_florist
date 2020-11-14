@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as a from "../actions";
+import FavoriteList from "./FavoriteList";
 
 function ReviewOrder(props) {
-  const { flowers, address } = props;
+  const { flowers, address, dispatch } = props;
 
   useEffect(() => {
     fetch("/api/cart")
@@ -51,7 +52,7 @@ function ReviewOrder(props) {
         <h4>Review your order</h4>
         <hr />
         <Row className="mb-5 mt-5">
-          <Col md={6}>
+          <Col md={6} className="mb-5">
             <h5>Shipping option</h5>
             {displayShippingOption()}
           </Col>
@@ -67,7 +68,7 @@ function ReviewOrder(props) {
               return (
                 <Card
                   key={flower.id}
-                  className="mt-4"
+                  className="mt-4 mr-4"
                   style={{ padding: "auto", width: "18rem" }}
                 >
                   <Row>
@@ -89,6 +90,7 @@ function ReviewOrder(props) {
                 </Card>
               );
             })}
+          <FavoriteList />
         </Row>
       </Container>
     </React.Fragment>
