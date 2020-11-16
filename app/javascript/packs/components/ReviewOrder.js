@@ -46,6 +46,18 @@ function ReviewOrder(props) {
     }
   };
 
+  const cartItemReview = () => {
+    if (flowers) {
+      return (
+        <>
+          <Row className="ml-3">
+            <h5>{flowers.length} items in your cart</h5>
+          </Row>
+        </>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       <Container>
@@ -62,6 +74,7 @@ function ReviewOrder(props) {
             <div>.....</div>
           </Col>
         </Row>
+        <Row>{cartItemReview()}</Row>
         <Row>
           {flowers &&
             flowers.map((flower) => {
