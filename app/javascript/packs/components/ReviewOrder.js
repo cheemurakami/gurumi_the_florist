@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col, Card, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Image, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as a from "../actions";
 import FavoriteList from "./FavoriteList";
+import ProceedOrder from "./ProceedOrder";
 
 function ReviewOrder(props) {
   const { flowers, address, dispatch } = props;
@@ -64,47 +65,49 @@ function ReviewOrder(props) {
         <h4>Review your order</h4>
         <hr />
         <Row className="mb-5 mt-5">
-          <Col md={6} className="mb-5">
+          <Col md={4} className="mb-5">
             <h5>Shipping option</h5>
             {displayShippingOption()}
           </Col>
-          <Col md={6}>
+          <Col md={4}>
             <h5>Payment method</h5>
             <div>.....</div>
             <div>.....</div>
           </Col>
+          <Col>
+            {cartItemReview()}
+            {flowers &&
+              flowers.map((flower) => {
+                return (
+                  <Card
+                    key={flower.id}
+                    className="mt-4 mr-4"
+                    style={{ padding: "auto", width: "18rem" }}
+                  >
+                    <Row>
+                      <Col className="pt-3 pb-3">
+                        <Image
+                          variant="top"
+                          style={{ padding: 10, width: 100, height: 100 }}
+                          src={
+                            flower.flower_photos[0] &&
+                            flower.flower_photos[0].url
+                          }
+                        />
+                      </Col>
+                      <Col className="pt-4 pb-3 mr-3 card-checkout">
+                        <Card.Text>{flower.title}</Card.Text>
+                        <Card.Text>Price: ${flower.price}</Card.Text>
+                        <Card.Text>Qty: {flower.qty}</Card.Text>
+                      </Col>
+                    </Row>
+                  </Card>
+                );
+              })}
+            <ProceedOrder />
+          </Col>
         </Row>
-        <Row>{cartItemReview()}</Row>
-        <Row>
-          {flowers &&
-            flowers.map((flower) => {
-              return (
-                <Card
-                  key={flower.id}
-                  className="mt-4 mr-4"
-                  style={{ padding: "auto", width: "18rem" }}
-                >
-                  <Row>
-                    <Col className="pt-3 pb-3">
-                      <Image
-                        variant="top"
-                        style={{ padding: 10, width: 100, height: 100 }}
-                        src={
-                          flower.flower_photos[0] && flower.flower_photos[0].url
-                        }
-                      />
-                    </Col>
-                    <Col className="pt-4 pb-3 mr-3 card-checkout">
-                      <Card.Text>{flower.title}</Card.Text>
-                      <Card.Text>Price: ${flower.price}</Card.Text>
-                      <Card.Text>Qty: {flower.qty}</Card.Text>
-                    </Col>
-                  </Row>
-                </Card>
-              );
-            })}
-          <FavoriteList />
-        </Row>
+        <FavoriteList />
       </Container>
     </React.Fragment>
   );
