@@ -25,10 +25,6 @@ function CheckOutInfo(props) {
       });
       if (props.address) {
         return totalPrices.reduce((acc, cur) => {
-          return acc + cur + deliveryFee;
-        });
-      } else {
-        return totalPrices.reduce((acc, cur) => {
           return acc + cur;
         });
       }
@@ -45,7 +41,6 @@ function CheckOutInfo(props) {
         address.state +
         " " +
         address.zip;
-      const deliveryFee = 3;
       return (
         <>
           <Card.Text>Ship to: {deliveryAddress}</Card.Text>
@@ -64,7 +59,9 @@ function CheckOutInfo(props) {
             <Card.Text>Order Subtotal: ${subTotal()}</Card.Text>
             {displayAddress()}
             <Card.Text>Estimated Tax:</Card.Text>
-            <Card.Text>Estimated Subtotal: ${subTotal()}</Card.Text>
+            <Card.Text>
+              Estimated Subtotal: ${subTotal() + deliveryFee}
+            </Card.Text>
           </Card.Body>
         </Card>
       </Row>
