@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-function ProceedOrder() {
+function ProceedOrderBtn() {
   const proceedOrder = () => {
     console.log("proceed order");
   };
@@ -16,4 +16,4 @@ function ProceedOrder() {
   );
 }
 
-export default ProceedOrder;
+export default ProceedOrderBtn;

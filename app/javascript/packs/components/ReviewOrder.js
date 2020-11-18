@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Image, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as a from "../actions";
 import FavoriteList from "./FavoriteList";
-import ProceedOrder from "./ProceedOrder";
+import ProceedOrderBtn from "./ProceedOrderBtn";
 
 function ReviewOrder(props) {
   const { flowers, address, dispatch } = props;
@@ -104,7 +104,9 @@ function ReviewOrder(props) {
                   </Card>
                 );
               })}
-            <ProceedOrder />
+            <Row style={{ justifyContent: "center", marginTop: 36 }}>
+              <ProceedOrderBtn />
+            </Row>
           </Col>
         </Row>
         <FavoriteList />
