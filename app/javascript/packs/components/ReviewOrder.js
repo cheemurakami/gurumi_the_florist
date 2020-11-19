@@ -20,6 +20,7 @@ function ReviewOrder(props) {
 
   const displayShippingOption = () => {
     if (address) {
+      const name = address.first_name + " " + address.last_name;
       const deliveryAddress =
         address.street +
         " " +
@@ -32,7 +33,7 @@ function ReviewOrder(props) {
         <>
           <Card style={{ width: "18rem" }} className="card-checkout">
             <Card.Body>
-              <Card.Text>Ship to:</Card.Text>
+              <Card.Text>Ship to: {name}</Card.Text>
               <Card.Text>{deliveryAddress}</Card.Text>
             </Card.Body>
           </Card>
