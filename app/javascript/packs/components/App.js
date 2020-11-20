@@ -21,6 +21,7 @@ import Payments from './Payments'
 import SelectPayment from './SelectPayment'
 import ChooseShippingOptions from './ChooseShippingOptions'
 import ReviewOrder from './ReviewOrder'
+import Profile from './Profile'
 
 function App(props) {
   //func to check if signed in or not
@@ -104,6 +105,9 @@ function App(props) {
         </Route>
         <Route path="/review_order">
           <ReviewOrder />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="/">
           <FlowerList />
