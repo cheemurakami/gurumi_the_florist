@@ -92,8 +92,12 @@ function FlowerList(props) {
                           }
                         />
                         <Card.Body>
-                          <Card.Title>{flower.title}</Card.Title>
-                          <Card.Text>${flower.price}</Card.Text>
+                          <Card.Title style={{ fontSize: 16 }}>
+                            {flower.title}
+                          </Card.Title>
+                          <Card.Text style={{ fontSize: 12 }}>
+                            ${flower.price}
+                          </Card.Text>
                         </Card.Body>
                       </Card>
                     </Link>
