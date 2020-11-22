@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Container, Button, Form } from "react-bootstrap";
 
 function Signup() {
+  const [emailMsg, setEmailMsg] = useState();
+  const [passwordMsg, setPasswordMsg] = useState();
+  const [passwordConfMsg, setPasswordConfMsg] = useState();
   const signUp = (e) => {
     e.preventDefault();
     const data = {
@@ -20,7 +23,14 @@ function Signup() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
+        const errMsg = responseData.errors
+        if (errMsg.email) {
+          setEmailMsg(errMsg.email);
+        } else if (errMsg.password){
+          setPasswordMsg(errMsg.password)
+        } else if (errMsg.password_confirmation){
+          setPasswordConfMsg(errMsg.password_confirmation)
+        }
       });
   };
 
@@ -35,6 +45,7 @@ function Signup() {
                 <Form.Label>Email</Form.Label>
               </div>
               <Form.Control type="text" name="email" placeholder="Email" />
+              <p>{emailMsg}</p>
             </Form.Group>
 
             <Form.Group controlId="title-input">
@@ -46,6 +57,7 @@ function Signup() {
                 name="password"
                 placeholder="Password"
               />
+               <p>{passwordMsg}</p>
             </Form.Group>
 
             <Form.Group controlId="title-input">
@@ -57,9 +69,14 @@ function Signup() {
                 name="password_confirmation"
                 placeholder="Password Confirmation"
               />
+               <p>{passwordConfMsg}</p>
             </Form.Group>
 
-            <Button variant="outline-secondary" className="btn mb-3" type="submit">
+            <Button
+              variant="outline-secondary"
+              className="btn mb-3"
+              type="submit"
+            >
               Sign Up
             </Button>
           </Form>

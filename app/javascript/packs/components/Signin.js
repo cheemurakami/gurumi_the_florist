@@ -22,10 +22,13 @@ function Signin(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
+        console.log(responseData)
         const action = a.checkedLoginStatus(responseData);
         dispatch(action);
       });
   };
+
+  //error: "Invalid Email or password."
 
   const directToHome = () => {
     if (props.currentUser) {
