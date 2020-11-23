@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Button, Form } from "react-bootstrap";
 import * as a from "../actions";
 import { connect } from "react-redux";
 
 function Signin(props) {
+  const [msg, setMsg] = useState();
+
   const signIn = (e) => {
     e.preventDefault();
     const { dispatch } = props;
@@ -22,16 +24,17 @@ function Signin(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData)
+        const errMsg = responseData.error;
+        if (errMsg) {
+          setMsg(errMsg);
+        }
         const action = a.checkedLoginStatus(responseData);
         dispatch(action);
       });
   };
 
-  //error: "Invalid Email or password."
-
   const directToHome = () => {
-    if (props.currentUser) {
+    if (props.currentUser !== null) {
       return <Redirect to="/" />;
     }
   };
@@ -40,7 +43,6 @@ function Signin(props) {
     <React.Fragment>
       <Container>
         {directToHome()}
-
         <div style={{ textAlign: "center", margin: "auto", width: "350px" }}>
           <h4>Sign In</h4>
           <Form className="text-center" onSubmit={signIn}>
@@ -66,6 +68,7 @@ function Signin(props) {
                 placeholder="Password"
                 defaultValue="123456"
               />
+              <p>{msg}</p>
             </Form.Group>
 
             <Button variant="outline-secondary" className="btn" type="submit">

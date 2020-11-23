@@ -6,6 +6,7 @@ function Signup() {
   const [emailMsg, setEmailMsg] = useState();
   const [passwordMsg, setPasswordMsg] = useState();
   const [passwordConfMsg, setPasswordConfMsg] = useState();
+  
   const signUp = (e) => {
     e.preventDefault();
     const data = {
@@ -23,13 +24,13 @@ function Signup() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        const errMsg = responseData.errors
+        const errMsg = responseData.errors;
         if (errMsg.email) {
           setEmailMsg(errMsg.email);
-        } else if (errMsg.password){
-          setPasswordMsg(errMsg.password)
-        } else if (errMsg.password_confirmation){
-          setPasswordConfMsg(errMsg.password_confirmation)
+        } else if (errMsg.password) {
+          setPasswordMsg(errMsg.password);
+        } else if (errMsg.password_confirmation) {
+          setPasswordConfMsg(errMsg.password_confirmation);
         }
       });
   };
@@ -57,7 +58,7 @@ function Signup() {
                 name="password"
                 placeholder="Password"
               />
-               <p>{passwordMsg}</p>
+              <p>{passwordMsg}</p>
             </Form.Group>
 
             <Form.Group controlId="title-input">
@@ -69,7 +70,7 @@ function Signup() {
                 name="password_confirmation"
                 placeholder="Password Confirmation"
               />
-               <p>{passwordConfMsg}</p>
+              <p>{passwordConfMsg}</p>
             </Form.Group>
 
             <Button
