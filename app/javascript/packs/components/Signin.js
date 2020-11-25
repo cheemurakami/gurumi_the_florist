@@ -6,10 +6,10 @@ import { connect } from "react-redux";
 
 function Signin(props) {
   const [msg, setMsg] = useState();
+  const { dispatch, currentUser } = props;
 
   const signIn = (e) => {
     e.preventDefault();
-    const { dispatch } = props;
     const data = {
       email: e.target.email.value,
       password: e.target.password.value,
@@ -34,7 +34,7 @@ function Signin(props) {
   };
 
   const directToHome = () => {
-    if (props.currentUser !== null) {
+    if (currentUser && !currentUser.error) {
       return <Redirect to="/" />;
     }
   };
