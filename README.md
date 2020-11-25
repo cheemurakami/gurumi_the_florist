@@ -1,14 +1,14 @@
 # **Gurumi the Florist**
 
-#### _A capstone application using Ruby and React. DATE 7/17/20_
+#### _A capstone application using Ruby and React. DATE 7/17/20 to 11/25/20_
 
-#### By _**Chisato Murakami**_
+#### By _**Chee Murakami**_
 
-## Description
+## 💡 Description 💡
 
 _This is a flower shop website, that will allow the user to see the pictures of the flower bouquets and search by tags of kinds, occasions, seasons, and so on. The admin user is able to use full CRUD functionality to manage the website._ 
 
-## Setup/Installation Requirements
+## 🔧 Setup/Installation Requirements 🔨
 
 * _Clone Repository from GitHub : https://github.com/cheemurakami/gurumi_the_florist
 * _Run `rails s`
@@ -41,20 +41,20 @@ _This is a flower shop website, that will allow the user to see the pictures of 
 | 2. Logged-in users can see flowers and save these in favorite/cart. [√]|
 | 3. Logged-in users can unfavorite flowers. [√]|
 | 4. Logged-in users can remove flowers in cart. [√]|
-| 5. Logged-in users can select payment options. []|
-| 6. Logged-in users can process payment. []|
-| 7. Show recommended flowers based on users selections. []|
+| 5. Logged-in users can select payment options. [√]|
+| 6. Logged-in users can process payment. [√]|
+| 7. Show recommended flowers based on users selections. [√]|
 
 
-## Known Bugs
+## 🐛 Known Bugs 🐛
 
 _No known bugs at this time_
 
-## Support and contact details
+## 📮 Support and contact details 📮
 
 _If you have any questions or any issues please feel free to submit an issue here: kiwipom1031@gmail.com_
 
-## Technologies Used
+## 💻  Technologies Used 💻 
 
 _JavaScript, React, Redux, Ruby on Rails, React Bootstrap_ 
 
