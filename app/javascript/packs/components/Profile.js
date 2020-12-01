@@ -1,29 +1,48 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Container, Image } from "react-bootstrap";
+import { Container, Image, Row, Col } from "react-bootstrap";
 import Addresses from "./Addresses";
 import userImage from "./images/userImage.png";
 
 export const Profile = (props) => {
-  const { currentUser } = props;
+  const { currentUser, addresses } = props;
   const showUser = () => {
-    if(currentUser){
+    if (currentUser && addresses) {
+      const addressObj = addresses[0];
+      const address =
+        addressObj.street +
+        " " +
+        addressObj.city +
+        ", " +
+        addressObj.state +
+        " " +
+        addressObj.zip;
       return (
-        <h4>{currentUser.email}</h4>
-      )
+        <>
+          <p>Email: {currentUser.email}</p>
+          <p>Default Address: {address}</p>
+        </>
+      );
     }
-  }
+  };
   return (
     <React.Fragment>
       <Container>
-        <Image
-          className="ml-3"
-          src={userImage}
-          roundedCircle
-          width={150}
-          height={150}
-        />
-        {showUser()}
+        <h4>Your Profile</h4>
+
+        <Row className="mt-5 mb-5">
+          <Col>
+            <Image
+              className="ml-3"
+              src={userImage}
+              roundedCircle
+              width={150}
+              height={150}
+            />
+          </Col>
+          <Col>{showUser()}</Col>
+          <hr />
+        </Row>
         <Addresses />
       </Container>
     </React.Fragment>
@@ -33,6 +52,7 @@ export const Profile = (props) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.loginStatusReducer.currentUser,
+    addresses: state.addressListReducer.addresses,
   };
 };
 
