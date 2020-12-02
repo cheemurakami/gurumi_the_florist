@@ -6,21 +6,28 @@ import userImage from "./images/userImage.png";
 
 export const Profile = (props) => {
   const { currentUser, addresses } = props;
+
   const showUser = () => {
-    if (currentUser && addresses) {
-      const addressObj = addresses[0];
-      const address =
+    if (currentUser && addresses && addresses.length > 0) {
+      const addressObj = addresses.find((address) => address.default === true);
+
+      const defaultAddress =
         addressObj.street +
+        " " +
+        addressObj.apt_ste_unit +
         " " +
         addressObj.city +
         ", " +
         addressObj.state +
         " " +
         addressObj.zip;
+
+      const email = currentUser.email;
+
       return (
         <>
-          <p>Email: {currentUser.email}</p>
-          <p>Default Address: {address}</p>
+          <p>Email: {email}</p>
+          <p>Default Address: {defaultAddress}</p>
         </>
       );
     }
@@ -41,7 +48,6 @@ export const Profile = (props) => {
             />
           </Col>
           <Col>{showUser()}</Col>
-          <hr />
         </Row>
         <Addresses />
       </Container>
