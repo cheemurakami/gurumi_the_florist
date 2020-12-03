@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Container, Image, Row, Col } from "react-bootstrap";
+import { Container, Image, Row, Col, Button } from "react-bootstrap";
 import Addresses from "./Addresses";
 import userImage from "./images/userImage.png";
+import { Link } from "react-router-dom";
 
 export const Profile = (props) => {
   const { currentUser, addresses } = props;
@@ -47,7 +48,20 @@ export const Profile = (props) => {
               height={150}
             />
           </Col>
-          <Col>{showUser()}</Col>
+          <Col>
+            {showUser()}
+            <Link to={"/profile_edit"}>
+              <Button
+                variant="outline-secondary"
+                className="btn"
+                onClick={() => {
+                  console.log("Hello");
+                }}
+              >
+                Edit your profile
+              </Button>
+            </Link>
+          </Col>
         </Row>
         <Addresses />
       </Container>
