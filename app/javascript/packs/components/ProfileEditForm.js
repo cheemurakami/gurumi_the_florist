@@ -1,8 +1,40 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Container, Form, Button, Col } from "react-bootstrap";
 
 export const ProfileEditForm = () => {
-  return <React.Fragment>Hello</React.Fragment>;
+  return (
+    <React.Fragment>
+      <Container>
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridFirstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" name="first_name" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridLastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" name="last_name" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" name="street" />
+            </Form.Group>
+          </Form.Row>
+
+          <Button
+            variant="outline-secondary"
+            className="mb-1 mr-1"
+            type="submit"
+          >
+            Save
+          </Button>
+        </Form>
+      </Container>
+    </React.Fragment>
+  );
 };
 
 const mapStateToProps = (state) => ({});

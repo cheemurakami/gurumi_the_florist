@@ -54,9 +54,6 @@ export const Profile = (props) => {
               <Button
                 variant="outline-secondary"
                 className="btn"
-                onClick={() => {
-                  console.log("Hello");
-                }}
               >
                 Edit your profile
               </Button>
