@@ -3,10 +3,19 @@ import { connect } from "react-redux";
 import { Container, Form, Button, Col } from "react-bootstrap";
 
 export const ProfileEditForm = () => {
+  const formSubmissionHandler = (e) => {
+    e.preventDefault();
+    const data = {
+      first_name: e.target.first_name.value,
+      last_name: e.target.last_name.value,
+      username: e.target.username.value,
+    };
+    console.log(data);
+  };
   return (
     <React.Fragment>
       <Container>
-        <Form>
+        <Form onSubmit={formSubmissionHandler}>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>First Name</Form.Label>
@@ -20,7 +29,7 @@ export const ProfileEditForm = () => {
 
             <Form.Group as={Col} controlId="formGridUsername">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="text" name="street" />
+              <Form.Control type="text" name="username" />
             </Form.Group>
           </Form.Row>
 
