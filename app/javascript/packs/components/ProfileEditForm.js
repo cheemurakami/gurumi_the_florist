@@ -9,8 +9,22 @@ export const ProfileEditForm = () => {
       first_name: e.target.first_name.value,
       last_name: e.target.last_name.value,
       username: e.target.username.value,
+      email: e.target.email.value,
+      current_password: e.target.current_password.value,
+      password: e.target.password.value,
     };
-    console.log(data);
+    fetch("/users", {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: data }),
+    }).then((resp) => {
+      if (resp.status === 204) {
+        console.log("updated!");
+      }
+    });
   };
   return (
     <React.Fragment>
@@ -21,15 +35,29 @@ export const ProfileEditForm = () => {
               <Form.Label>First Name</Form.Label>
               <Form.Control type="text" name="first_name" />
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="text" name="last_name" />
             </Form.Group>
-
+          </Form.Row>
+          <Form.Row>
             <Form.Group as={Col} controlId="formGridUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control type="text" name="username" />
+            </Form.Group>
+            <Form.Group as={Col} controlId="formGridFirstName">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="text" name="email" />
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridFirstName">
+              <Form.Label>Current password</Form.Label>
+              <Form.Control type="text" name="current_password" />
+            </Form.Group>
+            <Form.Group as={Col} controlId="formGridFirstName">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="text" name="password" />
             </Form.Group>
           </Form.Row>
 
