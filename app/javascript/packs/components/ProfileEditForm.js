@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container, Form, Button, Col } from "react-bootstrap";
 
-export const ProfileEditForm = () => {
+export const ProfileEditForm = (props) => {
+  const { currentUser } = props;
+
   const formSubmissionHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -74,6 +76,10 @@ export const ProfileEditForm = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.loginStatusReducer.currentUser,
+  }
+}
 
 export default connect(mapStateToProps)(ProfileEditForm);
