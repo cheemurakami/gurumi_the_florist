@@ -80,6 +80,9 @@ export const ProfileEditForm = (props) => {
     return (
       <React.Fragment>
         <Container>
+          <div>
+            <h4 className="mt-4 mb-4">Edit your profile</h4>
+          </div>
           <Form onSubmit={formSubmissionHandler}>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridFirstName">
@@ -140,7 +143,7 @@ export const ProfileEditForm = (props) => {
       </React.Fragment>
     );
   };
-  
+
   if (currentUser) {
     return loggedinUserForm();
   } else {
