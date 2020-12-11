@@ -27,6 +27,9 @@ export const Profile = (props) => {
 
       return (
         <>
+          <p>
+            Name: {currentUser.first_name} {currentUser.last_name}
+          </p>
           <p>Email: {email}</p>
           <p>Default Address: {defaultAddress}</p>
         </>
@@ -51,10 +54,7 @@ export const Profile = (props) => {
           <Col>
             {showUser()}
             <Link to={"/profile_edit"}>
-              <Button
-                variant="outline-secondary"
-                className="btn"
-              >
+              <Button variant="outline-secondary" className="btn">
                 Edit your profile
               </Button>
             </Link>
