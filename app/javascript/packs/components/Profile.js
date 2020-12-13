@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container, Image, Row, Col, Button } from "react-bootstrap";
 import Addresses from "./Addresses";
+import Cart from "./Cart";
 import userImage from "./images/userImage.png";
 import { Link } from "react-router-dom";
 
@@ -61,6 +62,7 @@ export const Profile = (props) => {
           </Col>
         </Row>
         <Addresses />
+        <Cart />
       </Container>
     </React.Fragment>
   );
