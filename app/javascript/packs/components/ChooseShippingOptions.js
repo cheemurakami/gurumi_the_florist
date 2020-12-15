@@ -9,6 +9,7 @@ import {
 import { Redirect } from "react-router-dom";
 import CheckOutInfo from "./CheckOutInfo";
 import SelectAddress from "./SelectAddress";
+import SelectDate from "./SelectDate";
 
 function ChooseShippingOptions() {
   const [radioValue, setRadioValue] = useState("");
@@ -19,7 +20,12 @@ function ChooseShippingOptions() {
 
   const showSelectAddress = () => {
     if (radioValue === "delivery") {
-      return <SelectAddress />;
+      return (
+        <React.Fragment>
+          <SelectAddress />
+          <SelectDate />
+        </React.Fragment>
+      );
     } else if (radioValue === "pickup") {
       return <Redirect to="/payments" />;
     }
