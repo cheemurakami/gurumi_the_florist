@@ -3,10 +3,15 @@ import { connect } from "react-redux";
 import { Row } from "react-bootstrap";
 
 export const SelectDate = () => {
+
   return (
-    <div>
-      <h5>Choose your date</h5>
-    </div>
+    <React.Fragment>
+      <Row>
+        <h4>Choose your date</h4>
+        <hr />
+      </Row>
+
+    </React.Fragment>
   );
 };
 
