@@ -1,6 +1,7 @@
-import React from "react";
+import { Button, Container } from "react-bootstrap";
+
 import DropIn from "braintree-web-drop-in-react";
-import { Container, Button } from "react-bootstrap";
+import React from "react";
 import { Redirect } from "react-router-dom";
 
 class Store extends React.Component {

@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import * as a from "../actions";
-import { Container, Button, Form } from "react-bootstrap";
-import TagsInput from "react-tagsinput";
 import "react-tagsinput/react-tagsinput.css";
 
+import * as a from "../actions";
+
+import { Button, Container, Form } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
+import TagsInput from "react-tagsinput";
+import { connect } from "react-redux";
+
 function FlowerCreateForm(props) {
+
   const [tags, setTags] = useState([]);
 
   const { dispatch } = props;
