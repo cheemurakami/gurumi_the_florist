@@ -93,4 +93,9 @@ export const selectedAddressState = (address) => {
     address,
   };
 };
+export const updatedProfile = () => {
+  return {
+    type: c.UPDATED_PROFILE,
+  };
+};
 

@@ -1,9 +1,13 @@
+import * as a from "../actions";
+
+import { Button, Col, Container, Form } from "react-bootstrap";
+
+import { Link } from "react-router-dom";
 import React from "react";
 import { connect } from "react-redux";
-import { Container, Form, Button, Col } from "react-bootstrap";
 
 export const ProfileEditForm = (props) => {
-  const { currentUser } = props;
+  const { currentUser, dispatch, message } = props;
   const formSubmissionHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -23,123 +27,148 @@ export const ProfileEditForm = (props) => {
       body: JSON.stringify({ user: data }),
     }).then((resp) => {
       if (resp.status === 204) {
-        console.log("updated!");
+        const action = a.updatedProfile();
+        dispatch(action);
       }
     });
   };
 
   const form = () => {
-    return (
-      <React.Fragment>
-        <Container>
-          <Form onSubmit={formSubmissionHandler}>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" name="first_name" />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridLastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" name="last_name" />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" name="username" />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="text" name="email" />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>Current password</Form.Label>
-                <Form.Control type="text" name="current_password" />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="text" name="password" />
-              </Form.Group>
-            </Form.Row>
+    if (message) {
+      return updatedProfile();
+    } else {
+      return (
+        <React.Fragment>
+          <Container>
+            <Form onSubmit={formSubmissionHandler}>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control type="text" name="first_name" />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridLastName">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control type="text" name="last_name" />
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridUsername">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="text" name="username" />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="text" name="email" />
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>Current password</Form.Label>
+                  <Form.Control type="text" name="current_password" />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="text" name="password" />
+                </Form.Group>
+              </Form.Row>
 
-            <Button
-              variant="outline-secondary"
-              className="mb-1 mr-1"
-              type="submit"
-            >
-              Save
-            </Button>
-          </Form>
-        </Container>
-      </React.Fragment>
-    );
+              <Button
+                variant="outline-secondary"
+                className="mb-1 mr-1"
+                type="submit"
+              >
+                Save
+              </Button>
+            </Form>
+          </Container>
+        </React.Fragment>
+      );
+    }
   };
+
   const loggedinUserForm = () => {
+    if (message) {
+      return updatedMessage();
+    } else {
+      return (
+        <React.Fragment>
+          <Container>
+            <div>
+              <h4 className="mt-4 mb-4">Edit your profile</h4>
+            </div>
+            <Form onSubmit={formSubmissionHandler}>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="first_name"
+                    defaultValue={currentUser.first_name}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridLastName">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="last_name"
+                    defaultValue={currentUser.last_name}
+                  />
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridUsername">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="username"
+                    defaultValue={currentUser.username}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="email"
+                    defaultValue={currentUser.email}
+                  />
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>Current password</Form.Label>
+                  <Form.Control type="text" name="current_password" />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridFirstName">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="text" name="password" />
+                </Form.Group>
+              </Form.Row>
+
+              <Button
+                variant="outline-secondary"
+                className="mb-1 mr-1"
+                type="submit"
+              >
+                Save
+              </Button>
+            </Form>
+          </Container>
+        </React.Fragment>
+      );
+    }
+  };
+
+  const updatedMessage = () => {
     return (
       <React.Fragment>
-        <Container>
-          <div>
-            <h4 className="mt-4 mb-4">Edit your profile</h4>
-          </div>
-          <Form onSubmit={formSubmissionHandler}>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="first_name"
-                  defaultValue={currentUser.first_name}
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridLastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="last_name"
-                  defaultValue={currentUser.last_name}
-                />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="username"
-                  defaultValue={currentUser.username}
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="email"
-                  defaultValue={currentUser.email}
-                />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>Current password</Form.Label>
-                <Form.Control type="text" name="current_password" />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridFirstName">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="text" name="password" />
-              </Form.Group>
-            </Form.Row>
-
-            <Button
-              variant="outline-secondary"
-              className="mb-1 mr-1"
-              type="submit"
-            >
-              Save
+        <div style={{ textAlign: "center", margin: "auto" }}>
+          <p>Successfully Created!</p>
+          <Link to="/profile">
+            <Button variant="outline-secondary" className="btn">
+              Back to List
             </Button>
-          </Form>
-        </Container>
+          </Link>
+        </div>
       </React.Fragment>
     );
   };
@@ -154,6 +183,7 @@ export const ProfileEditForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.loginStatusReducer.currentUser,
+    message: state.loginStatusReducer.showMsg,
   };
 };
 

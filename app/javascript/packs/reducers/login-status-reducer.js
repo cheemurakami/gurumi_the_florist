@@ -6,6 +6,10 @@ export default (state = {}, action) => {
       return Object.assign({}, state, {
         currentUser: action.currentUser
       })
+    case c.UPDATED_PROFILE:
+      return Object.assign({}, state, {
+        showMsg: "Updated profile!"
+      })
     default:
       return state;
   }
