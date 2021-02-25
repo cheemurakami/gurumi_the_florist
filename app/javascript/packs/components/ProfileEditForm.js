@@ -80,6 +80,15 @@ export const ProfileEditForm = (props) => {
                 Save
               </Button>
             </Form>
+            <Link to={"/profile"}>
+              <Button
+                variant="outline-secondary"
+                className="mb-1 mr-1"
+                type="submit"
+              >
+                Back to Profile
+              </Button>
+            </Link>
           </Container>
         </React.Fragment>
       );
@@ -152,6 +161,15 @@ export const ProfileEditForm = (props) => {
                 Save
               </Button>
             </Form>
+            <Link to={"/profile"}>
+              <Button
+                variant="outline-secondary"
+                className="mb-1 mr-1"
+                type="submit"
+              >
+                Back to Profile
+              </Button>
+            </Link>
           </Container>
         </React.Fragment>
       );
@@ -159,6 +177,12 @@ export const ProfileEditForm = (props) => {
   };
 
   const updatedMessage = () => {
+    if (message) {
+      setTimeout(() => {
+        const action = a.resetProfileMessage();
+        dispatch(action);
+      }, 1500);
+    }
     return (
       <React.Fragment>
         <div style={{ textAlign: "center", margin: "auto" }}>
@@ -183,7 +207,7 @@ export const ProfileEditForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.loginStatusReducer.currentUser,
-    message: state.loginStatusReducer.showMsg,
+    message: state.loginStatusReducer.message,
   };
 };
 

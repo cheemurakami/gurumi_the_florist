@@ -98,4 +98,9 @@ export const updatedProfile = () => {
     type: c.UPDATED_PROFILE,
   };
 };
+export const resetProfileMessage = () => {
+  return {
+    type: c.RESET_PROFILE_MESSAGE,
+  };
+};
 
