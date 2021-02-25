@@ -1,10 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Container, Image, Row, Col, Button } from "react-bootstrap";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
+
 import Addresses from "./Addresses";
 import Cart from "./Cart";
-import userImage from "./images/userImage.png";
 import { Link } from "react-router-dom";
+import React from "react";
+import { connect } from "react-redux";
+import userImage from "./images/userImage.png";
 
 export const Profile = (props) => {
   const { currentUser, addresses } = props;
@@ -12,29 +13,34 @@ export const Profile = (props) => {
   const showUser = () => {
     if (currentUser && addresses && addresses.length > 0) {
       const addressObj = addresses.find((address) => address.default === true);
-
-      const defaultAddress =
-        addressObj.street +
-        " " +
-        addressObj.apt_ste_unit +
-        " " +
-        addressObj.city +
-        ", " +
-        addressObj.state +
-        " " +
-        addressObj.zip;
-
       const email = currentUser.email;
+      if (addressObj) {
+        const defaultAddress =
+          addressObj.street +
+          " " +
+          addressObj.apt_ste_unit +
+          " " +
+          addressObj.city +
+          ", " +
+          addressObj.state +
+          " " +
+          addressObj.zip;
 
-      return (
-        <>
-          <p>
-            Name: {currentUser.first_name} {currentUser.last_name}
-          </p>
-          <p>Email: {email}</p>
-          <p>Default Address: {defaultAddress}</p>
-        </>
-      );
+        return (
+          <>
+            <p>Name: {currentUser.first_name} {currentUser.last_name}</p>
+            <p>Email: {email}</p>
+            <p>Default Address: {defaultAddress}</p>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <p>Name: {currentUser.first_name} {currentUser.last_name}</p>
+            <p>Email: {email}</p>
+          </>
+        );
+      }
     }
   };
   return (
