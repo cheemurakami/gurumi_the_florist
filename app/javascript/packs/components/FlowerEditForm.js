@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import * as a from "../actions";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import TagsInput from "react-tagsinput";
 import "react-tagsinput/react-tagsinput.css";
+
+import * as a from "../actions";
+
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import TagsInput from "react-tagsinput";
+import { connect } from "react-redux";
 
 function FlowerEditForm(props) {
   const { id } = useParams();
@@ -58,7 +61,6 @@ function FlowerEditForm(props) {
   };
 
   const deleteImgHandler = (id) => {
-    console.log("deleteImgHandler CLICKED =>", id);
     fetch(`/api/delete_image/${id}`, {
       method: "DELETE",
     }).then((response) => {

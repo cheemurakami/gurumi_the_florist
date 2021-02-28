@@ -77,7 +77,7 @@ module Api
   def destroy
     @flower = Flower.find(params[:id])
     @flower.destroy
-    json_response({message: "destroyed!"})
+    json_response({mess age: "destroyed!"})
   end
 
   private
